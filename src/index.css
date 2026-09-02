@@ -18,7 +18,6 @@
     -moz-osx-font-smoothing: grayscale;
   }
 
-  /* Frontend asset & image protection: prevent drag, callout, and selection on visual assets */
   img, [data-protected-image] {
     -webkit-user-drag: none;
     -khtml-user-drag: none;
@@ -32,7 +31,6 @@
     -webkit-touch-callout: none;
   }
 
-  /* Custom minimal monochrome scrollbar */
   ::-webkit-scrollbar {
     width: 5px;
     height: 5px;
@@ -48,8 +46,6 @@
     background: #4a4a4a;
   }
 }
-
-/* ─── Hero animation keyframes ───────────────────────────────────────────── */
 
 @keyframes heroLineReveal {
   0%   { opacity: 0; transform: translateY(40px) skewY(1.5deg); }
@@ -161,9 +157,6 @@
 .shimmer-edge {
   animation: borderShimmerGlow 4s ease-in-out infinite;
 }
-
-/* ─── Grain / noise texture overlay ─────────────────────────────────────── */
-/* Applied via a ::before pseudo to any element with .grain-bg               */
 
 .grain-bg {
   position: relative;

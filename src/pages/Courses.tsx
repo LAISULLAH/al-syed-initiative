@@ -323,7 +323,6 @@ export const Courses: React.FC = () => {
 
             {activeCatalogTab === 'courses' ? (
         isLoading ? (
-          /* Loading Skeletons */
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[1, 2, 3].map((n) => (
               <div key={n} className="h-96 rounded-3xl bg-[#080808] border border-white/10 p-6 space-y-4">
@@ -337,7 +336,6 @@ export const Courses: React.FC = () => {
             ))}
           </div>
         ) : courses.length > 0 ? (
-          /* Courses Result List */
           <div
             className={
               viewMode === 'grid'
@@ -350,7 +348,6 @@ export const Courses: React.FC = () => {
             ))}
           </div>
         ) : (
-          /* Empty State */
           <div className="bg-[#080808] border border-white/10 rounded-3xl p-12 text-center max-w-lg mx-auto">
             <BookOpen className="w-12 h-12 text-mono-600 mx-auto mb-4" />
             <h3 className="text-xl font-bold text-white mb-2">No programs match your filters</h3>
@@ -363,7 +360,6 @@ export const Courses: React.FC = () => {
           </div>
         )
       ) : (
-        /* Live Cohorts Tab View */
         <div className="space-y-6">
           <div className="p-6 rounded-2xl bg-white/[0.02] border border-white/10 max-w-3xl mb-8">
             <h3 className="font-display text-xl font-bold text-white mb-2">

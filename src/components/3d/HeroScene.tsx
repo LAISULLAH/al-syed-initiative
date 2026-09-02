@@ -2,7 +2,6 @@ import React, { useEffect, useRef } from 'react';
 import * as THREE from 'three';
 import { useReducedMotion } from '../../hooks';
 
-/** Build the synthetic studio environment texture (equirectangular, 128×64). */
 function buildEnvTexture(): THREE.DataTexture {
   const W = 128, H = 64;
   const data = new Uint8Array(W * H * 4);
@@ -10,8 +9,8 @@ function buildEnvTexture(): THREE.DataTexture {
   for (let row = 0; row < H; row++) {
     for (let col = 0; col < W; col++) {
       const idx = (row * W + col) * 4;
-      const nx = col / (W - 1); // 0 → 1 left-to-right
-      const ny = row / (H - 1); // 0 → 1 bottom-to-top in equirect
+      const nx = col / (W - 1);
+      const ny = row / (H - 1);
 
       const base = 6 + ny * 28;
 
@@ -38,7 +37,6 @@ function buildEnvTexture(): THREE.DataTexture {
   return tex;
 }
 
-/** Displace a high-poly sphere to create the organic sculptural form. */
 function buildSculptureGeometry(): THREE.BufferGeometry {
   const geo = new THREE.SphereGeometry(2.0, 200, 200);
   const pos = geo.attributes.position as THREE.BufferAttribute;
@@ -46,7 +44,7 @@ function buildSculptureGeometry(): THREE.BufferGeometry {
 
   for (let i = 0; i < pos.count; i++) {
     v.fromBufferAttribute(pos, i);
-    const n = v.clone().normalize(); // surface normal direction
+    const n = v.clone().normalize();
 
     const low =
       Math.sin(n.x * 2.8 + 0.9)  * Math.sin(n.y * 3.5 + 1.4)  * Math.cos(n.z * 2.4 + 2.1)  * 0.36 +
@@ -105,9 +103,9 @@ export const HeroScene: React.FC = () => {
     const sculpGeo = buildSculptureGeometry();
     const sculpMat = new THREE.MeshStandardMaterial({
       color:            0x0e0e0e,
-      roughness:        0.05,   // nearly mirror-smooth
-      metalness:        0.97,   // fully metallic — chrome-like
-      envMapIntensity:  1.8,    // strong env reflection
+      roughness:        0.05,
+      metalness:        0.97,
+      envMapIntensity:  1.8,
     });
     const sculpture = new THREE.Mesh(sculpGeo, sculpMat);
     sculpture.castShadow    = true;
