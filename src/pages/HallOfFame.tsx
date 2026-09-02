@@ -217,7 +217,7 @@ export const HallOfFame: React.FC = () => {
             {/* Glowing Golden Diamond Emblem in Background */}
             <div className="hidden lg:block absolute right-0 top-1/2 -translate-y-1/2 opacity-25 pointer-events-none select-none filter drop-shadow-[0_0_40px_rgba(236,200,112,0.4)]">
               <img
-                src="/favicon.png"
+                src={`${import.meta.env.BASE_URL}favicon.png`}
                 alt="Al Syed Archive Watermark"
                 className="w-56 h-56 object-contain"
               />
@@ -568,7 +568,7 @@ export const HallOfFame: React.FC = () => {
           <div className="flex items-center gap-3.5 mb-8">
             <div className="w-9 h-9 rounded-xl flex items-center justify-center filter drop-shadow-[0_0_18px_rgba(236,200,112,0.6)]">
               <img
-                src="/favicon.png"
+                src={`${import.meta.env.BASE_URL}favicon.png`}
                 alt="Al Syed Initiative Insignia"
                 className="w-full h-full object-contain"
                 loading="eager"

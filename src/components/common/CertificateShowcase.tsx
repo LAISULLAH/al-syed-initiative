@@ -9,7 +9,6 @@ export const CertificateShowcase: React.FC<CertificateShowcaseProps> = ({ compac
     <div className={`relative w-full mx-auto ${compact ? 'max-w-2xl' : 'max-w-5xl'}`}>
       <img
         src={`${import.meta.env.BASE_URL}certificate-exact.png`}
-        alt="ADL Front Certificate of Excellence"
         className="block w-full rounded-lg border border-white/15 bg-[#151515] shadow-2xl"
       />
     </div>

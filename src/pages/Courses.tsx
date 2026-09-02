@@ -38,8 +38,6 @@ export const Courses: React.FC = () => {
   const categories: (CourseCategory | 'All')[] = [
     'All',
     'OSINT Masterclass',
-    'SOCMINT',
-    'Target Profiling',
     'Cohort Archive',
   ];
 
