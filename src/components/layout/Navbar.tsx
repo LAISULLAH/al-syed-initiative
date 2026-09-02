@@ -47,14 +47,41 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAuth }) => {
     return () => { document.body.style.overflow = ''; };
   }, [mobileOpen]);
 
-  const handleAuthAction = (mode: 'login' | 'signup') => {
-    setMobileOpen(false);
-    if (onOpenAuth) onOpenAuth(mode);
-    else navigate(`/${mode}`);
-  };
+  const [isVisible, setIsVisible] = useState(true);
+  const lastScrollY = useRef(0);
+
+  // Smart scroll-direction hide/show listener
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+
+      if (currentScrollY <= 80) {
+        // At top of page: always visible
+        setIsVisible(true);
+      } else if (mobileOpen) {
+        // Mobile drawer open: keep visible
+        setIsVisible(true);
+      } else if (currentScrollY > lastScrollY.current + 8) {
+        // Scrolling DOWN: hide capsule
+        setIsVisible(false);
+      } else if (currentScrollY < lastScrollY.current - 8) {
+        // Scrolling UP: reveal capsule
+        setIsVisible(true);
+      }
+
+      lastScrollY.current = currentScrollY;
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [mobileOpen]);
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 transition-all duration-500 pointer-events-none">
+    <header
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 pointer-events-none ${
+        isVisible ? 'translate-y-0 opacity-100' : '-translate-y-28 opacity-0'
+      }`}
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4 sm:pt-5">
         
         {/* ── Floating Precision Capsule ───────────────────────────── */}

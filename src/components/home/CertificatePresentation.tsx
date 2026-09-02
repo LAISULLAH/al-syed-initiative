@@ -143,7 +143,7 @@ export const CertificatePresentation: React.FC = () => {
           {/* Authentic Certificate Image (Smooth Parallax Zoom on Hover) */}
           <div className="relative rounded-xl overflow-hidden bg-black border border-white/15 shadow-inner">
             <img
-              src="/certificate-exact.png"
+              src={`${import.meta.env.BASE_URL}certificate-exact.png`}
               alt="Official Al Syed Initiative Certificate of Excellence"
               className="w-full h-auto block object-contain select-none transition-transform duration-700 group-hover:scale-[1.015]"
               loading="eager"
