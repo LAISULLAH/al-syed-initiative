@@ -22,8 +22,6 @@ export const HeroMasterpiece: React.FC<HeroMasterpieceProps> = () => {
   const reducedMotion = useReducedMotion();
   const heroRef = useRef<HTMLDivElement>(null);
   
-  // Mouse coordinates and smoothed parallax
-  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const [isHoveringHow, setIsHoveringHow] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
 
@@ -35,12 +33,12 @@ export const HeroMasterpiece: React.FC<HeroMasterpieceProps> = () => {
   useEffect(() => {
     // If preloader already finished earlier or reduced motion is enabled
     if ((window as any).__preloaderDone || reducedMotion) {
-      const timer = setTimeout(() => setIsLoaded(true), 80);
+      const timer = setTimeout(() => setIsLoaded(true), 40);
       return () => clearTimeout(timer);
     }
 
     const handlePreloaderDone = () => {
-      setTimeout(() => setIsLoaded(true), 120);
+      setTimeout(() => setIsLoaded(true), 60);
     };
 
     window.addEventListener('site-preloader-done', handlePreloaderDone);
@@ -48,49 +46,11 @@ export const HeroMasterpiece: React.FC<HeroMasterpieceProps> = () => {
     // Fallback timer if event is missed
     const fallbackTimer = setTimeout(() => {
       setIsLoaded(true);
-    }, 1250);
+    }, 1000);
 
     return () => {
       window.removeEventListener('site-preloader-done', handlePreloaderDone);
       clearTimeout(fallbackTimer);
-    };
-  }, [reducedMotion]);
-
-  // Smooth mouse movement tracking for parallax & spotlight
-  useEffect(() => {
-    if (reducedMotion) return;
-
-    let targetX = 0;
-    let targetY = 0;
-    let currentX = 0;
-    let currentY = 0;
-    let rafId: number;
-
-    const handleMouseMove = (e: MouseEvent) => {
-      if (!heroRef.current) return;
-      const rect = heroRef.current.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
-
-      // Normalized coordinates from center (-1 to 1)
-      targetX = (x / rect.width - 0.5) * 2;
-      targetY = (y / rect.height - 0.5) * 2;
-    };
-
-    const animate = () => {
-      // Smooth lerping
-      currentX += (targetX - currentX) * 0.08;
-      currentY += (targetY - currentY) * 0.08;
-      setMousePos({ x: currentX, y: currentY });
-      rafId = requestAnimationFrame(animate);
-    };
-
-    window.addEventListener('mousemove', handleMouseMove, { passive: true });
-    rafId = requestAnimationFrame(animate);
-
-    return () => {
-      window.removeEventListener('mousemove', handleMouseMove);
-      cancelAnimationFrame(rafId);
     };
   }, [reducedMotion]);
 
@@ -122,24 +82,16 @@ export const HeroMasterpiece: React.FC<HeroMasterpieceProps> = () => {
       {/* ── 1. Sophisticated Living Monochrome Background ──────────── */}
       
       {/* Dynamic Cursor Spotlight */}
+      {/* Subtle Ambient Radial Backlight */}
       <div
-        className="absolute inset-0 pointer-events-none transition-opacity duration-1000 z-0"
+        className="absolute inset-0 pointer-events-none transition-opacity duration-700 z-0"
         style={{
-          background: reducedMotion
-            ? 'radial-gradient(circle at 50% 45%, rgba(255,255,255,0.03) 0%, transparent 65%)'
-            : `radial-gradient(750px circle at ${50 + mousePos.x * 20}% ${45 + mousePos.y * 20}%, rgba(255,255,255,0.045) 0%, rgba(255,255,255,0.01) 40%, transparent 75%)`,
+          background: 'radial-gradient(circle at 50% 45%, rgba(255,255,255,0.038) 0%, rgba(255,255,255,0.008) 40%, transparent 70%)',
         }}
       />
 
-      {/* Subtle Living Grid with Breathing Drift */}
-      <div
-        className="absolute inset-0 bg-grid-fine pointer-events-none opacity-25 z-0 transition-transform duration-700 ease-out"
-        style={{
-          transform: reducedMotion
-            ? undefined
-            : `translate3d(${mousePos.x * -6}px, ${mousePos.y * -6}px, 0)`,
-        }}
-      />
+      {/* Subtle Living Grid */}
+      <div className="absolute inset-0 bg-grid-fine pointer-events-none opacity-20 z-0" />
 
       {/* Atmospheric Hairline Guides with Slow Ambient Shimmer */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden z-0" aria-hidden="true">
@@ -150,20 +102,13 @@ export const HeroMasterpiece: React.FC<HeroMasterpieceProps> = () => {
         <div className="absolute top-1/2 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/[0.08] to-transparent" />
       </div>
 
-      {/* ── 2. Content Container with Kinetic Parallax ──────────────── */}
-      <div
-        className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 w-full flex flex-col items-center transition-transform duration-500 ease-out"
-        style={{
-          transform: reducedMotion
-            ? undefined
-            : `translate3d(${mousePos.x * 5}px, ${mousePos.y * 5}px, 0)`,
-        }}
-      >
+      {/* ── 2. Content Container ───────────────────────────────────── */}
+      <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 w-full flex flex-col items-center">
         
         {/* Top Brand Eyebrow Pill */}
         <div
-          className={`inline-flex items-center gap-2.5 px-5 py-2 rounded-full bg-white/[0.04] border border-white/15 backdrop-blur-md text-mono-200 font-mono text-xs uppercase tracking-[0.22em] mb-8 sm:mb-12 shadow-sm transition-all duration-700 ${
-            isLoaded ? 'opacity-100 translate-y-0 blur-0' : 'opacity-0 translate-y-4 blur-sm'
+          className={`inline-flex items-center gap-2.5 px-5 py-2 rounded-full bg-white/[0.04] border border-white/15 backdrop-blur-md text-mono-200 font-mono text-xs uppercase tracking-[0.22em] mb-8 sm:mb-12 shadow-sm transition-all duration-450 ${
+            isLoaded ? 'opacity-100 translate-y-0 blur-0' : 'opacity-0 translate-y-2 blur-[2px]'
           }`}
         >
           <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse shadow-[0_0_8px_white]" />
@@ -181,8 +126,8 @@ export const HeroMasterpiece: React.FC<HeroMasterpieceProps> = () => {
         >
           {/* Line 1 */}
           <span
-            className={`block transition-all duration-1000 delay-100 ease-[cubic-bezier(0.16,1,0.3,1)] ${
-              isLoaded ? 'opacity-100 translate-y-0 blur-0 tracking-[-0.04em]' : 'opacity-0 translate-y-8 blur-[10px] tracking-[0.04em]'
+            className={`block transition-all duration-500 delay-50 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+              isLoaded ? 'opacity-100 translate-y-0 blur-0 tracking-[-0.04em]' : 'opacity-0 translate-y-3 blur-[3px] tracking-[-0.02em]'
             }`}
           >
             <span className="inline-block transition-colors duration-200 hover:text-white/80">The</span>{' '}
@@ -192,8 +137,8 @@ export const HeroMasterpiece: React.FC<HeroMasterpieceProps> = () => {
 
           {/* Line 2 */}
           <span
-            className={`block transition-all duration-1000 delay-300 ease-[cubic-bezier(0.16,1,0.3,1)] ${
-              isLoaded ? 'opacity-100 translate-y-0 blur-0 tracking-[-0.04em]' : 'opacity-0 translate-y-8 blur-[10px] tracking-[0.04em]'
+            className={`block transition-all duration-500 delay-150 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+              isLoaded ? 'opacity-100 translate-y-0 blur-0 tracking-[-0.04em]' : 'opacity-0 translate-y-3 blur-[3px] tracking-[-0.02em]'
             }`}
           >
             <span className="inline-block transition-colors duration-200 hover:text-white/80">knowing</span>{' '}
@@ -202,8 +147,8 @@ export const HeroMasterpiece: React.FC<HeroMasterpieceProps> = () => {
 
           {/* Line 3: Reacting "HOW." */}
           <span
-            className={`block transition-all duration-1000 delay-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${
-              isLoaded ? 'opacity-100 translate-y-0 blur-0 tracking-[-0.04em]' : 'opacity-0 translate-y-8 blur-[10px] tracking-[0.04em]'
+            className={`block transition-all duration-500 delay-250 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+              isLoaded ? 'opacity-100 translate-y-0 blur-0 tracking-[-0.04em]' : 'opacity-0 translate-y-3 blur-[3px] tracking-[-0.02em]'
             }`}
           >
             <span className="text-white/45 inline-block transition-colors duration-200 hover:text-white/70">

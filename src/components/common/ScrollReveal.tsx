@@ -24,8 +24,8 @@ export const ScrollReveal: React.FC<ScrollRevealProps> = ({
   children,
   className = '',
   delayMs = 0,
-  durationMs = 900,
-  threshold = 0.12,
+  durationMs = 450,
+  threshold = 0.05,
   showLine = false,
 }) => {
   const reducedMotion = useReducedMotion();
@@ -50,7 +50,7 @@ export const ScrollReveal: React.FC<ScrollRevealProps> = ({
       },
       {
         threshold,
-        rootMargin: '0px 0px -40px 0px',
+        rootMargin: '0px 0px -10px 0px',
       }
     );
 
@@ -64,7 +64,7 @@ export const ScrollReveal: React.FC<ScrollRevealProps> = ({
       className={`transition-all ease-[cubic-bezier(0.16,1,0.3,1)] ${className} ${
         inView
           ? 'opacity-100 translate-y-0 blur-0'
-          : 'opacity-0 translate-y-7 blur-[5px]'
+          : 'opacity-0 translate-y-3 blur-[2px]'
       }`}
       style={{
         transitionDuration: `${durationMs}ms`,

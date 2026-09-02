@@ -14,28 +14,48 @@ import { useReducedMotion } from '../../hooks';
 
 export const GlobalAmbientLighting: React.FC = () => {
   const reducedMotion = useReducedMotion();
-  const [coords, setCoords] = useState<{ x: number; y: number }>({ x: -1000, y: -1000 });
-  const targetRef = useRef<{ x: number; y: number }>({ x: -1000, y: -1000 });
-  const currentRef = useRef<{ x: number; y: number }>({ x: -1000, y: -1000 });
+  const spotlightRef = useRef<HTMLDivElement>(null);
   const rafRef = useRef<number | null>(null);
 
   useEffect(() => {
     if (reducedMotion) return;
+    // Disable cursor lighting on touch/coarse devices
+    if (typeof window !== 'undefined' && window.matchMedia('(pointer: coarse)').matches) {
+      return;
+    }
 
-    const onMouseMove = (e: MouseEvent) => {
-      targetRef.current = { x: e.clientX, y: e.clientY };
-    };
+    let targetX = -1000;
+    let targetY = -1000;
+    let currentX = -1000;
+    let currentY = -1000;
+    let isRunning = false;
 
     const loop = () => {
-      // Smooth lerp for liquid, organic motion
-      currentRef.current.x += (targetRef.current.x - currentRef.current.x) * 0.07;
-      currentRef.current.y += (targetRef.current.y - currentRef.current.y) * 0.07;
-      setCoords({ x: currentRef.current.x, y: currentRef.current.y });
-      rafRef.current = requestAnimationFrame(loop);
+      currentX += (targetX - currentX) * 0.12;
+      currentY += (targetY - currentY) * 0.12;
+
+      if (spotlightRef.current && currentX > -500) {
+        spotlightRef.current.style.background = `radial-gradient(650px circle at ${Math.round(currentX)}px ${Math.round(currentY)}px, rgba(255,255,255,0.038) 0%, rgba(255,255,255,0.008) 45%, transparent 75%)`;
+      }
+
+      // If mouse stopped moving, pause RAF to save CPU
+      if (Math.abs(targetX - currentX) > 0.5 || Math.abs(targetY - currentY) > 0.5) {
+        rafRef.current = requestAnimationFrame(loop);
+      } else {
+        isRunning = false;
+      }
+    };
+
+    const onMouseMove = (e: MouseEvent) => {
+      targetX = e.clientX;
+      targetY = e.clientY;
+      if (!isRunning) {
+        isRunning = true;
+        rafRef.current = requestAnimationFrame(loop);
+      }
     };
 
     window.addEventListener('mousemove', onMouseMove, { passive: true });
-    rafRef.current = requestAnimationFrame(loop);
 
     return () => {
       window.removeEventListener('mousemove', onMouseMove);
@@ -47,15 +67,11 @@ export const GlobalAmbientLighting: React.FC = () => {
 
   return (
     <div className="pointer-events-none fixed inset-0 z-30 overflow-hidden" aria-hidden="true">
-      {/* ── 1. Cursor-Following Ambient Spotlight ──────────────────── */}
-      {coords.x > -500 && (
-        <div
-          className="absolute inset-0 transition-opacity duration-700"
-          style={{
-            background: `radial-gradient(650px circle at ${coords.x}px ${coords.y}px, rgba(255,255,255,0.038) 0%, rgba(255,255,255,0.008) 45%, transparent 75%)`,
-          }}
-        />
-      )}
+      {/* ── 1. Cursor-Following Ambient Spotlight (Direct DOM, zero React re-renders) ─ */}
+      <div
+        ref={spotlightRef}
+        className="absolute inset-0 transition-opacity duration-300"
+      />
 
       {/* ── 2. Ultra-Subtle Film Grain Texture ─────────────────────── */}
       <div

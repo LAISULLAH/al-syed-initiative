@@ -111,7 +111,7 @@ export const Home: React.FC<HomeProps> = ({ onOpenAuth }) => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-10 lg:gap-14 pt-8 border-t border-white/10">
             
             {/* Block 01 */}
-            <ScrollReveal delayMs={100} className="space-y-6 group p-6 -m-6 rounded-2xl transition-all duration-300 hover:bg-white/[0.02] hover:border hover:border-white/15">
+            <ScrollReveal delayMs={0} className="space-y-6 group p-6 -m-6 rounded-2xl transition-all duration-300 hover:bg-white/[0.02] hover:border hover:border-white/15">
               <div className="flex items-center justify-between pb-4 border-b border-white/[0.08]">
                 <span className="font-mono text-sm font-black text-white tracking-widest">
                   01 //
@@ -131,7 +131,7 @@ export const Home: React.FC<HomeProps> = ({ onOpenAuth }) => {
             </ScrollReveal>
 
             {/* Block 02 */}
-            <ScrollReveal delayMs={250} className="space-y-6 group p-6 -m-6 rounded-2xl transition-all duration-300 hover:bg-white/[0.02] hover:border hover:border-white/15">
+            <ScrollReveal delayMs={60} className="space-y-6 group p-6 -m-6 rounded-2xl transition-all duration-300 hover:bg-white/[0.02] hover:border hover:border-white/15">
               <div className="flex items-center justify-between pb-4 border-b border-white/[0.08]">
                 <span className="font-mono text-sm font-black text-white tracking-widest">
                   02 //
@@ -151,7 +151,7 @@ export const Home: React.FC<HomeProps> = ({ onOpenAuth }) => {
             </ScrollReveal>
 
             {/* Block 03 */}
-            <ScrollReveal delayMs={400} className="space-y-6 group p-6 -m-6 rounded-2xl transition-all duration-300 hover:bg-white/[0.02] hover:border hover:border-white/15">
+            <ScrollReveal delayMs={120} className="space-y-6 group p-6 -m-6 rounded-2xl transition-all duration-300 hover:bg-white/[0.02] hover:border hover:border-white/15">
               <div className="flex items-center justify-between pb-4 border-b border-white/[0.08]">
                 <span className="font-mono text-sm font-black text-white tracking-widest">
                   03 //
@@ -218,7 +218,7 @@ export const Home: React.FC<HomeProps> = ({ onOpenAuth }) => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
             
             {/* 01 — CURIOSITY */}
-            <ScrollReveal delayMs={100}>
+            <ScrollReveal delayMs={0}>
               <div className="group relative p-8 sm:p-10 lg:p-12 rounded-3xl bg-[#090909] border border-white/10 hover:border-white/35 hover:bg-[#0e0e0e] hover:-translate-y-2 transition-all duration-300 flex flex-col justify-between shadow-[0_20px_50px_-15px_rgba(0,0,0,0.85)] hover:shadow-[0_30px_70px_-20px_rgba(255,255,255,0.08)] overflow-hidden h-full">
                 {/* Giant numeric watermark */}
                 <span className="font-mono font-black text-8xl text-white/[0.03] absolute top-4 right-6 pointer-events-none group-hover:text-white/[0.08] transition-colors duration-300">
@@ -256,7 +256,7 @@ export const Home: React.FC<HomeProps> = ({ onOpenAuth }) => {
             </ScrollReveal>
 
             {/* 02 — DISCIPLINE */}
-            <ScrollReveal delayMs={250}>
+            <ScrollReveal delayMs={60}>
               <div className="group relative p-8 sm:p-10 lg:p-12 rounded-3xl bg-[#090909] border border-white/10 hover:border-white/35 hover:bg-[#0e0e0e] hover:-translate-y-2 transition-all duration-300 flex flex-col justify-between shadow-[0_20px_50px_-15px_rgba(0,0,0,0.85)] hover:shadow-[0_30px_70px_-20px_rgba(255,255,255,0.08)] overflow-hidden h-full">
                 {/* Giant numeric watermark */}
                 <span className="font-mono font-black text-8xl text-white/[0.03] absolute top-4 right-6 pointer-events-none group-hover:text-white/[0.08] transition-colors duration-300">
@@ -294,7 +294,7 @@ export const Home: React.FC<HomeProps> = ({ onOpenAuth }) => {
             </ScrollReveal>
 
             {/* 03 — JUDGEMENT */}
-            <ScrollReveal delayMs={400}>
+            <ScrollReveal delayMs={120}>
               <div className="group relative p-8 sm:p-10 lg:p-12 rounded-3xl bg-[#090909] border border-white/10 hover:border-white/35 hover:bg-[#0e0e0e] hover:-translate-y-2 transition-all duration-300 flex flex-col justify-between shadow-[0_20px_50px_-15px_rgba(0,0,0,0.85)] hover:shadow-[0_30px_70px_-20px_rgba(255,255,255,0.08)] overflow-hidden h-full">
                 {/* Giant numeric watermark */}
                 <span className="font-mono font-black text-8xl text-white/[0.03] absolute top-4 right-6 pointer-events-none group-hover:text-white/[0.08] transition-colors duration-300">
@@ -382,7 +382,7 @@ export const Home: React.FC<HomeProps> = ({ onOpenAuth }) => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
             
             {/* Stage 01 */}
-            <ScrollReveal delayMs={100}>
+            <ScrollReveal delayMs={0}>
               <div className="group relative p-8 sm:p-10 rounded-3xl bg-[#080808] border border-white/10 hover:border-white/35 hover:bg-[#0e0e0e] hover:-translate-y-2 transition-all duration-300 flex flex-col justify-between shadow-[0_20px_50px_-15px_rgba(0,0,0,0.85)] hover:shadow-[0_30px_70px_-20px_rgba(255,255,255,0.08)] overflow-hidden h-full">
                 {/* Subtle watermark */}
                 <span className="font-mono font-black text-7xl text-white/[0.03] absolute top-5 right-6 pointer-events-none group-hover:text-white/[0.08] transition-colors duration-300">
@@ -419,7 +419,7 @@ export const Home: React.FC<HomeProps> = ({ onOpenAuth }) => {
             </ScrollReveal>
 
             {/* Stage 02 */}
-            <ScrollReveal delayMs={250}>
+            <ScrollReveal delayMs={60}>
               <div className="group relative p-8 sm:p-10 rounded-3xl bg-[#080808] border border-white/10 hover:border-white/35 hover:bg-[#0e0e0e] hover:-translate-y-2 transition-all duration-300 flex flex-col justify-between shadow-[0_20px_50px_-15px_rgba(0,0,0,0.85)] hover:shadow-[0_30px_70px_-20px_rgba(255,255,255,0.08)] overflow-hidden h-full">
                 {/* Subtle watermark */}
                 <span className="font-mono font-black text-7xl text-white/[0.03] absolute top-5 right-6 pointer-events-none group-hover:text-white/[0.08] transition-colors duration-300">
@@ -456,7 +456,7 @@ export const Home: React.FC<HomeProps> = ({ onOpenAuth }) => {
             </ScrollReveal>
 
             {/* Stage 03 */}
-            <ScrollReveal delayMs={400}>
+            <ScrollReveal delayMs={120}>
               <div className="group relative p-8 sm:p-10 rounded-3xl bg-[#080808] border border-white/10 hover:border-white/35 hover:bg-[#0e0e0e] hover:-translate-y-2 transition-all duration-300 flex flex-col justify-between shadow-[0_20px_50px_-15px_rgba(0,0,0,0.85)] hover:shadow-[0_30px_70px_-20px_rgba(255,255,255,0.08)] overflow-hidden h-full">
                 {/* Subtle watermark */}
                 <span className="font-mono font-black text-7xl text-white/[0.03] absolute top-5 right-6 pointer-events-none group-hover:text-white/[0.08] transition-colors duration-300">
@@ -538,7 +538,7 @@ export const Home: React.FC<HomeProps> = ({ onOpenAuth }) => {
           </ScrollReveal>
 
           {/* Large Museum-Grade Certificate Presentation Component */}
-          <ScrollReveal delayMs={150}>
+          <ScrollReveal delayMs={0}>
             <CertificatePresentation />
           </ScrollReveal>
         </div>
@@ -570,7 +570,7 @@ export const Home: React.FC<HomeProps> = ({ onOpenAuth }) => {
           </ScrollReveal>
 
           {/* Unified Training Program Component */}
-          <ScrollReveal delayMs={150}>
+          <ScrollReveal delayMs={0}>
             <EditorialPlans onSelectPlan={() => onOpenAuth('signup')} />
           </ScrollReveal>
         </div>

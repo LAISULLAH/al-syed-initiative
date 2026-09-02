@@ -45,9 +45,10 @@ export const CertificatePresentation: React.FC = () => {
       ([entry]) => {
         if (entry.isIntersecting) {
           setIsVisible(true);
+          observer.unobserve(entry.target);
         }
       },
-      { threshold: 0.2 }
+      { threshold: 0.05, rootMargin: '0px 0px -10px 0px' }
     );
 
     if (containerRef.current) {
@@ -60,14 +61,15 @@ export const CertificatePresentation: React.FC = () => {
   // Subtle interactive parallax tilt on hover
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     if (reducedMotion || !containerRef.current) return;
+    if (typeof window !== 'undefined' && window.matchMedia('(pointer: coarse)').matches) return;
     const rect = containerRef.current.getBoundingClientRect();
     const centerX = rect.left + rect.width / 2;
     const centerY = rect.top + rect.height / 2;
 
-    const x = ((e.clientX - centerX) / (rect.width / 2)) * 3;
-    const y = ((e.clientY - centerY) / (rect.height / 2)) * -3;
+    const x = ((e.clientX - centerX) / (rect.width / 2)) * 2;
+    const y = ((e.clientY - centerY) / (rect.height / 2)) * -2;
 
-    setTilt({ x: Math.max(-3, Math.min(3, x)), y: Math.max(-3, Math.min(3, y)) });
+    setTilt({ x: Math.max(-2, Math.min(2, x)), y: Math.max(-2, Math.min(2, y)) });
   };
 
   const handleMouseLeave = () => {
@@ -122,8 +124,8 @@ export const CertificatePresentation: React.FC = () => {
       {/* ── Central Archival Certificate Display with Scroll Reveal ─── */}
       <div className="relative z-10 my-10 flex justify-center">
         <div
-          className={`relative w-full max-w-4xl rounded-2xl bg-[#0d0d0d] border border-white/20 p-4 sm:p-6 lg:p-8 shadow-[0_25px_80px_-20px_rgba(0,0,0,0.9)] overflow-hidden transition-all duration-700 ease-out group hover:border-white/45 ${
-            isVisible ? 'opacity-100 blur-0 scale-100' : 'opacity-60 blur-[3px] scale-[0.98]'
+          className={`relative w-full max-w-4xl rounded-2xl bg-[#0d0d0d] border border-white/20 p-4 sm:p-6 lg:p-8 shadow-[0_25px_80px_-20px_rgba(0,0,0,0.9)] overflow-hidden transition-all duration-450 ease-out group hover:border-white/45 ${
+            isVisible ? 'opacity-100 blur-0 scale-100' : 'opacity-60 blur-[2px] scale-[0.99]'
           }`}
           style={{
             transform: reducedMotion
