@@ -10,7 +10,6 @@ export const FAQ: React.FC = () => {
   const [openIds, setOpenIds] = useState<Set<string>>(new Set(['faq-01']));
   const [isLoaded, setIsLoaded] = useState(false);
 
-  // Mouse spotlight coordinates
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const containerRef = useRef<HTMLDivElement>(null);
   const reducedMotion = useReducedMotion();
@@ -20,7 +19,6 @@ export const FAQ: React.FC = () => {
     return () => clearTimeout(timer);
   }, []);
 
-  // Smooth lerped mouse movement tracking for ambient spotlight
   useEffect(() => {
     if (reducedMotion) return;
 
@@ -84,7 +82,6 @@ export const FAQ: React.FC = () => {
       className="relative min-h-screen bg-[#030303] text-mono-100 overflow-hidden select-none selection:bg-white selection:text-black font-sans"
     >
       
-      {/* Cursor-Following Ambient Light */}
       <div
         className="absolute inset-0 pointer-events-none transition-opacity duration-1000 z-0"
         style={{
@@ -94,7 +91,6 @@ export const FAQ: React.FC = () => {
         }}
       />
 
-      {/* Static Top Radial Flare */}
       <div
         className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-[600px] pointer-events-none z-0"
         style={{
@@ -102,10 +98,8 @@ export const FAQ: React.FC = () => {
         }}
       />
 
-      {/* Fine Architectural Grid */}
       <div className="absolute inset-0 bg-grid-fine opacity-15 pointer-events-none z-0" />
 
-      {/* Vertical Hairline Margin Guides */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden z-0" aria-hidden="true">
         <div className="absolute left-[6%] top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-white/[0.04] to-transparent" />
         <div className="absolute right-[6%] top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-white/[0.04] to-transparent" />
@@ -115,7 +109,6 @@ export const FAQ: React.FC = () => {
         
         <section className="mb-16 sm:mb-20 text-left">
           
-          {/* Eyebrow */}
           <div
             className={`inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full border border-white/15 bg-white/[0.03] backdrop-blur-md mb-6 transition-all duration-700 delay-100 ${
               isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-3'
@@ -127,7 +120,6 @@ export const FAQ: React.FC = () => {
             </span>
           </div>
 
-          {/* Monumental Heading */}
           <h1
             className={`font-display font-black uppercase tracking-[-0.03em] text-white leading-[0.92] mb-6 transition-all duration-800 delay-200 ease-[cubic-bezier(0.16,1,0.3,1)] ${
               isLoaded ? 'opacity-100 blur-0 translate-y-0' : 'opacity-0 blur-[8px] translate-y-6'
@@ -150,7 +142,6 @@ export const FAQ: React.FC = () => {
 
         <section className="mb-12 space-y-4 text-left">
           
-          {/* Instant Keyword Search Input */}
           <div className="relative w-full">
             <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-mono-400" />
             <input
@@ -170,7 +161,6 @@ export const FAQ: React.FC = () => {
             )}
           </div>
 
-          {/* Category Filter Pills */}
           <div className="flex flex-wrap items-center gap-2 pt-2">
             {categories.map((cat) => {
               const active = selectedCategory === cat;
@@ -212,7 +202,6 @@ export const FAQ: React.FC = () => {
                     : 'border-white/[0.08] bg-[#060606]/60 hover:border-white/20 hover:bg-white/[0.02]'
                 }`}
               >
-                {/* Accordion Trigger */}
                 <button
                   onClick={() => toggleFAQ(faq.id)}
                   className="w-full p-6 sm:p-7 flex items-center justify-between gap-6 text-left cursor-pointer focus:outline-none"
@@ -244,7 +233,6 @@ export const FAQ: React.FC = () => {
                   </div>
                 </button>
 
-                {/* Accordion Answer Content */}
                 {isOpen && (
                   <div className="px-6 sm:px-7 pb-7 pt-1 border-t border-white/[0.06] text-left animate-fade-in">
                     <p className="text-sm sm:text-base text-mono-300 font-sans leading-relaxed font-normal pl-8 sm:pl-10 select-text">
@@ -269,7 +257,6 @@ export const FAQ: React.FC = () => {
 
         <section className="p-8 sm:p-12 rounded-3xl bg-gradient-to-b from-[#090909] to-[#040404] border border-white/15 relative overflow-hidden text-left shadow-2xl">
           
-          {/* Subtle Top Hairline Highlight */}
           <div className="absolute top-0 left-1/2 -translate-x-1/2 w-48 h-px bg-gradient-to-r from-transparent via-white/30 to-transparent pointer-events-none" />
 
           <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-8">

@@ -51,7 +51,6 @@ export const PhilosophyProgression: React.FC = () => {
             key={item.num}
             className="group relative p-6 sm:p-7 rounded-2xl bg-[#080808] border border-white/10 hover:border-white/30 hover:bg-[#0d0d0d] transition-all duration-300 flex flex-col justify-between shadow-sm overflow-hidden"
           >
-            {/* Ambient subtle corner glow */}
             <div className="flex items-center justify-between pb-4 border-b border-white/[0.08] mb-6">
               <span className="font-mono text-xs font-black tracking-widest text-mono-400 group-hover:text-white transition-colors">
                 {item.num} //

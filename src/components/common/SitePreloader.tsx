@@ -15,7 +15,6 @@ export const SitePreloader: React.FC = () => {
       return;
     }
 
-    // Dynamic typewriter typing effect
     let currentIndex = 0;
     const startDelay = 100;
     const charInterval = 35; // 18 chars * 35ms = ~630ms
@@ -31,12 +30,10 @@ export const SitePreloader: React.FC = () => {
       }, charInterval);
     }, startDelay);
 
-    // Begin fade-out at 1050ms (~1 second)
     const fadeTimer = setTimeout(() => {
       setFadeOut(true);
     }, 1050);
 
-    // Completely unmount from DOM at 1450ms
     const unmountTimer = setTimeout(() => {
       setMounted(false);
     }, 1450);
@@ -59,10 +56,8 @@ export const SitePreloader: React.FC = () => {
         fadeOut ? 'opacity-0 scale-[1.03]' : 'opacity-100 scale-100'
       }`}
     >
-      {/* Subtle fine architectural grid pattern */}
       <div className="absolute inset-0 bg-grid-fine opacity-20 pointer-events-none" />
 
-      {/* Ambient center radial flare */}
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
@@ -72,16 +67,13 @@ export const SitePreloader: React.FC = () => {
 
       <div className="relative flex flex-col items-center justify-center z-10">
         
-        {/* Orbital Tracer & Emblem Container */}
         <div className="relative flex items-center justify-center w-60 h-60 sm:w-72 sm:h-72">
           
-          {/* Luminous Sweeping SVG Arc */}
           <svg
             className="absolute inset-0 w-full h-full animate-spin pointer-events-none"
             style={{ animationDuration: '1.6s', animationTimingFunction: 'cubic-bezier(0.4, 0, 0.2, 1)' }}
             viewBox="0 0 240 240"
           >
-            {/* Faint Track Ring */}
             <circle
               cx="120"
               cy="120"
@@ -90,7 +82,6 @@ export const SitePreloader: React.FC = () => {
               stroke="rgba(255, 255, 255, 0.08)"
               strokeWidth="1.5"
             />
-            {/* Radiant Sweeping Arc */}
             <circle
               cx="120"
               cy="120"
@@ -110,13 +101,11 @@ export const SitePreloader: React.FC = () => {
             </defs>
           </svg>
 
-          {/* Inner Dashed Reverse Ring */}
           <div
             className="absolute w-48 h-48 sm:w-56 sm:h-56 rounded-full border border-dashed border-white/15 pointer-events-none animate-spin"
             style={{ animationDuration: '2.8s', animationDirection: 'reverse' }}
           />
 
-          {/* The Pure Diamond Insignia (Zero background square, pure transparent cutout) */}
           <div className="relative w-36 h-36 sm:w-44 sm:h-44 flex items-center justify-center animate-fade-in">
             <img
               src={`${import.meta.env.BASE_URL}favicon.png`}

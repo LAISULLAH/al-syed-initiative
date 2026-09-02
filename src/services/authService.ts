@@ -28,7 +28,6 @@ export const authService = {
     if (!data) return null;
     try {
       const parsed = JSON.parse(data);
-      // Clean up legacy auto-mock user so users see the real Login button
       if (parsed?.id === 'usr-analyst-007') {
         localStorage.removeItem(STORAGE_KEY);
         return null;

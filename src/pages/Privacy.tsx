@@ -5,7 +5,6 @@ import { ShieldCheck, Mail, ArrowUpRight } from 'lucide-react';
 export const Privacy: React.FC = () => {
   return (
     <div className="relative min-h-screen bg-[#030303] text-mono-100 font-sans select-none overflow-x-hidden pt-28 sm:pt-36 pb-24 sm:pb-32">
-      {/* Subtle fine background grid */}
       <div className="absolute inset-0 bg-grid-fine opacity-20 pointer-events-none" />
 
       <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-left">
@@ -49,7 +48,6 @@ export const Privacy: React.FC = () => {
 
         <div className="space-y-12 sm:space-y-16">
           
-          {/* Section 01: Introduction */}
           <section className="space-y-4 pt-8 border-t border-white/10">
             <div className="flex items-center gap-3">
               <span className="font-mono text-xs text-mono-500 font-bold">01 //</span>
@@ -62,7 +60,6 @@ export const Privacy: React.FC = () => {
             </p>
           </section>
 
-          {/* Section 02: Information We Collect */}
           <section className="space-y-4 pt-8 border-t border-white/10">
             <div className="flex items-center gap-3">
               <span className="font-mono text-xs text-mono-500 font-bold">02 //</span>
@@ -80,7 +77,6 @@ export const Privacy: React.FC = () => {
             </ul>
           </section>
 
-          {/* Section 03: How We Use Information */}
           <section className="space-y-4 pt-8 border-t border-white/10">
             <div className="flex items-center gap-3">
               <span className="font-mono text-xs text-mono-500 font-bold">03 //</span>
@@ -99,7 +95,6 @@ export const Privacy: React.FC = () => {
             </ul>
           </section>
 
-          {/* Section 04: Account & Learning Data */}
           <section className="space-y-4 pt-8 border-t border-white/10">
             <div className="flex items-center gap-3">
               <span className="font-mono text-xs text-mono-500 font-bold">04 //</span>
@@ -112,7 +107,6 @@ export const Privacy: React.FC = () => {
             </p>
           </section>
 
-          {/* Section 05: Cookies & Technologies */}
           <section className="space-y-4 pt-8 border-t border-white/10">
             <div className="flex items-center gap-3">
               <span className="font-mono text-xs text-mono-500 font-bold">05 //</span>
@@ -125,7 +119,6 @@ export const Privacy: React.FC = () => {
             </p>
           </section>
 
-          {/* Section 06: Data Sharing */}
           <section className="space-y-4 pt-8 border-t border-white/10">
             <div className="flex items-center gap-3">
               <span className="font-mono text-xs text-mono-500 font-bold">06 //</span>
@@ -138,7 +131,6 @@ export const Privacy: React.FC = () => {
             </p>
           </section>
 
-          {/* Section 07: Data Security */}
           <section className="space-y-4 pt-8 border-t border-white/10">
             <div className="flex items-center gap-3">
               <span className="font-mono text-xs text-mono-500 font-bold">07 //</span>
@@ -151,7 +143,6 @@ export const Privacy: React.FC = () => {
             </p>
           </section>
 
-          {/* Section 08: Data Retention */}
           <section className="space-y-4 pt-8 border-t border-white/10">
             <div className="flex items-center gap-3">
               <span className="font-mono text-xs text-mono-500 font-bold">08 //</span>
@@ -164,7 +155,6 @@ export const Privacy: React.FC = () => {
             </p>
           </section>
 
-          {/* Section 09: User Rights */}
           <section className="space-y-4 pt-8 border-t border-white/10">
             <div className="flex items-center gap-3">
               <span className="font-mono text-xs text-mono-500 font-bold">09 //</span>
@@ -177,7 +167,6 @@ export const Privacy: React.FC = () => {
             </p>
           </section>
 
-          {/* Section 10: Contact */}
           <section className="space-y-4 pt-8 border-t border-white/10">
             <div className="flex items-center gap-3">
               <span className="font-mono text-xs text-mono-500 font-bold">10 //</span>

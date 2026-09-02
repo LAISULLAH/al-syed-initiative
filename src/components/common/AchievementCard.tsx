@@ -8,7 +8,6 @@ export const AchievementCard: React.FC<{ achievement: UserAchievement; onVerify?
 }) => {
   return (
     <div className="relative group bg-[#0d0d0d] border border-white/10 rounded-2xl p-6 transition-all duration-300 hover:border-white/30 hover:bg-[#121212] overflow-hidden">
-      {/* Subtle border highlight line */}
       <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-white/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
 
       <div className="flex items-start justify-between gap-4 mb-4">

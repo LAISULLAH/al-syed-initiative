@@ -14,13 +14,10 @@ export const HeroMasterpiece: React.FC<HeroMasterpieceProps> = () => {
   const [isHoveringHow, setIsHoveringHow] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
 
-  // Magnetic button states
   const [btn1Offset, setBtn1Offset] = useState({ x: 0, y: 0 });
   const [btn2Offset, setBtn2Offset] = useState({ x: 0, y: 0 });
 
-  // Trigger entrance reveal after preloader logo finishes
   useEffect(() => {
-    // If preloader already finished earlier or reduced motion is enabled
     if ((window as any).__preloaderDone || reducedMotion) {
       const timer = setTimeout(() => setIsLoaded(true), 40);
       return () => clearTimeout(timer);
@@ -32,7 +29,6 @@ export const HeroMasterpiece: React.FC<HeroMasterpieceProps> = () => {
 
     window.addEventListener('site-preloader-done', handlePreloaderDone);
 
-    // Fallback timer if event is missed
     const fallbackTimer = setTimeout(() => {
       setIsLoaded(true);
     }, 1000);
@@ -43,7 +39,6 @@ export const HeroMasterpiece: React.FC<HeroMasterpieceProps> = () => {
     };
   }, [reducedMotion]);
 
-  // Magnetic hover for buttons
   const handleButtonMagnetic = (
     e: React.MouseEvent<HTMLElement>,
     setter: React.Dispatch<React.SetStateAction<{ x: number; y: number }>>
@@ -69,8 +64,6 @@ export const HeroMasterpiece: React.FC<HeroMasterpieceProps> = () => {
       className="relative w-full min-h-[92vh] flex flex-col items-center justify-center text-center select-none overflow-hidden pt-28 pb-16 sm:pt-36 sm:pb-24 lg:pt-40 lg:pb-28"
     >
       
-      {/* Dynamic Cursor Spotlight */}
-      {/* Subtle Ambient Radial Backlight */}
       <div
         className="absolute inset-0 pointer-events-none transition-opacity duration-700 z-0"
         style={{
@@ -78,21 +71,17 @@ export const HeroMasterpiece: React.FC<HeroMasterpieceProps> = () => {
         }}
       />
 
-      {/* Subtle Living Grid */}
       <div className="absolute inset-0 bg-grid-fine pointer-events-none opacity-20 z-0" />
 
-      {/* Atmospheric Hairline Guides with Slow Ambient Shimmer */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden z-0" aria-hidden="true">
         <div className="absolute left-[8%] top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-white/[0.06] to-transparent" />
         <div className="absolute right-[8%] top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-white/[0.06] to-transparent" />
         
-        {/* Slow horizontal scanning beam */}
         <div className="absolute top-1/2 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/[0.08] to-transparent" />
       </div>
 
       <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 w-full flex flex-col items-center">
         
-        {/* Top Brand Eyebrow Pill */}
         <div
           className={`inline-flex items-center gap-2.5 px-5 py-2 rounded-full bg-white/[0.04] border border-white/15 backdrop-blur-md text-mono-200 font-mono text-xs uppercase tracking-[0.22em] mb-8 sm:mb-12 shadow-sm transition-all duration-450 ${
             isLoaded ? 'opacity-100 translate-y-0 blur-0' : 'opacity-0 translate-y-2 blur-[2px]'
@@ -110,7 +99,6 @@ export const HeroMasterpiece: React.FC<HeroMasterpieceProps> = () => {
             fontSize: 'clamp(2.75rem, 7.2vw, 6.25rem)',
           }}
         >
-          {/* Line 1 */}
           <span
             className={`block transition-all duration-500 delay-50 ease-[cubic-bezier(0.16,1,0.3,1)] ${
               isLoaded ? 'opacity-100 translate-y-0 blur-0 tracking-[-0.04em]' : 'opacity-0 translate-y-3 blur-[3px] tracking-[-0.02em]'
@@ -121,7 +109,6 @@ export const HeroMasterpiece: React.FC<HeroMasterpieceProps> = () => {
             <span className="inline-block transition-colors duration-200 hover:text-white/80">isn't</span>
           </span>
 
-          {/* Line 2 */}
           <span
             className={`block transition-all duration-500 delay-150 ease-[cubic-bezier(0.16,1,0.3,1)] ${
               isLoaded ? 'opacity-100 translate-y-0 blur-0 tracking-[-0.04em]' : 'opacity-0 translate-y-3 blur-[3px] tracking-[-0.02em]'
@@ -131,7 +118,6 @@ export const HeroMasterpiece: React.FC<HeroMasterpieceProps> = () => {
             <span className="inline-block transition-colors duration-200 hover:text-white/80">more.</span>
           </span>
 
-          {/* Line 3: Reacting "HOW." */}
           <span
             className={`block transition-all duration-500 delay-250 ease-[cubic-bezier(0.16,1,0.3,1)] ${
               isLoaded ? 'opacity-100 translate-y-0 blur-0 tracking-[-0.04em]' : 'opacity-0 translate-y-3 blur-[3px] tracking-[-0.02em]'
@@ -152,7 +138,6 @@ export const HeroMasterpiece: React.FC<HeroMasterpieceProps> = () => {
               }}
             >
               how.
-              {/* Subtle hairline under-glow when active */}
               <span
                 className={`absolute -bottom-1 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-white/70 to-transparent transition-all duration-300 ${
                   isHoveringHow ? 'opacity-100 scale-x-100' : 'opacity-0 scale-x-50'
@@ -175,7 +160,6 @@ export const HeroMasterpiece: React.FC<HeroMasterpieceProps> = () => {
             isLoaded ? 'opacity-100 translate-y-0 blur-0' : 'opacity-0 translate-y-5 blur-sm'
           }`}
         >
-          {/* Primary CTA (Magnetic) */}
           <Link
             to="/courses"
             onMouseMove={(e) => handleButtonMagnetic(e, setBtn1Offset)}
@@ -190,7 +174,6 @@ export const HeroMasterpiece: React.FC<HeroMasterpieceProps> = () => {
             <ArrowRight className="w-4 h-4 group-hover:translate-x-1.5 transition-transform duration-200" />
           </Link>
 
-          {/* Secondary CTA (Magnetic) */}
           <a
             href="#approach"
             onMouseMove={(e) => handleButtonMagnetic(e, setBtn2Offset)}

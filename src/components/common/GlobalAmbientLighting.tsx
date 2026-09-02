@@ -8,7 +8,6 @@ export const GlobalAmbientLighting: React.FC = () => {
 
   useEffect(() => {
     if (reducedMotion) return;
-    // Disable cursor lighting on touch/coarse devices
     if (typeof window !== 'undefined' && window.matchMedia('(pointer: coarse)').matches) {
       return;
     }
@@ -27,7 +26,6 @@ export const GlobalAmbientLighting: React.FC = () => {
         spotlightRef.current.style.background = `radial-gradient(650px circle at ${Math.round(currentX)}px ${Math.round(currentY)}px, rgba(255,255,255,0.038) 0%, rgba(255,255,255,0.008) 45%, transparent 75%)`;
       }
 
-      // If mouse stopped moving, pause RAF to save CPU
       if (Math.abs(targetX - currentX) > 0.5 || Math.abs(targetY - currentY) > 0.5) {
         rafRef.current = requestAnimationFrame(loop);
       } else {

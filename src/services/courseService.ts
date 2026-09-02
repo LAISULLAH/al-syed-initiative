@@ -10,7 +10,6 @@ export interface CourseFilterParams {
 
 export const courseService = {
   async getAllCourses(params?: CourseFilterParams): Promise<Course[]> {
-    // Simulate brief network latency for realistic feel
     await new Promise((resolve) => setTimeout(resolve, 80));
     
     let result = [...COURSES_DATA];

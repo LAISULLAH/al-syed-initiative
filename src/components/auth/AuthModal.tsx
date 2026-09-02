@@ -96,7 +96,6 @@ export const AuthModal: React.FC<AuthModalProps> = ({
         </p>
       </div>
 
-      {/* Mode Switcher Tabs */}
       {mode !== 'forgot' && (
         <div className="grid grid-cols-2 gap-1 p-1 bg-mono-900 border border-mono-800 rounded-xl mb-6">
           <button
@@ -124,7 +123,6 @@ export const AuthModal: React.FC<AuthModalProps> = ({
         </div>
       )}
 
-      {/* Messages */}
       {errorMessage && (
         <div className="mb-4 p-3 rounded-xl bg-mono-900 border border-white/20 text-xs text-mono-200 font-mono">
           {errorMessage}

@@ -14,18 +14,6 @@ import {
 } from 'lucide-react';
 import { useReducedMotion } from '../../hooks';
 
-// ─────────────────────────────────────────────────────────────────────────────
-// OSINT & Cybersecurity Investigation Deck (HeroEditorial)
-//
-// 100% Strictly Black, Gray, and White only.
-// Elevated Swiss typography, smooth entrance, and interactive stage simulation.
-//
-// Stages:
-// 01. OSINT & RECONNAISSANCE
-// 02. WEB APP TESTING & LIVE CLASSES
-// 03. CERTIFICATE & RECOGNITION
-// ─────────────────────────────────────────────────────────────────────────────
-
 interface StageConfig {
   id: string;
   step: string;
@@ -88,7 +76,6 @@ export const HeroEditorial: React.FC = () => {
       className="relative w-full rounded-3xl bg-[#080808] border border-white/15 p-5 sm:p-7 md:p-8 backdrop-blur-2xl shadow-[0_25px_70px_-20px_rgba(0,0,0,0.95)] overflow-hidden select-none transition-all duration-300 hover:border-white/30"
       aria-label="Interactive OSINT and Testing Deck"
     >
-      {/* Background fine grid */}
       <div className="absolute inset-0 bg-grid-fine opacity-50 pointer-events-none" />
 
             <div className="relative z-10 flex items-center justify-between pb-5 border-b border-white/[0.08]">
@@ -146,7 +133,6 @@ export const HeroEditorial: React.FC = () => {
 
             <div className="relative z-10 rounded-2xl bg-[#0c0c0c] border border-white/10 p-4 sm:p-5 overflow-hidden transition-all duration-300">
         
-        {/* Stage 1: OSINT & Reconnaissance */}
         {activeStage === 0 && (
           <div className="space-y-3.5 animate-fade-in">
             <div className="flex items-center justify-between pb-2 border-b border-white/[0.06] text-xs font-mono">
@@ -181,7 +167,6 @@ export const HeroEditorial: React.FC = () => {
           </div>
         )}
 
-        {/* Stage 2: Web App Testing & Live Classes */}
         {activeStage === 1 && (
           <div className="space-y-3.5 animate-fade-in">
             <div className="flex items-center justify-between pb-2 border-b border-white/[0.06] text-xs font-mono">
@@ -225,7 +210,6 @@ export const HeroEditorial: React.FC = () => {
           </div>
         )}
 
-        {/* Stage 3: Official Certificate of Excellence */}
         {activeStage === 2 && (
           <div className="space-y-3 animate-fade-in">
             <div className="flex items-center justify-between pb-2 border-b border-white/[0.06] text-xs font-mono">

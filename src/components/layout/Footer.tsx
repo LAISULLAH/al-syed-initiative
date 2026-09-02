@@ -6,7 +6,6 @@ export const Footer: React.FC = () => {
   return (
     <footer className="relative bg-[#040404] text-mono-100 border-t border-white/10 overflow-hidden select-none">
       
-      {/* Subtle fine architectural grid overlay */}
       <div className="absolute inset-0 bg-grid-fine opacity-20 pointer-events-none" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 sm:pt-28 pb-12 sm:pb-16 text-left">
@@ -29,7 +28,6 @@ export const Footer: React.FC = () => {
             </p>
           </div>
 
-          {/* Small Premium Action CTA */}
           <div className="shrink-0 flex flex-col items-start lg:items-end space-y-3">
             <span className="text-xs font-mono text-mono-400 uppercase tracking-widest font-semibold">
               Ready to begin?
@@ -46,7 +44,6 @@ export const Footer: React.FC = () => {
 
         <div className="py-16 sm:py-20 grid grid-cols-1 md:grid-cols-3 gap-12 lg:gap-16 border-b border-white/10">
           
-          {/* Column 1: EXPLORE */}
           <div className="space-y-6">
             <h3 className="text-xs font-mono font-bold text-white uppercase tracking-[0.25em] flex items-center gap-2">
               <span className="w-1.5 h-1.5 rounded-full bg-white" />
@@ -72,7 +69,6 @@ export const Footer: React.FC = () => {
             </ul>
           </div>
 
-          {/* Column 2: COMPANY */}
           <div className="space-y-6">
             <h3 className="text-xs font-mono font-bold text-white uppercase tracking-[0.25em] flex items-center gap-2">
               <span className="w-1.5 h-1.5 rounded-full bg-white" />
@@ -97,7 +93,6 @@ export const Footer: React.FC = () => {
             </ul>
           </div>
 
-          {/* Column 3: CONNECT */}
           <div className="space-y-6">
             <h3 className="text-xs font-mono font-bold text-white uppercase tracking-[0.25em] flex items-center gap-2">
               <span className="w-1.5 h-1.5 rounded-full bg-white" />

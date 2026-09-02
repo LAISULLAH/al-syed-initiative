@@ -13,7 +13,6 @@ export const Login: React.FC = () => {
   const [infoMessage, setInfoMessage] = useState('');
   const [isLoaded, setIsLoaded] = useState(false);
 
-  // Mouse tracking for subtle ambient spotlight
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const viewportRef = useRef<HTMLDivElement>(null);
   const reducedMotion = useReducedMotion();
@@ -21,13 +20,11 @@ export const Login: React.FC = () => {
   const { login } = useAuth();
   const navigate = useNavigate();
 
-  // Trigger entrance sequence on mount
   useEffect(() => {
     const timer = setTimeout(() => setIsLoaded(true), 60);
     return () => clearTimeout(timer);
   }, []);
 
-  // Smooth lerped cursor movement tracking
   useEffect(() => {
     if (reducedMotion) return;
 
@@ -97,7 +94,6 @@ export const Login: React.FC = () => {
       className="relative min-h-[calc(100vh-76px)] flex items-center justify-center px-4 sm:px-6 lg:px-8 py-16 sm:py-24 overflow-hidden bg-[#030303] select-none"
     >
       
-      {/* Smooth Cursor-Following Ambient Light */}
       <div
         className="absolute inset-0 pointer-events-none transition-opacity duration-1000 z-0"
         style={{
@@ -107,7 +103,6 @@ export const Login: React.FC = () => {
         }}
       />
 
-      {/* Static Ambient Center Flare */}
       <div
         className="absolute inset-0 pointer-events-none z-0"
         style={{
@@ -115,10 +110,8 @@ export const Login: React.FC = () => {
         }}
       />
 
-      {/* Subtle fine architectural grid */}
       <div className="absolute inset-0 bg-grid-fine opacity-15 pointer-events-none z-0" />
 
-      {/* Atmospheric Hairline Vertical Guides */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden z-0" aria-hidden="true">
         <div className="absolute left-[8%] top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-white/[0.04] to-transparent" />
         <div className="absolute right-[8%] top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-white/[0.04] to-transparent" />
@@ -129,7 +122,6 @@ export const Login: React.FC = () => {
 
           <div className="lg:col-span-7 flex flex-col justify-center text-left">
             
-            {/* Logo + Eyebrow: AL SYED / MEMBER PORTAL */}
             <div
               className={`flex items-center gap-3.5 mb-6 sm:mb-8 transition-all duration-700 delay-100 ${
                 isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-3'
@@ -143,7 +135,6 @@ export const Login: React.FC = () => {
               </div>
             </div>
 
-            {/* Main Heading: YOUR LEARNING STARTS HERE. (Blur-to-sharp reveal) */}
             <h1
               className={`font-display font-black text-3xl sm:text-4xl lg:text-5xl uppercase tracking-tight text-white leading-[1.02] mb-5 transition-all duration-800 delay-200 ease-[cubic-bezier(0.16,1,0.3,1)] ${
                 isLoaded
@@ -155,7 +146,6 @@ export const Login: React.FC = () => {
               <span className="block text-gradient-silver">STARTS HERE.</span>
             </h1>
 
-            {/* Supporting text */}
             <p
               className={`text-sm sm:text-base text-mono-300 font-sans leading-relaxed max-w-xl mb-10 transition-all duration-700 delay-300 ${
                 isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-3'
@@ -164,7 +154,6 @@ export const Login: React.FC = () => {
               Access your enrolled OSINT training, live sessions, course resources and learning progress from one place.
             </p>
 
-            {/* Three Compact Information Blocks */}
             <div className="space-y-4 max-w-xl">
               
                             <div
@@ -223,7 +212,6 @@ export const Login: React.FC = () => {
 
             </div>
 
-            {/* Small bottom label */}
             <div
               className={`mt-8 pt-6 border-t border-white/[0.06] flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.25em] text-mono-500 transition-all duration-700 delay-700 ${
                 isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-2'
@@ -245,10 +233,8 @@ export const Login: React.FC = () => {
               }`}
             >
               
-              {/* Subtle Top Hairline Highlight */}
               <div className="absolute top-0 left-1/2 -translate-x-1/2 w-40 h-px bg-gradient-to-r from-transparent via-white/30 to-transparent pointer-events-none" />
 
-              {/* Header */}
               <div className="text-left mb-7">
                 <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.25em] text-mono-400 mb-2 block">
                   MEMBER LOGIN
@@ -263,7 +249,6 @@ export const Login: React.FC = () => {
                 </p>
               </div>
 
-              {/* Inline Feedback Alerts */}
               {error && (
                 <div className="mb-5 p-3 rounded-xl bg-white/[0.03] border border-white/20 text-xs text-white font-mono flex items-center gap-2 animate-fade-in text-left">
                   <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse shrink-0" />
@@ -280,7 +265,6 @@ export const Login: React.FC = () => {
 
               <form onSubmit={handleSubmit} className="space-y-5 text-left">
                 
-                {/* EMAIL */}
                 <div>
                   <label className="block text-[11px] font-mono font-semibold uppercase tracking-[0.2em] text-mono-300 mb-2">
                     EMAIL
@@ -296,7 +280,6 @@ export const Login: React.FC = () => {
                   />
                 </div>
 
-                {/* PASSWORD */}
                 <div>
                   <label className="block text-[11px] font-mono font-semibold uppercase tracking-[0.2em] text-mono-300 mb-2">
                     PASSWORD
@@ -325,7 +308,6 @@ export const Login: React.FC = () => {
                     </button>
                   </div>
 
-                  {/* Forgot password? */}
                   <div className="flex justify-end pt-2">
                     <button
                       type="button"
@@ -337,7 +319,6 @@ export const Login: React.FC = () => {
                   </div>
                 </div>
 
-                {/* [ LOG IN → ] */}
                 <div className="pt-2">
                   <button
                     type="submit"

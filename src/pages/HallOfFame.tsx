@@ -8,19 +8,16 @@ export const HallOfFame: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [isLoaded, setIsLoaded] = useState(false);
 
-  // Mouse spotlight coordinates
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const containerRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const reducedMotion = useReducedMotion();
 
-  // Entrance trigger on mount
   useEffect(() => {
     const timer = setTimeout(() => setIsLoaded(true), 60);
     return () => clearTimeout(timer);
   }, []);
 
-  // Smooth lerped cursor movement tracking for warm golden spotlight
   useEffect(() => {
     if (reducedMotion) return;
 
@@ -53,7 +50,6 @@ export const HallOfFame: React.FC = () => {
     };
   }, [reducedMotion]);
 
-  // Rising Golden Embers & Stardust Particles Canvas
   useEffect(() => {
     if (reducedMotion) return;
     const canvas = canvasRef.current;
@@ -72,7 +68,6 @@ export const HallOfFame: React.FC = () => {
     };
     window.addEventListener('resize', handleResize);
 
-    // Particle pool: 45 golden glowing embers
     const particleCount = 45;
     const particles = Array.from({ length: particleCount }, () => ({
       x: Math.random() * width,
@@ -118,7 +113,6 @@ export const HallOfFame: React.FC = () => {
     };
   }, [reducedMotion]);
 
-  // Filter students based on query while preserving exact verified records
   const q = searchQuery.trim().toLowerCase();
   const filterList = (list: CertifiedStudent[]) => {
     if (!q) return list;
@@ -139,7 +133,6 @@ export const HallOfFame: React.FC = () => {
         className="fixed inset-0 pointer-events-none z-0 opacity-80"
       />
 
-      {/* Cursor-Following Warm Golden Spotlight */}
       <div
         className="absolute inset-0 pointer-events-none transition-opacity duration-1000 z-0"
         style={{
@@ -149,7 +142,6 @@ export const HallOfFame: React.FC = () => {
         }}
       />
 
-      {/* Monumental Golden Aura Backdrop */}
       <div
         className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-[750px] pointer-events-none z-0"
         style={{
@@ -157,10 +149,8 @@ export const HallOfFame: React.FC = () => {
         }}
       />
 
-      {/* Fine Architectural Grid with subtle golden tint */}
       <div className="absolute inset-0 bg-grid-fine opacity-20 pointer-events-none z-0" />
 
-      {/* Vertical Golden Hairline Margin Guides */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden z-0" aria-hidden="true">
         <div className="absolute left-[5%] top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-[#ECC870]/20 to-transparent" />
         <div className="absolute right-[5%] top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-[#ECC870]/20 to-transparent" />
@@ -170,7 +160,6 @@ export const HallOfFame: React.FC = () => {
         
         <section className="mb-24 sm:mb-32 text-left">
           
-          {/* Imperial Laurel Eyebrow */}
           <div
             className={`inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full border border-[#ECC870]/40 bg-gradient-to-r from-[#1F190B]/80 to-[#120F05]/80 backdrop-blur-xl mb-6 sm:mb-8 transition-all duration-700 delay-100 shadow-[0_0_25px_rgba(236,200,112,0.15)] ${
               isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-3'
@@ -182,7 +171,6 @@ export const HallOfFame: React.FC = () => {
             </span>
           </div>
 
-          {/* Monumental Liquid Gold Heading */}
           <div className="relative">
             <h1
               className={`font-display font-black uppercase tracking-[-0.04em] leading-[0.88] mb-8 transition-all duration-800 delay-200 ease-[cubic-bezier(0.16,1,0.3,1)] ${
@@ -196,7 +184,6 @@ export const HallOfFame: React.FC = () => {
               </span>
             </h1>
 
-            {/* Glowing Golden Diamond Emblem in Background */}
             <div className="hidden lg:block absolute right-0 top-1/2 -translate-y-1/2 opacity-25 pointer-events-none select-none filter drop-shadow-[0_0_40px_rgba(236,200,112,0.4)]">
               <img
                 src={`${import.meta.env.BASE_URL}favicon.png`}
@@ -208,7 +195,6 @@ export const HallOfFame: React.FC = () => {
             </div>
           </div>
 
-          {/* Supporting Text & Archive Status HUD */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-end pt-6 border-t border-[#ECC870]/25">
             
             <p
@@ -219,7 +205,6 @@ export const HallOfFame: React.FC = () => {
               A permanent record of students who have met the certification standard through skill, discipline, and determined investigation.
             </p>
 
-            {/* Small Animated Archive / Status Line with Radiant Gold Medallion */}
             <div
               className={`lg:col-span-4 flex lg:justify-end transition-all duration-700 delay-400 ${
                 isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-3'
@@ -250,7 +235,6 @@ export const HallOfFame: React.FC = () => {
 
         <section className="mb-24 sm:mb-32 py-14 sm:py-20 border-y border-[#ECC870]/25 relative overflow-hidden bg-gradient-to-b from-[#ECC870]/[0.03] via-transparent to-[#ECC870]/[0.03] text-left">
           
-          {/* Golden Beam Horizon */}
           <div className="absolute top-0 left-1/4 w-1/2 h-px bg-gradient-to-r from-transparent via-[#ECC870]/60 to-transparent pointer-events-none" />
 
           <div className="max-w-4xl space-y-4">
@@ -266,7 +250,6 @@ export const HallOfFame: React.FC = () => {
             </p>
           </div>
 
-          {/* Minimalist Gold-Trimmed Search Index Filter */}
           <div className="mt-8 max-w-md">
             <div className="relative">
               <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-[#ECC870]" />
@@ -296,7 +279,6 @@ export const HallOfFame: React.FC = () => {
 
         <section className="mb-24 sm:mb-32 text-left">
           
-          {/* Section Header */}
           <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-3 pb-6 border-b border-[#ECC870]/30 mb-8">
             <div>
               <div className="flex items-center gap-2 mb-1">
@@ -316,7 +298,6 @@ export const HallOfFame: React.FC = () => {
             </div>
           </div>
 
-          {/* Monumental Golden Plaque Grid for Batch 1 */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
             {filteredBatch1.map((student, idx) => {
               const isHovered = hoveredId === student.id;
@@ -332,16 +313,13 @@ export const HallOfFame: React.FC = () => {
                       : 'border-[#ECC870]/20 bg-gradient-to-b from-[#100D06]/90 to-[#060502]/95 hover:border-[#ECC870]/50'
                   }`}
                 >
-                  {/* Top Golden Light Highlight */}
                   <div className="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-px bg-gradient-to-r from-transparent via-[#ECC870]/60 to-transparent pointer-events-none" />
 
-                  {/* Corner Accent Brackets */}
                   <div className="absolute top-2.5 left-2.5 w-2 h-2 border-t border-l border-[#ECC870]/40 pointer-events-none" />
                   <div className="absolute top-2.5 right-2.5 w-2 h-2 border-t border-r border-[#ECC870]/40 pointer-events-none" />
                   <div className="absolute bottom-2.5 left-2.5 w-2 h-2 border-b border-l border-[#ECC870]/40 pointer-events-none" />
                   <div className="absolute bottom-2.5 right-2.5 w-2 h-2 border-b border-r border-[#ECC870]/40 pointer-events-none" />
 
-                  {/* Top Bar: Index + Batch Pill */}
                   <div className="flex items-center justify-between gap-2 mb-5">
                     <span className="font-mono text-xs font-bold tracking-widest text-[#ECC870] bg-[#ECC870]/10 px-2 py-0.5 rounded border border-[#ECC870]/25">
                       #{student.number}
@@ -352,14 +330,12 @@ export const HallOfFame: React.FC = () => {
                     </span>
                   </div>
 
-                  {/* Main Student Name */}
                   <div className="mb-6">
                     <h3 className="font-display font-black text-2xl sm:text-3xl uppercase tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-white via-[#FFF8E7] to-[#ECC870] group-hover:drop-shadow-[0_0_15px_rgba(236,200,112,0.5)] transition-all duration-300">
                       {student.name}
                     </h3>
                   </div>
 
-                  {/* Bottom Verification Seal */}
                   <div className="pt-4 border-t border-white/[0.08] flex items-center justify-between">
                     <div className="inline-flex items-center gap-2 font-mono text-[10px] font-bold tracking-wider uppercase text-[#ECC870]">
                       <CheckCircle2 className="w-3.5 h-3.5 text-[#ECC870]" />
@@ -383,12 +359,10 @@ export const HallOfFame: React.FC = () => {
 
         <section className="mb-24 sm:mb-32 py-16 sm:py-20 border border-[#ECC870]/35 bg-gradient-to-b from-[#120E05] via-[#090703] to-[#040301] rounded-3xl p-6 sm:p-12 relative overflow-hidden shadow-[0_0_60px_-15px_rgba(236,200,112,0.18)]">
           
-          {/* Top Hairline Liquid Gold Beam */}
           <div className="absolute top-0 left-1/2 -translate-x-1/2 w-64 h-px bg-gradient-to-r from-transparent via-[#ECC870] to-transparent pointer-events-none" />
 
           <div className="max-w-3xl mx-auto flex flex-col md:flex-row items-center justify-between gap-8 sm:gap-12 text-center md:text-left">
             
-            {/* Step 1: Batch 01 */}
             <div className="flex flex-col items-center md:items-start">
               <span className="font-mono text-[10px] sm:text-[11px] uppercase tracking-[0.25em] text-[#ECC870] font-bold mb-1">
                 BATCH 01
@@ -401,13 +375,11 @@ export const HallOfFame: React.FC = () => {
               </span>
             </div>
 
-            {/* Transition Arrow with Gold Glow */}
             <div className="flex flex-col items-center gap-1 text-[#ECC870]">
               <span className="w-1.5 h-1.5 rounded-full bg-[#ECC870] shadow-[0_0_6px_#ECC870]" />
               <ChevronRight className="w-5 h-5 text-[#ECC870] animate-pulse rotate-90 md:rotate-0" />
             </div>
 
-            {/* Step 2: Batch 02 */}
             <div className="flex flex-col items-center md:items-start">
               <span className="font-mono text-[10px] sm:text-[11px] uppercase tracking-[0.25em] text-[#ECC870] font-bold mb-1">
                 BATCH 02
@@ -420,13 +392,11 @@ export const HallOfFame: React.FC = () => {
               </span>
             </div>
 
-            {/* Transition Arrow with Gold Glow */}
             <div className="flex flex-col items-center gap-1 text-[#ECC870]">
               <span className="w-1.5 h-1.5 rounded-full bg-[#ECC870] shadow-[0_0_6px_#ECC870]" />
               <ChevronRight className="w-5 h-5 text-[#ECC870] animate-pulse rotate-90 md:rotate-0" />
             </div>
 
-            {/* Step 3: Imperial Total Archive Vault */}
             <div className="flex flex-col items-center md:items-start p-5 sm:p-6 rounded-2xl bg-gradient-to-br from-[#1C1607] to-[#0A0803] border border-[#ECC870]/60 shadow-[0_0_35px_rgba(236,200,112,0.25)]">
               <span className="font-mono text-[10px] sm:text-[11px] uppercase tracking-[0.25em] text-[#ECC870] font-black mb-1 flex items-center gap-1.5">
                 <Award className="w-3.5 h-3.5 text-[#ECC870]" />
@@ -446,7 +416,6 @@ export const HallOfFame: React.FC = () => {
 
         <section className="mb-28 sm:mb-36 text-left">
           
-          {/* Section Header */}
           <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-3 pb-6 border-b border-[#ECC870]/30 mb-8">
             <div>
               <div className="flex items-center gap-2 mb-1">
@@ -466,7 +435,6 @@ export const HallOfFame: React.FC = () => {
             </div>
           </div>
 
-          {/* Monumental Golden Plaque Grid for Batch 2 */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
             {filteredBatch2.map((student) => {
               const isHovered = hoveredId === student.id;
@@ -482,16 +450,13 @@ export const HallOfFame: React.FC = () => {
                       : 'border-[#ECC870]/20 bg-gradient-to-b from-[#0F0C05]/85 to-[#050402]/95 hover:border-[#ECC870]/45'
                   }`}
                 >
-                  {/* Top Golden Light Highlight */}
                   <div className="absolute top-0 left-1/2 -translate-x-1/2 w-28 h-px bg-gradient-to-r from-transparent via-[#ECC870]/50 to-transparent pointer-events-none" />
 
-                  {/* Corner Accent Brackets */}
                   <div className="absolute top-2 left-2 w-1.5 h-1.5 border-t border-l border-[#ECC870]/30 pointer-events-none" />
                   <div className="absolute top-2 right-2 w-1.5 h-1.5 border-t border-r border-[#ECC870]/30 pointer-events-none" />
                   <div className="absolute bottom-2 left-2 w-1.5 h-1.5 border-b border-l border-[#ECC870]/30 pointer-events-none" />
                   <div className="absolute bottom-2 right-2 w-1.5 h-1.5 border-b border-r border-[#ECC870]/30 pointer-events-none" />
 
-                  {/* Top Bar: Index + Batch Pill */}
                   <div className="flex items-center justify-between gap-2 mb-4">
                     <span className="font-mono text-[11px] font-bold tracking-widest text-[#ECC870] bg-[#ECC870]/10 px-2 py-0.5 rounded border border-[#ECC870]/20">
                       #{student.number}
@@ -502,14 +467,12 @@ export const HallOfFame: React.FC = () => {
                     </span>
                   </div>
 
-                  {/* Main Student Name */}
                   <div className="mb-5 min-h-[3rem] flex items-center">
                     <h3 className="font-display font-black text-xl sm:text-2xl uppercase tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-white via-[#FFF8E7] to-[#ECC870] group-hover:drop-shadow-[0_0_12px_rgba(236,200,112,0.45)] transition-all duration-300 leading-tight">
                       {student.name}
                     </h3>
                   </div>
 
-                  {/* Bottom Verification Seal */}
                   <div className="pt-3.5 border-t border-white/[0.08] flex items-center justify-between">
                     <div className="inline-flex items-center gap-1.5 font-mono text-[9px] font-bold tracking-wider uppercase text-[#ECC870]">
                       <CheckCircle2 className="w-3 h-3 text-[#ECC870]" />
@@ -533,7 +496,6 @@ export const HallOfFame: React.FC = () => {
 
         <section className="pt-20 sm:pt-28 pb-16 border-t border-[#ECC870]/30 text-left relative">
           
-          {/* Authentic Al Syed Archive Emblem */}
           <div className="flex items-center gap-3.5 mb-8">
             <div className="w-9 h-9 rounded-xl flex items-center justify-center filter drop-shadow-[0_0_18px_rgba(236,200,112,0.6)]">
               <img

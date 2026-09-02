@@ -28,7 +28,6 @@ export const CertificatePresentation: React.FC = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [tilt, setTilt] = useState({ x: 0, y: 0 });
 
-  // Smooth scroll-based reveal using IntersectionObserver
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -47,7 +46,6 @@ export const CertificatePresentation: React.FC = () => {
     return () => observer.disconnect();
   }, []);
 
-  // Subtle interactive parallax tilt on hover
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     if (reducedMotion || !containerRef.current) return;
     if (typeof window !== 'undefined' && window.matchMedia('(pointer: coarse)').matches) return;
@@ -73,10 +71,8 @@ export const CertificatePresentation: React.FC = () => {
       className="relative w-full rounded-3xl bg-[#070707] border border-white/15 p-6 sm:p-10 lg:p-14 shadow-[0_30px_90px_-30px_rgba(0,0,0,0.95)] overflow-hidden select-none transition-all duration-300 hover:border-white/30 text-left"
       aria-label="Proof of Progress Credential Archive"
     >
-      {/* Background fine grid overlay */}
       <div className="absolute inset-0 bg-grid-fine opacity-25 pointer-events-none" />
 
-      {/* Ambient center radial backlight */}
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
@@ -102,7 +98,6 @@ export const CertificatePresentation: React.FC = () => {
           </div>
         </div>
 
-        {/* Verification Specimen Pill */}
         <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/[0.05] border border-white/15 text-xs font-mono text-white self-start sm:self-auto font-semibold">
           <FileText className="w-4 h-4 text-white" />
           <span>AUTHENTIC FORMAT</span>
@@ -120,16 +115,13 @@ export const CertificatePresentation: React.FC = () => {
               : `perspective(1200px) rotateX(${tilt.y}deg) rotateY(${tilt.x}deg)`,
           }}
         >
-          {/* Subtle Framing Hairlines */}
           <div className="absolute inset-3 border border-white/[0.08] pointer-events-none rounded-xl" />
 
-          {/* Corner Crosshairs */}
           <span className="absolute top-5 left-5 text-mono-500 font-mono text-xs pointer-events-none">+</span>
           <span className="absolute top-5 right-5 text-mono-500 font-mono text-xs pointer-events-none">+</span>
           <span className="absolute bottom-5 left-5 text-mono-500 font-mono text-xs pointer-events-none">+</span>
           <span className="absolute bottom-5 right-5 text-mono-500 font-mono text-xs pointer-events-none">+</span>
 
-          {/* Authentic Certificate Image (Smooth Parallax Zoom on Hover) */}
           <div className="relative rounded-xl overflow-hidden bg-black border border-white/15 shadow-inner" data-protected-image>
             <img
               src={`${import.meta.env.BASE_URL}certificate-exact.png`}

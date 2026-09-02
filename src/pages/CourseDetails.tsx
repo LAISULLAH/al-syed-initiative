@@ -92,10 +92,8 @@ export const CourseDetails: React.FC = () => {
 
   return (
     <PageContainer>
-      {/* 1. HERO SECTION */}
       <div className="border-b border-mono-800/80 pb-16 mb-16">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
-          {/* Main Info (8 cols) */}
           <div className="lg:col-span-8 space-y-6">
             <div className="flex flex-wrap items-center gap-2.5">
               <Badge variant="subtle" size="md">{course.category}</Badge>
@@ -113,7 +111,6 @@ export const CourseDetails: React.FC = () => {
               {course.description}
             </p>
 
-            {/* Quick Metrics */}
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 py-4 border-y border-mono-900 text-xs font-mono text-mono-400">
               <div>
                 <span className="text-mono-600 block text-[10px] uppercase">Duration</span>
@@ -145,7 +142,6 @@ export const CourseDetails: React.FC = () => {
               </div>
             </div>
 
-            {/* Instructor Tag */}
             <div className="flex items-center gap-3 pt-2">
               <div className="w-10 h-10 rounded-full bg-mono-900 border border-mono-800 flex items-center justify-center font-bold text-xs text-white">
                 ADL
@@ -160,7 +156,6 @@ export const CourseDetails: React.FC = () => {
             </div>
           </div>
 
-          {/* Sticky Enrollment Card (4 cols) */}
           <div className="lg:col-span-4 bg-[#0d0d0d] border border-white/15 rounded-3xl p-6 sm:p-8 space-y-6 shadow-2xl sticky top-28">
             <div className="space-y-1">
               <span className="text-xs font-mono text-mono-400 uppercase tracking-widest block">
@@ -224,7 +219,6 @@ export const CourseDetails: React.FC = () => {
         </div>
       </div>
 
-      {/* 2. WHAT YOU WILL LEARN */}
       <div className="mb-20">
         <h2 className="text-2xl sm:text-3xl font-bold text-white tracking-tight mb-8 uppercase">
           Key Learning Outcomes
@@ -242,7 +236,6 @@ export const CourseDetails: React.FC = () => {
         </div>
       </div>
 
-      {/* 3. MULTI-MODULE EXPANDABLE CURRICULUM */}
       <div className="mb-20">
         <div className="flex items-center justify-between mb-8">
           <div>
@@ -319,7 +312,6 @@ export const CourseDetails: React.FC = () => {
         </div>
       </div>
 
-      {/* 4. PREREQUISITES & TARGET AUDIENCE */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-20">
         <div className="p-8 rounded-3xl bg-[#0d0d0d] border border-white/10">
           <h3 className="text-xl font-bold text-white mb-4 uppercase tracking-tight">
@@ -350,7 +342,6 @@ export const CourseDetails: React.FC = () => {
         </div>
       </div>
 
-      {/* ENROLLMENT MODAL */}
       <Modal
         isOpen={enrollModalOpen}
         onClose={() => setEnrollModalOpen(false)}

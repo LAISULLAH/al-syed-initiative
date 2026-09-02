@@ -9,8 +9,6 @@ interface NavbarProps {
   onOpenAuth?: (initialMode?: 'login' | 'signup') => void;
 }
 
-// Nav links ordered strictly according to specifications:
-// Home, About, Programs, My Learning, Hall of Fame, FAQs, Contact
 const NAV_LINKS = [
   { name: 'Home',         path: '/' },
   { name: 'About',        path: '/about' },
@@ -30,7 +28,6 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAuth }) => {
   const navigate = useNavigate();
   const profileRef = useRef<HTMLDivElement>(null);
 
-  // Close profile dropdown on outside click
   useEffect(() => {
     const handler = (e: MouseEvent) => {
       if (profileRef.current && !profileRef.current.contains(e.target as Node)) {
@@ -41,7 +38,6 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAuth }) => {
     return () => document.removeEventListener('mousedown', handler);
   }, []);
 
-  // Lock body scroll when mobile menu is open
   useEffect(() => {
     document.body.style.overflow = mobileOpen ? 'hidden' : '';
     return () => { document.body.style.overflow = ''; };
@@ -50,22 +46,17 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAuth }) => {
   const [isVisible, setIsVisible] = useState(true);
   const lastScrollY = useRef(0);
 
-  // Smart scroll-direction hide/show listener
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
 
       if (currentScrollY <= 80) {
-        // At top of page: always visible
         setIsVisible(true);
       } else if (mobileOpen) {
-        // Mobile drawer open: keep visible
         setIsVisible(true);
       } else if (currentScrollY > lastScrollY.current + 8) {
-        // Scrolling DOWN: hide capsule
         setIsVisible(false);
       } else if (currentScrollY < lastScrollY.current - 8) {
-        // Scrolling UP: reveal capsule
         setIsVisible(true);
       }
 
@@ -76,7 +67,6 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAuth }) => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, [mobileOpen]);
 
-  // If mobile drawer is open, keep navbar visible
   const shouldShow = isVisible || mobileOpen;
 
   return (
@@ -95,7 +85,6 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAuth }) => {
                 : 'border-white/[0.12]'
             }`}
           >
-            {/* Subtle Top Specular Hairline Shimmer */}
             <div className="absolute inset-x-8 top-0 h-px bg-gradient-to-r from-transparent via-white/25 to-transparent pointer-events-none" />
 
             <Link
@@ -220,7 +209,6 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAuth }) => {
       {mobileOpen && (
         <div className="fixed inset-0 z-[100] bg-[#030303]/98 backdrop-blur-3xl flex flex-col justify-between p-5 sm:p-7 overflow-y-auto animate-fade-in text-left">
           
-          {/* Drawer Top Bar */}
           <div className="flex items-center justify-between pb-5 border-b border-white/10">
             <Link
               to="/"
@@ -246,7 +234,6 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAuth }) => {
             </button>
           </div>
 
-          {/* Drawer Navigation Links with Large Touch Targets */}
           <nav className="flex flex-col gap-2 py-6 my-auto" aria-label="Mobile navigation">
             {NAV_LINKS.map((link) => {
               const active = location.pathname === link.path;
@@ -268,7 +255,6 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAuth }) => {
             })}
           </nav>
 
-          {/* Drawer Footer Actions */}
           <div className="pt-5 border-t border-white/10 mt-auto">
             {isAuthenticated && user ? (
               <div className="space-y-3">

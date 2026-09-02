@@ -19,17 +19,14 @@ export const TimelineStep: React.FC<TimelineStepProps> = ({
 }) => {
   return (
     <div className="relative flex items-start group">
-      {/* Vertical Spine Line */}
       {!isLast && (
         <div className="absolute left-6 top-14 bottom-0 w-px bg-gradient-to-b from-white/40 via-mono-800 to-transparent z-0" />
       )}
 
-      {/* Step Indicator Node */}
       <div className="relative z-10 w-12 h-12 rounded-2xl bg-mono-950 border border-white/20 flex items-center justify-center font-mono text-sm font-bold text-white shrink-0 shadow-glow-sm group-hover:border-white group-hover:bg-mono-900 group-hover:scale-105 transition-all duration-300">
         <span>{stepNumber}</span>
       </div>
 
-      {/* Content Card */}
       <div className="ml-6 pb-12 flex-1">
         <div className="bg-[#0a0a0a] border border-white/[0.08] rounded-3xl p-6 sm:p-8 transition-all duration-300 hover:border-white/25 hover:bg-[#101010] shadow-card-dark">
           <div className="flex flex-wrap items-center justify-between gap-2 mb-4">

@@ -66,7 +66,6 @@ export const About: React.FC = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             
-            {/* 01 / DISCOVERY */}
             <div className="p-8 rounded-2xl bg-white/[0.02] border border-white/10 hover:border-white/25 transition-all duration-300 flex flex-col justify-between">
               <div>
                 <span className="text-xs font-mono font-bold text-mono-400 tracking-widest block mb-4">
@@ -82,7 +81,6 @@ export const About: React.FC = () => {
               </div>
             </div>
 
-            {/* 02 / ANALYSIS */}
             <div className="p-8 rounded-2xl bg-white/[0.02] border border-white/10 hover:border-white/25 transition-all duration-300 flex flex-col justify-between">
               <div>
                 <span className="text-xs font-mono font-bold text-mono-400 tracking-widest block mb-4">
@@ -98,7 +96,6 @@ export const About: React.FC = () => {
               </div>
             </div>
 
-            {/* 03 / DOCUMENTATION */}
             <div className="p-8 rounded-2xl bg-white/[0.02] border border-white/10 hover:border-white/25 transition-all duration-300 flex flex-col justify-between">
               <div>
                 <span className="text-xs font-mono font-bold text-mono-400 tracking-widest block mb-4">
@@ -180,7 +177,6 @@ export const About: React.FC = () => {
 
           <div className="space-y-6">
             
-            {/* 1. THINK BEFORE YOU SEARCH */}
             <div className="p-8 rounded-2xl bg-white/[0.02] border border-white/10 hover:border-white/20 transition-all">
               <h3 className="font-display font-black text-xl sm:text-2xl text-white uppercase tracking-tight mb-2">
                 THINK BEFORE YOU SEARCH
@@ -193,7 +189,6 @@ export const About: React.FC = () => {
               </p>
             </div>
 
-            {/* 2. FOLLOW THE EVIDENCE */}
             <div className="p-8 rounded-2xl bg-white/[0.02] border border-white/10 hover:border-white/20 transition-all">
               <h3 className="font-display font-black text-xl sm:text-2xl text-white uppercase tracking-tight mb-2">
                 FOLLOW THE EVIDENCE
@@ -206,7 +201,6 @@ export const About: React.FC = () => {
               </p>
             </div>
 
-            {/* 3. DOCUMENT THE FINDING */}
             <div className="p-8 rounded-2xl bg-white/[0.02] border border-white/10 hover:border-white/20 transition-all">
               <h3 className="font-display font-black text-xl sm:text-2xl text-white uppercase tracking-tight mb-2">
                 DOCUMENT THE FINDING
@@ -234,7 +228,6 @@ export const About: React.FC = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             
-            {/* 01 / CURIOSITY */}
             <div className="p-8 rounded-2xl bg-[#080808] border border-white/10 hover:border-white/25 transition-all">
               <span className="text-xs font-mono font-bold text-mono-400 tracking-widest block mb-3">
                 01 / CURIOSITY
@@ -244,7 +237,6 @@ export const About: React.FC = () => {
               </p>
             </div>
 
-            {/* 02 / DISCIPLINE */}
             <div className="p-8 rounded-2xl bg-[#080808] border border-white/10 hover:border-white/25 transition-all">
               <span className="text-xs font-mono font-bold text-mono-400 tracking-widest block mb-3">
                 02 / DISCIPLINE
@@ -254,7 +246,6 @@ export const About: React.FC = () => {
               </p>
             </div>
 
-            {/* 03 / RESPONSIBILITY */}
             <div className="p-8 rounded-2xl bg-[#080808] border border-white/10 hover:border-white/25 transition-all">
               <span className="text-xs font-mono font-bold text-mono-400 tracking-widest block mb-3">
                 03 / RESPONSIBILITY
@@ -280,7 +271,6 @@ export const About: React.FC = () => {
             </p>
           </div>
 
-          {/* Workflow Sequence */}
           <div className="p-8 sm:p-10 rounded-3xl bg-[#060606] border border-white/15 shadow-2xl relative overflow-hidden">
             <div className="grid grid-cols-1 sm:grid-cols-5 gap-3 sm:gap-2 items-center text-center font-display font-black text-sm sm:text-base tracking-wider text-white">
               <div className="p-4 rounded-xl bg-white/[0.04] border border-white/10">

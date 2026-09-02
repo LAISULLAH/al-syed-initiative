@@ -22,7 +22,6 @@ import { Privacy } from './pages/Privacy';
 import { Terms } from './pages/Terms';
 import { NotFound } from './pages/NotFound';
 
-// Scroll to top component on route changes
 const ScrollToTop: React.FC = () => {
   const { pathname } = useLocation();
   useEffect(() => {
@@ -31,7 +30,6 @@ const ScrollToTop: React.FC = () => {
   return null;
 };
 
-// Main Layout Controller to conditionally render Navbar / Footer (e.g. CoursePlayer has full-screen studio layout)
 const AppContent: React.FC = () => {
   const location = useLocation();
   const [authModalOpen, setAuthModalOpen] = useState(false);
@@ -50,10 +48,8 @@ const AppContent: React.FC = () => {
 
       <ScrollToTop />
       
-      {/* Global Navigation */}
       <Navbar onOpenAuth={openAuth} />
 
-      {/* Main Page Routing */}
       <main className="flex-1">
         <Routes>
           <Route path="/" element={<Home onOpenAuth={openAuth} />} />
@@ -73,10 +69,8 @@ const AppContent: React.FC = () => {
         </Routes>
       </main>
 
-      {/* Footer (hidden inside course player studio for distraction-free learning) */}
       {!isPlayerView && <Footer />}
 
-      {/* Global Auth Modal */}
       <AuthModal
         isOpen={authModalOpen}
         onClose={() => setAuthModalOpen(false)}

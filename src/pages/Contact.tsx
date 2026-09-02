@@ -25,7 +25,6 @@ export const Contact: React.FC = () => {
   const [errorMessage, setErrorMessage] = useState('');
   const [isLoaded, setIsLoaded] = useState(false);
 
-  // Mouse spotlight coordinates
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const containerRef = useRef<HTMLDivElement>(null);
   const dropdownRef = useRef<HTMLDivElement>(null);
@@ -54,7 +53,6 @@ export const Contact: React.FC = () => {
     return () => clearTimeout(timer);
   }, []);
 
-  // Smooth lerped cursor movement tracking for ambient spotlight
   useEffect(() => {
     if (reducedMotion) return;
 
@@ -98,7 +96,6 @@ export const Contact: React.FC = () => {
 
     setIsLoading(true);
     try {
-      // Simulate real transmission dispatch
       await new Promise((resolve) => setTimeout(resolve, 550));
       setSubmitted(true);
       setName('');
@@ -117,7 +114,6 @@ export const Contact: React.FC = () => {
       className="relative min-h-screen bg-[#030303] text-mono-100 overflow-hidden select-none selection:bg-white selection:text-black font-sans"
     >
       
-      {/* Cursor-Following Ambient Light */}
       <div
         className="absolute inset-0 pointer-events-none transition-opacity duration-1000 z-0"
         style={{
@@ -127,7 +123,6 @@ export const Contact: React.FC = () => {
         }}
       />
 
-      {/* Top Monumental Flare */}
       <div
         className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-[600px] pointer-events-none z-0"
         style={{
@@ -135,10 +130,8 @@ export const Contact: React.FC = () => {
         }}
       />
 
-      {/* Fine Architectural Grid */}
       <div className="absolute inset-0 bg-grid-fine opacity-15 pointer-events-none z-0" />
 
-      {/* Vertical Hairline Margin Guides */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden z-0" aria-hidden="true">
         <div className="absolute left-[6%] top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-white/[0.04] to-transparent" />
         <div className="absolute right-[6%] top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-white/[0.04] to-transparent" />
@@ -148,7 +141,6 @@ export const Contact: React.FC = () => {
         
         <section className="mb-16 sm:mb-20 text-left">
           
-          {/* Eyebrow */}
           <div
             className={`inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full border border-white/15 bg-white/[0.03] backdrop-blur-md mb-6 transition-all duration-700 delay-100 ${
               isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-3'
@@ -160,7 +152,6 @@ export const Contact: React.FC = () => {
             </span>
           </div>
 
-          {/* Monumental Heading */}
           <h1
             className={`font-display font-black uppercase tracking-[-0.03em] text-white leading-[0.92] mb-6 transition-all duration-800 delay-200 ease-[cubic-bezier(0.16,1,0.3,1)] ${
               isLoaded ? 'opacity-100 blur-0 translate-y-0' : 'opacity-0 blur-[8px] translate-y-6'
@@ -183,11 +174,9 @@ export const Contact: React.FC = () => {
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start text-left">
           
-          {/* Left Column: Direct Inquiry Transmission Form (7 Cols) */}
           <div className="lg:col-span-7">
             <div className="rounded-3xl bg-[#060606]/90 border border-white/15 p-7 sm:p-10 backdrop-blur-2xl shadow-[0_20px_60px_rgba(0,0,0,0.85)] relative overflow-hidden">
               
-              {/* Top Hairline Highlight */}
               <div className="absolute top-0 left-1/2 -translate-x-1/2 w-40 h-px bg-gradient-to-r from-transparent via-white/30 to-transparent pointer-events-none" />
 
               {submitted ? (
@@ -232,7 +221,6 @@ export const Contact: React.FC = () => {
                     </div>
                   )}
 
-                  {/* Name & Email Row */}
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                     <div>
                       <label className="block text-[11px] font-mono font-semibold uppercase tracking-[0.2em] text-mono-300 mb-2">
@@ -263,7 +251,6 @@ export const Contact: React.FC = () => {
                     </div>
                   </div>
 
-                  {/* Custom Luxury Dark Dropdown */}
                   <div ref={dropdownRef} className="relative">
                     <label className="block text-[11px] font-mono font-semibold uppercase tracking-[0.2em] text-mono-300 mb-2">
                       INQUIRY TOPIC
@@ -281,7 +268,6 @@ export const Contact: React.FC = () => {
                       />
                     </button>
 
-                    {/* Dark Dropdown Menu */}
                     {isDropdownOpen && (
                       <div className="absolute left-0 right-0 mt-2 py-1.5 bg-[#0A0A0A] border border-white/20 rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.95)] z-50 animate-fade-in backdrop-blur-2xl overflow-hidden">
                         {inquiryOptions.map((opt) => {
@@ -309,7 +295,6 @@ export const Contact: React.FC = () => {
                     )}
                   </div>
 
-                  {/* Message Field */}
                   <div>
                     <label className="block text-[11px] font-mono font-semibold uppercase tracking-[0.2em] text-mono-300 mb-2">
                       INQUIRY DETAILS
@@ -324,7 +309,6 @@ export const Contact: React.FC = () => {
                     />
                   </div>
 
-                  {/* Submit Button */}
                   <button
                     type="submit"
                     disabled={isLoading}
@@ -345,10 +329,8 @@ export const Contact: React.FC = () => {
             </div>
           </div>
 
-          {/* Right Column: Verified Direct Channels (5 Cols) */}
           <div className="lg:col-span-5 space-y-5">
             
-            {/* Header Box */}
             <div className="p-6 rounded-3xl bg-[#060606]/80 border border-white/10 space-y-1">
               <span className="font-mono text-[10px] uppercase tracking-[0.25em] text-mono-400 font-bold block">
                 VERIFIED REAL CHANNELS
@@ -361,7 +343,6 @@ export const Contact: React.FC = () => {
               </p>
             </div>
 
-            {/* Direct WhatsApp Helpdesk */}
             <a
               href="https://wa.me/919970875040"
               target="_blank"
@@ -382,7 +363,6 @@ export const Contact: React.FC = () => {
               <ArrowUpRight className="w-4 h-4 text-mono-400 group-hover:text-white group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all shrink-0 mt-1" />
             </a>
 
-            {/* Official Email */}
             <a
               href="mailto:contact@adlfront.com"
               className="p-5 rounded-2xl bg-white/[0.02] border border-white/10 hover:border-white/30 hover:bg-white/[0.05] transition-all flex items-start justify-between group block shadow-sm"
@@ -401,7 +381,6 @@ export const Contact: React.FC = () => {
               <ArrowUpRight className="w-4 h-4 text-mono-400 group-hover:text-white group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all shrink-0 mt-1" />
             </a>
 
-            {/* Social Intelligence Verification Channels */}
             <div className="grid grid-cols-2 gap-3">
               <a
                 href="https://www.instagram.com/adlfrontofficial?igsh=MTgwN3Z2ZXZ4aGswYg=="
@@ -434,7 +413,6 @@ export const Contact: React.FC = () => {
               </a>
             </div>
 
-            {/* Operational Base & Foundation Entity */}
             <div className="p-5 rounded-2xl bg-[#060606]/90 border border-white/10 space-y-2">
               <div className="flex items-center gap-2">
                 <MapPin className="w-4 h-4 text-mono-400" />

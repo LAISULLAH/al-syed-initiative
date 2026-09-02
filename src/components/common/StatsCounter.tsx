@@ -4,7 +4,6 @@ import { PlatformStat } from '../../types';
 export const StatsCounter: React.FC<{ stat: PlatformStat }> = ({ stat }) => {
   return (
     <div className="relative bg-[#0a0a0a] border border-white/[0.08] rounded-3xl p-6 sm:p-8 flex flex-col justify-between transition-all duration-300 hover:border-white/30 hover:bg-[#101010] shadow-card-dark overflow-hidden group">
-      {/* Background micro grid */}
       <div className="absolute inset-0 bg-grid-pattern opacity-20 pointer-events-none" />
       <div className="absolute top-0 right-0 w-24 h-24 bg-white/[0.02] rounded-full blur-xl pointer-events-none" />
 

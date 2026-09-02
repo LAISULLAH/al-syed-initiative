@@ -79,7 +79,6 @@ export const Courses: React.FC = () => {
     setSortBy('popular');
   };
 
-  // Find flagship course for hero spotlight
   const flagshipCourse = useMemo(() => {
     return courses.find((c) => c.featured) || courses[0];
   }, [courses]);
@@ -102,7 +101,6 @@ export const Courses: React.FC = () => {
           Specialized open-source intelligence training, persona unmasking, and target profiling programs engineered by ADL Front researchers for lawful investigation and ethical accountability.
         </p>
 
-        {/* Value Pillars Strip */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3 pt-8 mt-8 border-t border-white/[0.08]">
           {[
             { label: 'Controlled LMS Access', sub: 'Dedicated Student Portal' },
@@ -126,7 +124,6 @@ export const Courses: React.FC = () => {
           <div className="absolute inset-0 bg-grid-fine opacity-40 pointer-events-none" />
           
           <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-            {/* Left Column */}
             <div className="lg:col-span-8 space-y-4">
               <div className="flex flex-wrap items-center gap-3">
                 <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white text-black font-mono text-[10px] font-bold uppercase tracking-wider shadow-sm">
@@ -146,7 +143,6 @@ export const Courses: React.FC = () => {
                 {flagshipCourse.description}
               </p>
 
-              {/* Module syllabus preview */}
               <div className="pt-2 flex flex-wrap gap-2">
                 {[
                   '01. Foundation & OPSEC Setup',
@@ -164,7 +160,6 @@ export const Courses: React.FC = () => {
               </div>
             </div>
 
-            {/* Right Action Column */}
             <div className="lg:col-span-4 flex flex-col justify-center space-y-4 p-6 rounded-2xl bg-white/[0.02] border border-white/[0.08]">
               <div className="space-y-2 text-xs font-mono text-mono-400">
                 <div className="flex justify-between pb-2 border-b border-white/[0.06]">
@@ -223,7 +218,6 @@ export const Courses: React.FC = () => {
           </button>
         </div>
 
-        {/* View Mode Toggle (Grid vs List) */}
         {activeCatalogTab === 'courses' && (
           <div className="hidden sm:flex items-center p-1 bg-white/[0.04] border border-white/[0.08] rounded-xl">
             <button
@@ -253,7 +247,6 @@ export const Courses: React.FC = () => {
       {activeCatalogTab === 'courses' && (
         <div className="bg-[#080808] border border-white/10 rounded-2xl p-4 sm:p-6 mb-10 space-y-4">
           <div className="flex flex-col md:flex-row gap-4">
-            {/* Search Input */}
             <div className="relative flex-1">
               <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-mono-500" />
               <input
@@ -274,9 +267,7 @@ export const Courses: React.FC = () => {
               )}
             </div>
 
-            {/* Filter Dropdowns */}
             <div className="flex items-center gap-3 flex-wrap sm:flex-nowrap">
-              {/* Difficulty Dropdown */}
               <select
                 value={selectedDifficulty}
                 onChange={(e) => setSelectedDifficulty(e.target.value as any)}
@@ -289,7 +280,6 @@ export const Courses: React.FC = () => {
                 ))}
               </select>
 
-              {/* Sort Dropdown */}
               <select
                 value={sortBy}
                 onChange={(e) => setSortBy(e.target.value as any)}
@@ -312,7 +302,6 @@ export const Courses: React.FC = () => {
             </div>
           </div>
 
-          {/* Category Filter Pills */}
           <div className="flex flex-wrap items-center gap-2 pt-2 border-t border-white/[0.06]">
             <span className="text-xs font-mono text-mono-500 mr-2">Category:</span>
             {categories.map((cat) => (

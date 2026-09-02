@@ -37,7 +37,6 @@ export const CoursePlayer: React.FC = () => {
     progressPercentage: 0,
   };
 
-  // Find initial lesson
   const allLessons = course.modules.flatMap((m) => m.lessons);
   const [currentLessonId, setCurrentLessonId] = useState<string>(allLessons[0]?.id || '');
   const [activeTab, setActiveTab] = useState<'overview' | 'notes' | 'resources'>('overview');
@@ -57,7 +56,6 @@ export const CoursePlayer: React.FC = () => {
 
   const isCurrentCompleted = progress.completedLessonIds.includes(currentLesson.id);
 
-  // Load notes for current lesson
   useEffect(() => {
     if (currentLesson) {
       const saved = getNotes(course.id, currentLesson.id);
@@ -94,7 +92,6 @@ export const CoursePlayer: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-[#050505] text-mono-100 flex flex-col pt-16">
-      {/* Top Learning Studio Navigation Bar */}
       <div className="h-14 bg-mono-950 border-b border-mono-800 px-4 sm:px-6 flex items-center justify-between z-30">
         <div className="flex items-center gap-3">
           <Link
@@ -114,7 +111,6 @@ export const CoursePlayer: React.FC = () => {
           </div>
         </div>
 
-        {/* Course completion progress in header */}
         <div className="flex items-center gap-4">
           <div className="hidden md:flex items-center gap-3 w-44">
             <ProgressBar progress={(progress.progressPercentage ?? 0)} size="sm" showLabel={true} />
@@ -128,9 +124,7 @@ export const CoursePlayer: React.FC = () => {
         </div>
       </div>
 
-      {/* Main Studio Body (2 Columns) */}
       <div className="flex-1 flex flex-col lg:flex-row overflow-hidden relative">
-        {/* LEFT COLUMN: Interactive Curriculum Sidebar (Desktop & Mobile Drawer) */}
         <aside
           className={`lg:w-80 xl:w-96 bg-[#0a0a0a] border-r border-mono-800 flex flex-col shrink-0 z-20 transition-all duration-300 ${
             mobileCurriculumOpen
@@ -206,9 +200,7 @@ export const CoursePlayer: React.FC = () => {
           </div>
         </aside>
 
-        {/* RIGHT COLUMN: Video Stage & Companion Deck */}
         <main className="flex-1 flex flex-col overflow-y-auto bg-[#050505]">
-          {/* Video Player Stage */}
           <div className="relative bg-black w-full aspect-video max-h-[65vh] flex items-center justify-center border-b border-mono-900 overflow-hidden group">
             <video
               ref={videoRef}
@@ -219,7 +211,6 @@ export const CoursePlayer: React.FC = () => {
             />
           </div>
 
-          {/* Player Toolbar Controls */}
           <div className="p-4 sm:p-6 border-b border-mono-900 bg-mono-950 flex flex-wrap items-center justify-between gap-4">
             <div className="space-y-1">
               <span className="text-xs font-mono text-mono-400 uppercase tracking-widest">
@@ -231,7 +222,6 @@ export const CoursePlayer: React.FC = () => {
             </div>
 
             <div className="flex items-center gap-3">
-              {/* Playback Speed Switcher */}
               <button
                 onClick={changePlaybackSpeed}
                 className="px-3 py-1.5 rounded-lg bg-mono-900 border border-mono-800 text-xs font-mono text-mono-300 hover:text-white transition-colors"
@@ -240,7 +230,6 @@ export const CoursePlayer: React.FC = () => {
                 {playbackSpeed}
               </button>
 
-              {/* Toggle Complete */}
               <Button
                 variant={isCurrentCompleted ? 'secondary' : 'primary'}
                 size="sm"
@@ -250,7 +239,6 @@ export const CoursePlayer: React.FC = () => {
                 {isCurrentCompleted ? 'Completed' : 'Mark as Complete'}
               </Button>
 
-              {/* Prev / Next triggers */}
               <div className="flex items-center gap-1 border-l border-mono-800 pl-3">
                 <button
                   disabled={!prevLesson}
@@ -272,7 +260,6 @@ export const CoursePlayer: React.FC = () => {
             </div>
           </div>
 
-          {/* Lesson Companion Deck (Tabs) */}
           <div className="p-4 sm:p-8 flex-1">
             <div className="flex items-center gap-2 border-b border-mono-800 pb-3 mb-6">
               <button
@@ -307,7 +294,6 @@ export const CoursePlayer: React.FC = () => {
               </button>
             </div>
 
-            {/* TAB 1: OVERVIEW */}
             {activeTab === 'overview' && (
               <div className="max-w-3xl space-y-6 text-mono-300 text-sm leading-relaxed">
                 <div>
@@ -328,7 +314,6 @@ export const CoursePlayer: React.FC = () => {
               </div>
             )}
 
-            {/* TAB 2: INTERACTIVE SCRATCHPAD NOTES */}
             {activeTab === 'notes' && (
               <div className="max-w-3xl space-y-4">
                 <div className="flex items-center justify-between">
@@ -360,7 +345,6 @@ export const CoursePlayer: React.FC = () => {
               </div>
             )}
 
-            {/* TAB 3: LAB HANDOUTS & RESOURCES */}
             {activeTab === 'resources' && (
               <div className="max-w-3xl space-y-3">
                 {currentLesson.resources && currentLesson.resources.length > 0 ? (

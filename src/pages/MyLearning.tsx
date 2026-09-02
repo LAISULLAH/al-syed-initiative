@@ -22,7 +22,6 @@ export const MyLearning: React.FC = () => {
     user?.enrolledCourseIds?.includes(c.id)
   );
 
-  // Primary active course for the "Continue Learning" widget
   const activeCourse = enrolledCourses[0] || COURSES_DATA[0];
   const activeCourseProgress = progressMap[activeCourse.id] || {
     progressPercentage: 35,
@@ -32,7 +31,6 @@ export const MyLearning: React.FC = () => {
 
   return (
     <PageContainer>
-      {/* 1. Learner Profile Greeting Header */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 pb-8 border-b border-mono-900 mb-10">
         <div className="flex items-center gap-4">
           <div className="w-14 h-14 rounded-2xl bg-white text-black font-extrabold text-xl flex items-center justify-center shadow-lg">
@@ -53,7 +51,6 @@ export const MyLearning: React.FC = () => {
           </div>
         </div>
 
-        {/* Learning Streak & Stats Pill */}
         <div className="flex items-center gap-4 bg-mono-950 border border-mono-800 p-3 rounded-2xl">
           <div className="flex items-center gap-2 px-3 border-r border-mono-800">
             <Flame className="w-4 h-4 text-white" />
@@ -72,7 +69,6 @@ export const MyLearning: React.FC = () => {
         </div>
       </div>
 
-      {/* 2. CONTINUE LEARNING SPOTLIGHT CARD */}
       {activeCourse && (
         <div className="mb-12 bg-gradient-to-r from-mono-950 via-[#0e0e0e] to-mono-950 border border-white/15 rounded-3xl p-6 sm:p-8 relative overflow-hidden shadow-2xl">
           <div className="absolute top-0 right-0 w-80 h-80 bg-white/5 rounded-full blur-3xl pointer-events-none" />
@@ -120,7 +116,6 @@ export const MyLearning: React.FC = () => {
         </div>
       )}
 
-      {/* 3. TABS NAVIGATION */}
       <div className="flex items-center gap-3 border-b border-mono-800 pb-4 mb-8">
         <button
           onClick={() => setActiveTab('courses')}
@@ -144,7 +139,6 @@ export const MyLearning: React.FC = () => {
         </button>
       </div>
 
-      {/* 4. TAB CONTENTS */}
       {activeTab === 'courses' && (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {enrolledCourses.map((c) => {
@@ -195,7 +189,6 @@ export const MyLearning: React.FC = () => {
         </div>
       )}
 
-      {/* Credential Verification Modal */}
       {selectedAchievement && (
         <Modal
           isOpen={!!selectedAchievement}

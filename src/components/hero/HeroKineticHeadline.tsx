@@ -1,16 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useReducedMotion } from '../../hooks';
 
-// ─────────────────────────────────────────────────────────────────────────────
-// HeroKineticHeadline
-//
-// Editorial Swiss typography with living kinetic rhythm:
-// - Clean, razor-sharp letterforms (ZERO artificial glow / zero blur shadows)
-// - Organic subtle wave breathing across words (continuous, elegant life)
-// - Gentle interactive mouse parallax depth
-// - Refined letter-spacing response on interaction
-// ─────────────────────────────────────────────────────────────────────────────
-
 interface WordConfig {
   word: string;
   delay: number; // Staggered kinetic wave delay

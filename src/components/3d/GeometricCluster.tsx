@@ -43,7 +43,6 @@ export const GeometricCluster: React.FC<{ height?: string; density?: number }> =
     const render = () => {
       ctx.clearRect(0, 0, width, heightPx);
 
-      // Draw connection lines
       for (let i = 0; i < nodes.length; i++) {
         for (let j = i + 1; j < nodes.length; j++) {
           const dx = nodes[i].x - nodes[j].x;
@@ -62,7 +61,6 @@ export const GeometricCluster: React.FC<{ height?: string; density?: number }> =
         }
       }
 
-      // Draw and update nodes
       for (let i = 0; i < nodes.length; i++) {
         const n = nodes[i];
         n.x += n.vx;

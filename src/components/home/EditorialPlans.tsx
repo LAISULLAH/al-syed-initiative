@@ -177,7 +177,6 @@ export const EditorialPlans: React.FC<EditorialPlansProps> = ({ onSelectPlan }) 
   const [activePhaseIndex, setActivePhaseIndex] = useState(0);
   const [terminalFlicker, setTerminalFlicker] = useState(false);
 
-  // Trigger brief terminal command refresh flicker when switching phases
   useEffect(() => {
     setTerminalFlicker(true);
     const timer = setTimeout(() => setTerminalFlicker(false), 200);
@@ -191,13 +190,10 @@ export const EditorialPlans: React.FC<EditorialPlansProps> = ({ onSelectPlan }) 
       
       <div className="relative rounded-3xl bg-[#060606] border border-white/20 p-6 sm:p-10 lg:p-14 shadow-[0_30px_100px_-20px_rgba(0,0,0,0.95)] overflow-hidden">
         
-        {/* Subtle Architectural Fine Grid Overlay */}
         <div className="absolute inset-0 bg-grid-fine opacity-25 pointer-events-none" />
 
-        {/* Animated Scanning Laser Beam across top border */}
         <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/70 to-transparent pointer-events-none animate-pulse" />
 
-        {/* Ambient Silver Backlight */}
         <div
           className="absolute -top-40 -right-40 w-[550px] h-[550px] rounded-full pointer-events-none opacity-20"
           style={{
@@ -208,7 +204,6 @@ export const EditorialPlans: React.FC<EditorialPlansProps> = ({ onSelectPlan }) 
         <div className="relative z-10 flex flex-col lg:flex-row lg:items-end justify-between pb-10 border-b border-white/10 gap-8">
           <div className="space-y-4 max-w-3xl">
             
-            {/* Pulsing Status Pill */}
             <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-white/[0.06] border border-white/25 text-xs font-mono text-white uppercase tracking-widest font-bold backdrop-blur-md shadow-[0_0_20px_rgba(255,255,255,0.08)]">
               <span className="relative flex h-2 w-2">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75" />
@@ -227,7 +222,6 @@ export const EditorialPlans: React.FC<EditorialPlansProps> = ({ onSelectPlan }) 
             </p>
           </div>
 
-          {/* Action & Status Capsule */}
           <div className="shrink-0 flex flex-col items-start lg:items-end gap-3.5">
             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/[0.08] border border-white/30 text-xs font-mono text-white uppercase tracking-wider font-bold shadow-[0_0_20px_rgba(255,255,255,0.12)]">
               <Activity className="w-3.5 h-3.5 text-white animate-pulse" />
@@ -309,7 +303,6 @@ export const EditorialPlans: React.FC<EditorialPlansProps> = ({ onSelectPlan }) 
             </span>
           </div>
 
-          {/* Phase Navigation Tabs */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-6">
             {CURRICULUM_PHASES.map((phase, idx) => {
               const active = activePhaseIndex === idx;
@@ -323,7 +316,6 @@ export const EditorialPlans: React.FC<EditorialPlansProps> = ({ onSelectPlan }) 
                       : 'border-white/10 bg-white/[0.02] hover:border-white/30 hover:bg-white/[0.04]'
                   }`}
                 >
-                  {/* Top Active Indicator Beam */}
                   {active && (
                     <div className="absolute top-0 left-0 right-0 h-0.5 bg-white shadow-[0_0_10px_white]" />
                   )}
@@ -347,10 +339,8 @@ export const EditorialPlans: React.FC<EditorialPlansProps> = ({ onSelectPlan }) 
             })}
           </div>
 
-          {/* Active Phase Deep Breakdown + Live Investigator Terminal */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
             
-            {/* Left 7 Cols: Phase Overview & Core Skills */}
             <div className="lg:col-span-7 p-6 sm:p-8 rounded-2xl bg-white/[0.02] border border-white/15 flex flex-col justify-between backdrop-blur-md">
               <div>
                 <div className="flex items-center justify-between pb-4 border-b border-white/10 mb-5">
@@ -388,10 +378,8 @@ export const EditorialPlans: React.FC<EditorialPlansProps> = ({ onSelectPlan }) 
               </div>
             </div>
 
-            {/* Right 5 Cols: Live Operational Terminal Preview */}
             <div className="lg:col-span-5 rounded-2xl bg-[#030303] border border-white/20 p-5 font-mono text-xs flex flex-col justify-between shadow-2xl relative overflow-hidden">
               
-              {/* Terminal Title Bar */}
               <div>
                 <div className="flex items-center justify-between pb-3 border-b border-white/10 mb-4">
                   <div className="flex items-center gap-2">
@@ -405,14 +393,12 @@ export const EditorialPlans: React.FC<EditorialPlansProps> = ({ onSelectPlan }) 
                   <Terminal className="w-4 h-4 text-mono-400" />
                 </div>
 
-                {/* Command Line */}
                 <div className={`space-y-3 transition-opacity duration-200 overflow-x-auto ${terminalFlicker ? 'opacity-30' : 'opacity-100'}`}>
                   <div className="flex items-center gap-2 text-mono-300 whitespace-nowrap">
                     <span className="text-white font-bold">$</span>
                     <span className="text-white font-semibold">{currentPhase.terminalLog.command}</span>
                   </div>
 
-                  {/* Output lines */}
                   <div className="space-y-2 pt-2 border-t border-white/[0.06] whitespace-nowrap sm:whitespace-normal break-words">
                     {currentPhase.terminalLog.output.map((line, lIdx) => (
                       <div key={lIdx} className="text-mono-300 text-[11px] leading-relaxed flex items-start gap-1.5">
@@ -424,7 +410,6 @@ export const EditorialPlans: React.FC<EditorialPlansProps> = ({ onSelectPlan }) 
                 </div>
               </div>
 
-              {/* Bottom Telemetry Status Pill */}
               <div className="mt-6 pt-3 border-t border-white/10 flex items-center justify-between text-[10px]">
                 <span className="text-mono-400 font-bold uppercase tracking-wider">
                   {currentPhase.terminalLog.telemetry}

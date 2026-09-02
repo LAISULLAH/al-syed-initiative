@@ -1,20 +1,6 @@
 import React, { useState, useRef } from 'react';
 import { useReducedMotion } from '../../hooks';
 
-// ─────────────────────────────────────────────────────────────────────────────
-// HeroTypographicVisual
-//
-// Editorial typographic composition for Al Syed Initiative.
-// Words: THINK / INVESTIGATE / UNDERSTAND
-//
-// Features:
-// - Depth-layered typography in strict monochrome
-// - Surgically sized so all 3 lines fit cleanly inside the box with zero overflow
-// - Subtle mouse-driven parallax and gentle depth response
-// - Interactive word highlighting with operational micro-definitions
-// - Responsive Swiss architectural grid and coordinate hairlines
-// ─────────────────────────────────────────────────────────────────────────────
-
 interface WordPillar {
   id: string;
   word: string;
@@ -54,7 +40,6 @@ export const HeroTypographicVisual: React.FC = () => {
   const [activeWord, setActiveWord] = useState<string>('investigate');
   const [isHovered, setIsHovered] = useState(false);
 
-  // Smooth mouse move listener relative to center (-1 to 1)
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     if (reducedMotion || !containerRef.current) return;
     const rect = containerRef.current.getBoundingClientRect();
@@ -82,10 +67,8 @@ export const HeroTypographicVisual: React.FC = () => {
       }}
       aria-label="Editorial Typographic Composition: Think, Investigate, Understand"
     >
-      {/* Background architectural fine grid */}
       <div className="absolute inset-0 bg-grid-fine opacity-40 pointer-events-none" />
 
-      {/* Interactive coordinate tracking hairlines */}
       {!reducedMotion && isHovered && (
         <>
           <div
@@ -103,7 +86,6 @@ export const HeroTypographicVisual: React.FC = () => {
         </>
       )}
 
-      {/* Top Header: Technical coordinate metadata */}
       <div className="relative z-10 flex items-center justify-between pb-4 sm:pb-5 border-b border-white/[0.08] text-[10px] font-mono text-mono-400">
         <div className="flex items-center gap-2">
           <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
@@ -118,7 +100,6 @@ export const HeroTypographicVisual: React.FC = () => {
         </div>
       </div>
 
-      {/* Middle: Typographic Depth Sculpture — Sized perfectly so all 3 lines stay within box */}
       <div
         className="relative z-10 my-auto py-6 sm:py-8 flex flex-col gap-3 sm:gap-4 transition-transform duration-200 ease-out"
         style={
@@ -162,7 +143,6 @@ export const HeroTypographicVisual: React.FC = () => {
                   {pillar.word}
                 </span>
 
-                {/* Micro Phase Number with clean beacon */}
                 <div className="flex items-center gap-2 shrink-0">
                   {isActive && (
                     <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
@@ -177,7 +157,6 @@ export const HeroTypographicVisual: React.FC = () => {
                 </div>
               </div>
 
-              {/* Sub-line Hairline divider */}
               <div
                 className={`h-px transition-all duration-300 mt-2 ${
                   isActive ? 'bg-white/30 w-full' : 'bg-white/[0.05] w-1/4 group-hover:w-1/3'
@@ -188,7 +167,6 @@ export const HeroTypographicVisual: React.FC = () => {
         })}
       </div>
 
-      {/* Bottom: Active Definition Panel & Doctrine Callout */}
       <div className="relative z-10 pt-4 sm:pt-5 border-t border-white/[0.08] transition-all duration-200">
         <div className="flex items-center justify-between gap-4 mb-1.5">
           <span className="font-mono text-[10px] text-mono-400 uppercase tracking-widest font-bold">
@@ -203,7 +181,6 @@ export const HeroTypographicVisual: React.FC = () => {
         </p>
       </div>
 
-      {/* Corner Crosshairs */}
       <span className="absolute top-3 left-3 text-mono-700 font-mono text-[9px] pointer-events-none">+</span>
       <span className="absolute top-3 right-3 text-mono-700 font-mono text-[9px] pointer-events-none">+</span>
       <span className="absolute bottom-3 left-3 text-mono-700 font-mono text-[9px] pointer-events-none">+</span>

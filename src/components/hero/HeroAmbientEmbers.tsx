@@ -1,17 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { useReducedMotion } from '../../hooks';
 
-// ─────────────────────────────────────────────────────────────────────────────
-// HeroAmbientAtmosphere (HeroAmbientEmbers)
-//
-// An award-winning combination of:
-// 1. Interactive Cursor Spotlight (Smooth luxury radial illumination tracking mouse)
-// 2. Cinematic Atmospheric Micro-Embers (Delicate silver & deep ruby sparks)
-// 3. Subtle Breathing Ambient Heat Haze at bottom
-//
-// 100% 60fps canvas, ultra-refined opacity, zero distraction from typography.
-// ─────────────────────────────────────────────────────────────────────────────
-
 interface Spark {
   x: number;
   y: number;
@@ -43,7 +32,6 @@ export const HeroAmbientEmbers: React.FC = () => {
     let width = (canvas.width = canvas.parentElement?.clientWidth || window.innerWidth);
     let height = (canvas.height = canvas.parentElement?.clientHeight || window.innerHeight);
 
-    // Mouse coordinates with smooth lerping
     let targetMouseX = width / 2;
     let targetMouseY = height / 3;
     let currentMouseX = targetMouseX;
@@ -64,7 +52,6 @@ export const HeroAmbientEmbers: React.FC = () => {
     window.addEventListener('resize', handleResize);
     window.addEventListener('mousemove', handleMouseMove);
 
-    // Color palette: delicate deep ruby, amber spark, and silver-white core
     const sparkPalette = [
       { fill: 'rgba(255, 80, 60, ', glow: 'rgba(220, 38, 38, 0.4)' },     // Subtle ruby spark
       { fill: 'rgba(255, 255, 255, ', glow: 'rgba(255, 255, 255, 0.6)' }, // Silver-white core
@@ -106,11 +93,9 @@ export const HeroAmbientEmbers: React.FC = () => {
       frame++;
       ctx.clearRect(0, 0, width, height);
 
-      // Smooth lerp mouse position
       currentMouseX += (targetMouseX - currentMouseX) * 0.06;
       currentMouseY += (targetMouseY - currentMouseY) * 0.06;
 
-      // ── 1. Interactive Cursor Radial Spotlight ─────────────────────
       const spotlightRadius = Math.min(width, height) * 0.55;
       const spotlightGrad = ctx.createRadialGradient(
         currentMouseX,
@@ -127,12 +112,10 @@ export const HeroAmbientEmbers: React.FC = () => {
       ctx.fillStyle = spotlightGrad;
       ctx.fillRect(0, 0, width, height);
 
-      // ── 2. Atmospheric Micro-Sparks with Air Turbulence ───────────
       for (let i = 0; i < sparks.length; i++) {
         const p = sparks[i];
         p.life++;
 
-        // Smooth fade-in, sustain, and fade-out
         const progress = p.life / p.maxLife;
         if (progress < 0.2) {
           p.opacity = (progress / 0.2) * p.maxOpacity;
@@ -140,11 +123,9 @@ export const HeroAmbientEmbers: React.FC = () => {
           p.opacity = ((1 - progress) / 0.25) * p.maxOpacity;
         }
 
-        // Air turbulence upward motion
         p.y -= p.speedY;
         p.x += Math.sin(p.life * p.swaySpeed + p.swayOffset) * 0.45 + p.speedX;
 
-        // Reset if cooled or out of view
         if (p.life >= p.maxLife || p.y < -20 || p.x < -20 || p.x > width + 20) {
           sparks[i] = createSpark(true);
           continue;
@@ -176,7 +157,6 @@ export const HeroAmbientEmbers: React.FC = () => {
 
   return (
     <div className="absolute inset-0 pointer-events-none overflow-hidden z-0" aria-hidden="true">
-      {/* Bottom ambient cinematic heat glow (extremely subtle & tasteful) */}
       <div
         className="absolute bottom-0 left-0 right-0 h-80 pointer-events-none opacity-70"
         style={{
@@ -184,7 +164,6 @@ export const HeroAmbientEmbers: React.FC = () => {
             'radial-gradient(ellipse 80% 50% at 50% 100%, rgba(220, 38, 38, 0.08) 0%, rgba(153, 27, 27, 0.02) 50%, transparent 80%)',
         }}
       />
-      {/* 60fps Interactive Spotlight + Delicate Micro-Embers Canvas */}
       <canvas ref={canvasRef} className="w-full h-full block" />
     </div>
   );

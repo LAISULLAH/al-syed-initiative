@@ -15,10 +15,8 @@ export const LiveClassesSection: React.FC = () => {
               : 'border-white/[0.08] hover:border-white/20'
           }`}
         >
-          {/* Background accent for live */}
           <div className="absolute inset-0 bg-grid-pattern opacity-20 pointer-events-none" />
 
-          {/* Status badge & month label */}
           <div className="relative z-10 flex items-center justify-between gap-2 mb-5">
             <div className="flex items-center gap-2">
               <div className={`w-2 h-2 rounded-full ${track.status === 'Coming Soon' ? 'bg-white animate-ping' : 'bg-mono-500'}`} />
@@ -33,14 +31,12 @@ export const LiveClassesSection: React.FC = () => {
             <span className="text-[11px] font-mono text-mono-500">{track.month}</span>
           </div>
 
-          {/* Track name & batch */}
           <div className="relative z-10 mb-6">
             <span className="text-[10px] font-mono text-mono-500 uppercase tracking-widest mb-2 block">{track.trackName}</span>
             <h3 className="font-display text-base sm:text-lg font-bold text-white tracking-tight leading-snug mb-3">
               {track.batch}
             </h3>
 
-            {/* Key details */}
             <div className="space-y-2 text-xs font-mono text-mono-400">
               <div className="flex items-center gap-2">
                 <Calendar className="w-3.5 h-3.5 text-mono-300 shrink-0" />
@@ -59,7 +55,6 @@ export const LiveClassesSection: React.FC = () => {
             </div>
           </div>
 
-          {/* Included courses */}
           <div className="relative z-10 pt-4 border-t border-mono-900 space-y-3">
             <p className="text-[10px] font-mono text-mono-500 uppercase tracking-wider">Access</p>
             <p className="text-xs text-mono-300 leading-relaxed">{track.access}</p>
