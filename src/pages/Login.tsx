@@ -148,16 +148,6 @@ export const Login: React.FC = () => {
                 isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-3'
               }`}
             >
-              {/* Direct Favicon Brand Logo */}
-              <div className="w-8 h-8 sm:w-9 sm:h-9 shrink-0 flex items-center justify-center">
-                <img
-                  src={`${import.meta.env.BASE_URL}favicon.png`}
-                  alt="Al Syed Initiative logo"
-                  className="w-full h-full object-contain filter drop-shadow-[0_0_12px_rgba(255,255,255,0.45)]"
-                  loading="eager"
-                />
-              </div>
-
               <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full border border-white/15 bg-white/[0.03]">
                 <span className="w-1.5 h-1.5 rounded-full bg-white shadow-[0_0_8px_white] animate-pulse" />
                 <span className="font-mono text-[10px] sm:text-[11px] font-semibold uppercase tracking-[0.25em] text-mono-300">

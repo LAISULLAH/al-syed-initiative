@@ -105,16 +105,6 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAuth }) => {
               className="flex items-center gap-2.5 sm:gap-3.5 group shrink min-w-0 select-none"
               onClick={() => setMobileOpen(false)}
             >
-              {/* Direct Favicon Brand Logo */}
-              <div className="relative w-7 h-7 sm:w-9 sm:h-9 shrink-0 flex items-center justify-center group-hover:scale-105 transition-transform duration-200">
-                <img
-                  src={`${import.meta.env.BASE_URL}favicon.png`}
-                  alt="Al Syed Initiative logo"
-                  className="w-full h-full object-contain filter drop-shadow-[0_0_12px_rgba(255,255,255,0.45)]"
-                  loading="eager"
-                />
-              </div>
-
               <div className="flex flex-col text-left min-w-0">
                 <div className="flex items-center gap-1.5 sm:gap-2">
                   <span className="font-display font-black text-[11px] sm:text-sm tracking-tight text-white uppercase group-hover:text-mono-100 transition-colors leading-tight truncate">
@@ -243,11 +233,6 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAuth }) => {
               className="flex items-center gap-3"
               onClick={() => setMobileOpen(false)}
             >
-              <img
-                src={`${import.meta.env.BASE_URL}favicon.png`}
-                alt="Al Syed Initiative logo"
-                className="w-8 h-8 object-contain filter drop-shadow-[0_0_12px_rgba(255,255,255,0.45)]"
-              />
               <div className="flex flex-col">
                 <span className="font-display font-black text-sm text-white uppercase tracking-tight">
                   Al Syed Initiative
