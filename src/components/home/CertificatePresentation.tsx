@@ -141,12 +141,14 @@ export const CertificatePresentation: React.FC = () => {
           <span className="absolute bottom-5 right-5 text-mono-500 font-mono text-xs pointer-events-none">+</span>
 
           {/* Authentic Certificate Image (Smooth Parallax Zoom on Hover) */}
-          <div className="relative rounded-xl overflow-hidden bg-black border border-white/15 shadow-inner">
+          <div className="relative rounded-xl overflow-hidden bg-black border border-white/15 shadow-inner" data-protected-image>
             <img
               src={`${import.meta.env.BASE_URL}certificate-exact.png`}
               alt="Official Al Syed Initiative Certificate of Excellence"
               className="w-full h-auto block object-contain select-none transition-transform duration-700 group-hover:scale-[1.015]"
               loading="eager"
+              draggable={false}
+              onContextMenu={(e) => e.preventDefault()}
             />
           </div>
         </div>

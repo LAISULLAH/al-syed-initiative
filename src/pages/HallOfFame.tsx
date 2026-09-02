@@ -219,7 +219,9 @@ export const HallOfFame: React.FC = () => {
               <img
                 src={`${import.meta.env.BASE_URL}favicon.png`}
                 alt="Al Syed Archive Watermark"
-                className="w-56 h-56 object-contain"
+                className="w-56 h-56 object-contain select-none pointer-events-none"
+                draggable={false}
+                onContextMenu={(e) => e.preventDefault()}
               />
             </div>
           </div>
@@ -570,8 +572,10 @@ export const HallOfFame: React.FC = () => {
               <img
                 src={`${import.meta.env.BASE_URL}favicon.png`}
                 alt="Al Syed Initiative Insignia"
-                className="w-full h-full object-contain"
+                className="w-full h-full object-contain select-none"
                 loading="eager"
+                draggable={false}
+                onContextMenu={(e) => e.preventDefault()}
               />
             </div>
             <span className="font-mono text-xs uppercase tracking-[0.3em] text-[#ECC870] font-bold">

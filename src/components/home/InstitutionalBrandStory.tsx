@@ -154,8 +154,10 @@ export const InstitutionalBrandStory: React.FC = () => {
                   <img
                     src={`${import.meta.env.BASE_URL}favicon.png`}
                     alt="Al Syed Initiative Insignia"
-                    className="w-full h-full object-contain filter drop-shadow-[0_0_40px_rgba(255,255,255,0.45)]"
+                    className="w-full h-full object-contain filter drop-shadow-[0_0_40px_rgba(255,255,255,0.45)] select-none"
                     loading="eager"
+                    draggable={false}
+                    onContextMenu={(e) => e.preventDefault()}
                   />
                 </div>
               </div>

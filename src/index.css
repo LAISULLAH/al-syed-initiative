@@ -18,6 +18,20 @@
     -moz-osx-font-smoothing: grayscale;
   }
 
+  /* Frontend asset & image protection: prevent drag, callout, and selection on visual assets */
+  img, [data-protected-image] {
+    -webkit-user-drag: none;
+    -khtml-user-drag: none;
+    -moz-user-drag: none;
+    -o-user-drag: none;
+    user-drag: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-touch-callout: none;
+  }
+
   /* Custom minimal monochrome scrollbar */
   ::-webkit-scrollbar {
     width: 5px;
