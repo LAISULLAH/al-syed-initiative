@@ -177,7 +177,6 @@ export const Home: React.FC<HomeProps> = ({ onOpenAuth }) => {
 
 
       {/* ═══════════════════════════════════════════════════════════════ */}
-      {/* ═══════════════════════════════════════════════════════════════ */}
       {/* 03 — WHY AL SYED EXISTS (INSTITUTIONAL BRAND STORY)            */}
       {/* ═══════════════════════════════════════════════════════════════ */}
       <section className="py-24 sm:py-32 border-b border-white/[0.08] bg-[#030303] relative overflow-hidden">
@@ -654,3 +653,5 @@ export const Home: React.FC<HomeProps> = ({ onOpenAuth }) => {
     </div>
   );
 };
+
+export default Home;

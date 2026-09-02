@@ -45,3 +45,6 @@ export const ALL_CERTIFIED_STUDENTS: CertifiedStudent[] = [
   ...BATCH_1_STUDENTS,
   ...BATCH_2_STUDENTS,
 ];
+
+export const HALL_OF_FAME_DATA = ALL_CERTIFIED_STUDENTS;
+
