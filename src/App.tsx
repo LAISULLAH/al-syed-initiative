@@ -91,7 +91,7 @@ export const App: React.FC = () => {
   return (
     <AuthProvider>
       <LearningProvider>
-        <Router>
+        <Router basename="/al-syed-initiative">
           <AppContent />
         </Router>
       </LearningProvider>

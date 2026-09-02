@@ -152,7 +152,9 @@ export const InstitutionalBrandStory: React.FC = () => {
                 {/* The Pure Diamond Emblem (100% Authentic, Transparent Background) */}
                 <div className="relative w-56 h-56 sm:w-68 sm:h-68 flex items-center justify-center transition-transform duration-500 group-hover:scale-105">
                   <img
-                    src="/favicon.png"
+                    src={`${import.meta.env.BASE_URL}favicon.png`}
+                    alt="Al Syed Initiative Insignia"
+                    className="w-full h-full object-contain filter drop-shadow-[0_0_40px_rgba(255,255,255,0.45)]"
                     loading="eager"
                   />
                 </div>

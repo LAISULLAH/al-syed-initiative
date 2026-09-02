@@ -130,7 +130,7 @@ export const SitePreloader: React.FC = () => {
           {/* The Pure Diamond Insignia (Zero background square, pure transparent cutout) */}
           <div className="relative w-36 h-36 sm:w-44 sm:h-44 flex items-center justify-center animate-fade-in">
             <img
-              src="/favicon.png"
+              src={`${import.meta.env.BASE_URL}favicon.png`}
               alt="Al Syed Initiative"
               className="w-full h-full object-contain filter drop-shadow-[0_0_35px_rgba(255,255,255,0.45)]"
               loading="eager"

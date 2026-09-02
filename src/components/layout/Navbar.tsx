@@ -77,7 +77,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAuth }) => {
             {/* Direct Favicon Brand Logo */}
             <div className="relative w-8 h-8 sm:w-9 sm:h-9 shrink-0 flex items-center justify-center group-hover:scale-105 transition-transform duration-200">
               <img
-                src="/favicon.png"
+                src={`${import.meta.env.BASE_URL}favicon.png`}
                 alt="Al Syed Initiative logo"
                 className="w-full h-full object-contain filter drop-shadow-[0_0_12px_rgba(255,255,255,0.45)]"
                 loading="eager"
