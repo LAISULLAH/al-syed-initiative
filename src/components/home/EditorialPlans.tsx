@@ -421,14 +421,14 @@ export const EditorialPlans: React.FC<EditorialPlansProps> = ({ onSelectPlan }) 
                 </div>
 
                 {/* Command Line */}
-                <div className={`space-y-3 transition-opacity duration-200 ${terminalFlicker ? 'opacity-30' : 'opacity-100'}`}>
-                  <div className="flex items-center gap-2 text-mono-300">
+                <div className={`space-y-3 transition-opacity duration-200 overflow-x-auto ${terminalFlicker ? 'opacity-30' : 'opacity-100'}`}>
+                  <div className="flex items-center gap-2 text-mono-300 whitespace-nowrap">
                     <span className="text-white font-bold">$</span>
                     <span className="text-white font-semibold">{currentPhase.terminalLog.command}</span>
                   </div>
 
                   {/* Output lines */}
-                  <div className="space-y-2 pt-2 border-t border-white/[0.06]">
+                  <div className="space-y-2 pt-2 border-t border-white/[0.06] whitespace-nowrap sm:whitespace-normal break-words">
                     {currentPhase.terminalLog.output.map((line, lIdx) => (
                       <div key={lIdx} className="text-mono-300 text-[11px] leading-relaxed flex items-start gap-1.5">
                         <span className="text-mono-500 shrink-0">&gt;</span>
