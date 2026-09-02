@@ -14,18 +14,6 @@ import {
 } from 'lucide-react';
 import { useReducedMotion } from '../hooks';
 
-// ─────────────────────────────────────────────────────────────────────────────
-// Contact — Official Communication Desk & Inquiries
-//
-// Verified Real Institutional Channels:
-// - Direct WhatsApp / Phone: +91 99708 75040
-// - Official Email: contact@adlfront.com
-// - Instagram: @adlfrontofficial
-// - X (Twitter): @AdlFront
-// - Operating Under: Advanced Digital Lawforce Front (ADL Front)
-// - Operational Base: Mumbai, Maharashtra, India
-// ─────────────────────────────────────────────────────────────────────────────
-
 export const Contact: React.FC = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -128,7 +116,6 @@ export const Contact: React.FC = () => {
       ref={containerRef}
       className="relative min-h-screen bg-[#030303] text-mono-100 overflow-hidden select-none selection:bg-white selection:text-black font-sans"
     >
-      {/* ── 0. Background Lighting & Grid ────────────────────────── */}
       
       {/* Cursor-Following Ambient Light */}
       <div
@@ -159,7 +146,6 @@ export const Contact: React.FC = () => {
 
       <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-28 sm:pt-36 pb-36">
         
-        {/* ── Hero Section ─────────────────────────────────────────── */}
         <section className="mb-16 sm:mb-20 text-left">
           
           {/* Eyebrow */}
@@ -195,7 +181,6 @@ export const Contact: React.FC = () => {
 
         </section>
 
-        {/* ── Main Two-Column Architectural Layout ─────────────────── */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start text-left">
           
           {/* Left Column: Direct Inquiry Transmission Form (7 Cols) */}

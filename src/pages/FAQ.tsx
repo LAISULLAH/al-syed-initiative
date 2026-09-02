@@ -4,16 +4,6 @@ import { Search, Plus, Minus, ArrowRight, HelpCircle, Sparkles, MessageSquare } 
 import { FAQ_DATA } from '../data/faqData';
 import { useReducedMotion } from '../hooks';
 
-// ─────────────────────────────────────────────────────────────────────────────
-// FAQ — Official Knowledge Base & Admissions Guidance
-//
-// Editorial, monumental architectural accordion layout:
-// - Deep void obsidian background (#030303) with ambient cursor spotlight
-// - Search & Category taxonomy filtering
-// - High-craft interactive accordion rows with smooth expansion
-// - Direct link to Official Communication Desk (/contact)
-// ─────────────────────────────────────────────────────────────────────────────
-
 export const FAQ: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState<string>('All');
@@ -93,7 +83,6 @@ export const FAQ: React.FC = () => {
       ref={containerRef}
       className="relative min-h-screen bg-[#030303] text-mono-100 overflow-hidden select-none selection:bg-white selection:text-black font-sans"
     >
-      {/* ── 0. Ambient Lighting & Grid ────────────────────────────── */}
       
       {/* Cursor-Following Ambient Light */}
       <div
@@ -124,7 +113,6 @@ export const FAQ: React.FC = () => {
 
       <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-28 sm:pt-36 pb-32">
         
-        {/* ── Hero Header ─────────────────────────────────────────── */}
         <section className="mb-16 sm:mb-20 text-left">
           
           {/* Eyebrow */}
@@ -160,7 +148,6 @@ export const FAQ: React.FC = () => {
 
         </section>
 
-        {/* ── Search & Filter Controls ────────────────────────────── */}
         <section className="mb-12 space-y-4 text-left">
           
           {/* Instant Keyword Search Input */}
@@ -211,7 +198,6 @@ export const FAQ: React.FC = () => {
 
         </section>
 
-        {/* ── Architectural Accordion List ────────────────────────── */}
         <section className="mb-20 space-y-4 text-left">
           {filteredFAQs.map((faq, idx) => {
             const isOpen = openIds.has(faq.id);
@@ -281,7 +267,6 @@ export const FAQ: React.FC = () => {
           )}
         </section>
 
-        {/* ── Direct Communication Desk Prompt ────────────────────── */}
         <section className="p-8 sm:p-12 rounded-3xl bg-gradient-to-b from-[#090909] to-[#040404] border border-white/15 relative overflow-hidden text-left shadow-2xl">
           
           {/* Subtle Top Hairline Highlight */}

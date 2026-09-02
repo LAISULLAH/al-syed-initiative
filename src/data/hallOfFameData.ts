@@ -1,12 +1,3 @@
-// ─────────────────────────────────────────────────────────────────────────────
-// Real Verified Certification Records — Al Syed Initiative
-//
-// BATCH 1: 5 Certified Students
-// BATCH 2: 14 Certified Students
-// TOTAL: 19 Certified Students
-//
-// These names are authentic and must remain strictly preserved as provided.
-// ─────────────────────────────────────────────────────────────────────────────
 
 export interface CertifiedStudent {
   id: string;

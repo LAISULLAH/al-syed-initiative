@@ -86,7 +86,6 @@ export const Courses: React.FC = () => {
 
   return (
     <PageContainer>
-      {/* ── 1. Editorial Header ───────────────────────────────────── */}
       <div className="max-w-4xl pt-4 pb-10">
         <div className="inline-flex items-center gap-2.5 px-3 py-1 rounded-md bg-white/[0.04] border border-white/[0.08] mb-5">
           <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
@@ -122,7 +121,6 @@ export const Courses: React.FC = () => {
         </div>
       </div>
 
-      {/* ── 2. Flagship Cohort Spotlight Banner ─────────────────────── */}
       {flagshipCourse && !hasActiveFilters && activeCatalogTab === 'courses' && (
         <div className="relative mb-14 rounded-3xl bg-[#080808] border border-white/15 p-6 sm:p-8 lg:p-10 shadow-[0_20px_50px_-20px_rgba(0,0,0,0.9)] overflow-hidden">
           <div className="absolute inset-0 bg-grid-fine opacity-40 pointer-events-none" />
@@ -195,7 +193,6 @@ export const Courses: React.FC = () => {
         </div>
       )}
 
-      {/* ── 3. Catalog View Switcher (All Courses vs Live Cohorts) ─── */}
       <div className="flex items-center justify-between border-b border-white/[0.08] pb-4 mb-8">
         <div className="flex items-center gap-3">
           <button
@@ -253,7 +250,6 @@ export const Courses: React.FC = () => {
         )}
       </div>
 
-      {/* ── 4. Search & Controls Bar ───────────────────────────────── */}
       {activeCatalogTab === 'courses' && (
         <div className="bg-[#080808] border border-white/10 rounded-2xl p-4 sm:p-6 mb-10 space-y-4">
           <div className="flex flex-col md:flex-row gap-4">
@@ -336,8 +332,7 @@ export const Courses: React.FC = () => {
         </div>
       )}
 
-      {/* ── 5. Main Content Area (Course Grid vs Live Cohort Tracks) ─ */}
-      {activeCatalogTab === 'courses' ? (
+            {activeCatalogTab === 'courses' ? (
         isLoading ? (
           /* Loading Skeletons */
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -447,7 +442,6 @@ export const Courses: React.FC = () => {
         </div>
       )}
 
-      {/* ── 6. Educational Outcome & Guarantee Matrix ──────────────── */}
       <div className="mt-20 pt-12 border-t border-white/[0.08]">
         <div className="max-w-3xl mb-8">
           <span className="font-mono text-xs text-mono-500 uppercase tracking-widest block mb-2">

@@ -27,21 +27,6 @@ import { InstitutionalBrandStory } from '../components/home/InstitutionalBrandSt
 import { ScrollReveal } from '../components/common/ScrollReveal';
 import { GlobalAmbientLighting } from '../components/common/GlobalAmbientLighting';
 
-// ─────────────────────────────────────────────────────────────────────────────
-// Home Page — Al Syed Initiative
-//
-// Alive, high-craft editorial brand homepage:
-// 1. HERO (Crowning ADL Front Emblem, Kinetic Headline, 3 Operational Pillars)
-// 2. BUILT FOR DISCIPLINED LEARNING (01 About Us · 02 Courses We Provide · 03 Our Message)
-// 3. OUR STORY & OUR MISSION (Founded in 2026 // ADL Front · Al Syed) + Authentic Insignia
-// 4. WHY LEARNERS CHOOSE US (Flexible structure, Professional instruction, Measured progress)
-// 5. HOW YOUR JOURNEY WORKS (3-Step Onboarding Workflow with Watermarks)
-// 6. CERTIFICATION / RECOGNITION (Museum-grade authentic certificate format display)
-// 7. TRAINING PROGRAM OVERVIEW (Unified Batch IV Curriculum, no SaaS tiers)
-// 8. APPROACH / PHILOSOPHY (Interactive 5-stage progression)
-// 9. FINAL CTA ("READY TO TAKE YOUR SKILLS FURTHER?")
-// ─────────────────────────────────────────────────────────────────────────────
-
 interface HomeProps {
   onOpenAuth: (mode?: 'login' | 'signup') => void;
 }
@@ -52,10 +37,7 @@ export const Home: React.FC<HomeProps> = ({ onOpenAuth }) => {
       {/* Global Ambient Monochrome Lighting (Cursor Spotlight, Film Grain, Slow Beam Sweep) */}
       <GlobalAmbientLighting />
       
-      {/* ═══════════════════════════════════════════════════════════════ */}
-      {/* 01 — HERO SECTION (MINIMAL ARCHITECTURAL BOUNDARY)             */}
-      {/* ═══════════════════════════════════════════════════════════════ */}
-      <section className="relative min-h-[90vh] flex flex-col justify-center overflow-hidden border-b border-white/[0.08] bg-[#030303]">
+            <section className="relative min-h-[90vh] flex flex-col justify-center overflow-hidden border-b border-white/[0.08] bg-[#030303]">
         {/* Subtle Architectural Fine Grid Overlay */}
         <div className="absolute inset-0 bg-grid-fine pointer-events-none opacity-20 z-0" aria-hidden="true" />
 
@@ -79,11 +61,7 @@ export const Home: React.FC<HomeProps> = ({ onOpenAuth }) => {
         <HeroMasterpiece onOpenAuth={onOpenAuth} />
       </section>
 
-
-      {/* ═══════════════════════════════════════════════════════════════ */}
-      {/* 02 — WHAT YOU’RE REALLY HERE TO LEARN                           */}
-      {/* ═══════════════════════════════════════════════════════════════ */}
-      <section className="py-24 sm:py-32 border-b border-white/[0.08] bg-[#050505] relative overflow-hidden">
+            <section className="py-24 sm:py-32 border-b border-white/[0.08] bg-[#050505] relative overflow-hidden">
         <div className="absolute inset-0 bg-grid-fine opacity-20 pointer-events-none" />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-left">
@@ -175,11 +153,7 @@ export const Home: React.FC<HomeProps> = ({ onOpenAuth }) => {
         </div>
       </section>
 
-
-      {/* ═══════════════════════════════════════════════════════════════ */}
-      {/* 03 — WHY AL SYED EXISTS (INSTITUTIONAL BRAND STORY)            */}
-      {/* ═══════════════════════════════════════════════════════════════ */}
-      <section className="py-24 sm:py-32 border-b border-white/[0.08] bg-[#030303] relative overflow-hidden">
+            <section className="py-24 sm:py-32 border-b border-white/[0.08] bg-[#030303] relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-left">
           <ScrollReveal>
             <InstitutionalBrandStory />
@@ -187,11 +161,7 @@ export const Home: React.FC<HomeProps> = ({ onOpenAuth }) => {
         </div>
       </section>
 
-
-      {/* ═══════════════════════════════════════════════════════════════ */}
-      {/* 04 — THE AL SYED STANDARD (BRAND MANIFESTO)                     */}
-      {/* ═══════════════════════════════════════════════════════════════ */}
-      <section className="py-24 sm:py-32 border-b border-white/[0.08] bg-[#050505] relative overflow-hidden">
+            <section className="py-24 sm:py-32 border-b border-white/[0.08] bg-[#050505] relative overflow-hidden">
         <div className="absolute inset-0 bg-grid-fine opacity-25 pointer-events-none" />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-left">
@@ -217,8 +187,7 @@ export const Home: React.FC<HomeProps> = ({ onOpenAuth }) => {
           {/* 3 Premium Editorial Cards */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
             
-            {/* 01 — CURIOSITY */}
-            <ScrollReveal delayMs={0}>
+                        <ScrollReveal delayMs={0}>
               <div className="group relative p-8 sm:p-10 lg:p-12 rounded-3xl bg-[#090909] border border-white/10 hover:border-white/35 hover:bg-[#0e0e0e] hover:-translate-y-2 transition-all duration-300 flex flex-col justify-between shadow-[0_20px_50px_-15px_rgba(0,0,0,0.85)] hover:shadow-[0_30px_70px_-20px_rgba(255,255,255,0.08)] overflow-hidden h-full">
                 {/* Giant numeric watermark */}
                 <span className="font-mono font-black text-8xl text-white/[0.03] absolute top-4 right-6 pointer-events-none group-hover:text-white/[0.08] transition-colors duration-300">
@@ -255,8 +224,7 @@ export const Home: React.FC<HomeProps> = ({ onOpenAuth }) => {
               </div>
             </ScrollReveal>
 
-            {/* 02 — DISCIPLINE */}
-            <ScrollReveal delayMs={60}>
+                        <ScrollReveal delayMs={60}>
               <div className="group relative p-8 sm:p-10 lg:p-12 rounded-3xl bg-[#090909] border border-white/10 hover:border-white/35 hover:bg-[#0e0e0e] hover:-translate-y-2 transition-all duration-300 flex flex-col justify-between shadow-[0_20px_50px_-15px_rgba(0,0,0,0.85)] hover:shadow-[0_30px_70px_-20px_rgba(255,255,255,0.08)] overflow-hidden h-full">
                 {/* Giant numeric watermark */}
                 <span className="font-mono font-black text-8xl text-white/[0.03] absolute top-4 right-6 pointer-events-none group-hover:text-white/[0.08] transition-colors duration-300">
@@ -293,8 +261,7 @@ export const Home: React.FC<HomeProps> = ({ onOpenAuth }) => {
               </div>
             </ScrollReveal>
 
-            {/* 03 — JUDGEMENT */}
-            <ScrollReveal delayMs={120}>
+                        <ScrollReveal delayMs={120}>
               <div className="group relative p-8 sm:p-10 lg:p-12 rounded-3xl bg-[#090909] border border-white/10 hover:border-white/35 hover:bg-[#0e0e0e] hover:-translate-y-2 transition-all duration-300 flex flex-col justify-between shadow-[0_20px_50px_-15px_rgba(0,0,0,0.85)] hover:shadow-[0_30px_70px_-20px_rgba(255,255,255,0.08)] overflow-hidden h-full">
                 {/* Giant numeric watermark */}
                 <span className="font-mono font-black text-8xl text-white/[0.03] absolute top-4 right-6 pointer-events-none group-hover:text-white/[0.08] transition-colors duration-300">
@@ -351,11 +318,7 @@ export const Home: React.FC<HomeProps> = ({ onOpenAuth }) => {
         </div>
       </section>
 
-
-      {/* ═══════════════════════════════════════════════════════════════ */}
-      {/* 05 — ONBOARDING: FROM FIRST STEP TO FIELD READY                */}
-      {/* ═══════════════════════════════════════════════════════════════ */}
-      <section className="py-24 sm:py-32 border-b border-white/[0.08] bg-[#030303] relative overflow-hidden">
+            <section className="py-24 sm:py-32 border-b border-white/[0.08] bg-[#030303] relative overflow-hidden">
         <div className="absolute inset-0 bg-grid-fine opacity-20 pointer-events-none" />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-left">
@@ -512,11 +475,7 @@ export const Home: React.FC<HomeProps> = ({ onOpenAuth }) => {
         </div>
       </section>
 
-
-      {/* ═══════════════════════════════════════════════════════════════ */}
-      {/* 06 — PROOF OF PROGRESS: CREDENTIAL ARCHIVE                      */}
-      {/* ═══════════════════════════════════════════════════════════════ */}
-      <section className="py-24 sm:py-32 border-b border-white/[0.08] bg-[#050505] relative overflow-hidden">
+            <section className="py-24 sm:py-32 border-b border-white/[0.08] bg-[#050505] relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           {/* Header */}
           <ScrollReveal className="max-w-4xl mb-16 lg:mb-20 text-left">
@@ -544,11 +503,7 @@ export const Home: React.FC<HomeProps> = ({ onOpenAuth }) => {
         </div>
       </section>
 
-
-      {/* ═══════════════════════════════════════════════════════════════ */}
-      {/* 07 — TRAINING PROGRAM OVERVIEW SECTION                          */}
-      {/* ═══════════════════════════════════════════════════════════════ */}
-      <section className="py-24 sm:py-32 border-b border-white/[0.08] bg-[#030303] relative overflow-hidden">
+            <section className="py-24 sm:py-32 border-b border-white/[0.08] bg-[#030303] relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           {/* Header */}
           <ScrollReveal className="max-w-3xl mb-16 lg:mb-20 text-left">
@@ -576,11 +531,7 @@ export const Home: React.FC<HomeProps> = ({ onOpenAuth }) => {
         </div>
       </section>
 
-
-      {/* ═══════════════════════════════════════════════════════════════ */}
-      {/* 08 — APPROACH / PHILOSOPHY SECTION                              */}
-      {/* ═══════════════════════════════════════════════════════════════ */}
-      <section id="approach" className="py-24 sm:py-32 border-b border-white/[0.08] bg-[#050505] relative overflow-hidden">
+            <section id="approach" className="py-24 sm:py-32 border-b border-white/[0.08] bg-[#050505] relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <ScrollReveal>
             <PhilosophyProgression />
@@ -588,11 +539,7 @@ export const Home: React.FC<HomeProps> = ({ onOpenAuth }) => {
         </div>
       </section>
 
-
-      {/* ═══════════════════════════════════════════════════════════════ */}
-      {/* 09 — FINAL CTA SECTION                                          */}
-      {/* ═══════════════════════════════════════════════════════════════ */}
-      <section className="py-28 sm:py-36 bg-[#060606] relative overflow-hidden">
+            <section className="py-28 sm:py-36 bg-[#060606] relative overflow-hidden">
         {/* Subtle grid background */}
         <div className="absolute inset-0 bg-grid-fine opacity-25 pointer-events-none" />
         

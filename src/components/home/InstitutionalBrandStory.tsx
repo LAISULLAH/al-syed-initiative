@@ -1,38 +1,9 @@
 import React from 'react';
 
-// ─────────────────────────────────────────────────────────────────────────────
-// InstitutionalBrandStory
-//
-// Sophisticated, human, authoritative institutional story for Al Syed Initiative.
-//
-// Heading:
-// WHY AL SYED EXISTS.
-//
-// Subtext:
-// A cybersecurity initiative built around knowledge, awareness, investigation,
-// and responsible practice.
-//
-// Left Side:
-// - Real story with highlighted phrases:
-//   "CRITICAL THINKING", "RESPONSIBLE INVESTIGATION", "DIGITAL AWARENESS", "PRACTICAL SECURITY"
-// - Mission statement: OUR PURPOSE
-//   "Build people who can think independently, investigate responsibly, and navigate the digital world with confidence."
-//
-// Right Side:
-// - The authentic ADL Front Emblem Showcase (100% transparent PNG with glowing
-//   telemetry rings and silver backlight).
-//
-// Bottom:
-// KNOWLEDGE IS THE FOUNDATION.
-// DISCIPLINE IS THE METHOD.
-// RESPONSIBILITY IS THE STANDARD.
-// ─────────────────────────────────────────────────────────────────────────────
-
 export const InstitutionalBrandStory: React.FC = () => {
   return (
     <div className="w-full text-left">
       
-      {/* ── Section Header ─────────────────────────────────────────── */}
       <div className="max-w-4xl mb-16 lg:mb-20">
         <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-white/[0.05] border border-white/20 mb-6 backdrop-blur-md">
           <span className="w-2 h-2 rounded-full bg-white shadow-[0_0_8px_white] animate-pulse" />
@@ -51,7 +22,6 @@ export const InstitutionalBrandStory: React.FC = () => {
         </p>
       </div>
 
-      {/* ── Main Editorial Story Grid (Asymmetric Layout) ──────────── */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
         
         {/* Left Column: Real Institutional Story & Purpose */}
@@ -182,7 +152,6 @@ export const InstitutionalBrandStory: React.FC = () => {
 
       </div>
 
-      {/* ── Bottom Authoritative Statement Triad ───────────────────── */}
       <div className="mt-20 pt-10 border-t border-white/10">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-left">
           <div className="space-y-1">

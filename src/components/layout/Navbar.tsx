@@ -88,7 +88,6 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAuth }) => {
       >
         <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 pt-3 sm:pt-5">
           
-          {/* ── Floating Precision Capsule ───────────────────────────── */}
           <div
             className={`pointer-events-auto w-full rounded-2xl sm:rounded-full bg-[#050505]/90 backdrop-blur-2xl border transition-all duration-500 px-3.5 sm:px-6 py-2 sm:py-3 flex items-center justify-between shadow-[0_20px_50px_-15px_rgba(0,0,0,0.9),0_0_0_1px_rgba(255,255,255,0.03)] relative overflow-hidden ${
               scrolled
@@ -99,7 +98,6 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAuth }) => {
             {/* Subtle Top Specular Hairline Shimmer */}
             <div className="absolute inset-x-8 top-0 h-px bg-gradient-to-r from-transparent via-white/25 to-transparent pointer-events-none" />
 
-            {/* ── Brand Logo as Precision Mark ──────────────────────── */}
             <Link
               to="/"
               className="flex items-center gap-2.5 sm:gap-3.5 group shrink min-w-0 select-none"
@@ -118,7 +116,6 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAuth }) => {
               </div>
             </Link>
 
-            {/* ── Desktop Navigation Links ─────────────────────────── */}
             <nav className="hidden lg:flex items-center gap-1 sm:gap-1.5" aria-label="Main navigation">
               {NAV_LINKS.map((link) => {
                 const active = location.pathname === link.path;
@@ -138,7 +135,6 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAuth }) => {
               })}
             </nav>
 
-            {/* ── Right side: Desktop Account Area ─────────────────── */}
             <div className="hidden lg:flex items-center gap-3 select-none">
               {isAuthenticated && user ? (
                 <div ref={profileRef} className="relative">
@@ -198,7 +194,6 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAuth }) => {
               )}
             </div>
 
-            {/* ── Mobile Actions: Fast Log In + Hamburger Button ──── */}
             <div className="flex lg:hidden items-center gap-2 shrink-0">
               {!isAuthenticated && (
                 <Link
@@ -222,7 +217,6 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAuth }) => {
         </div>
       </header>
 
-      {/* ── Dedicated Mobile Full-Screen Drawer Overlay ───────────── */}
       {mobileOpen && (
         <div className="fixed inset-0 z-[100] bg-[#030303]/98 backdrop-blur-3xl flex flex-col justify-between p-5 sm:p-7 overflow-y-auto animate-fade-in text-left">
           

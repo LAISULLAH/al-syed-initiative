@@ -4,14 +4,6 @@ import { ArrowRight, Eye, EyeOff } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 import { useReducedMotion } from '../hooks';
 
-// ─────────────────────────────────────────────────────────────────────────────
-// Login — The Private Learning Platform Portal
-//
-// Left: Context & Platform Identity (Enrolled OSINT Learner Space)
-// Right: Focused High-End Login Card
-// Palette: Pure Monochrome (Deep Black, Silver, White, Thin Hairline Borders)
-// ─────────────────────────────────────────────────────────────────────────────
-
 export const Login: React.FC = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -104,7 +96,6 @@ export const Login: React.FC = () => {
       ref={viewportRef}
       className="relative min-h-[calc(100vh-76px)] flex items-center justify-center px-4 sm:px-6 lg:px-8 py-16 sm:py-24 overflow-hidden bg-[#030303] select-none"
     >
-      {/* ── 1. Slow Ambient Private Platform Atmosphere ──────────── */}
       
       {/* Smooth Cursor-Following Ambient Light */}
       <div
@@ -133,13 +124,9 @@ export const Login: React.FC = () => {
         <div className="absolute right-[8%] top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-white/[0.04] to-transparent" />
       </div>
 
-      {/* ── 2. Two-Column Private Platform Composition ─────────────── */}
       <div className="relative z-10 w-full max-w-6xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 xl:gap-20 items-center">
 
-          {/* ═════════════════════════════════════════════════════════
-              LEFT SIDE: Context & Platform Identity
-          ═════════════════════════════════════════════════════════ */}
           <div className="lg:col-span-7 flex flex-col justify-center text-left">
             
             {/* Logo + Eyebrow: AL SYED / MEMBER PORTAL */}
@@ -180,8 +167,7 @@ export const Login: React.FC = () => {
             {/* Three Compact Information Blocks */}
             <div className="space-y-4 max-w-xl">
               
-              {/* 01 — YOUR PROGRAM */}
-              <div
+                            <div
                 className={`p-4 sm:p-4.5 rounded-2xl border border-white/[0.07] bg-white/[0.02] backdrop-blur-sm transition-all duration-700 delay-400 hover:border-white/20 hover:bg-white/[0.04] ${
                   isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-3'
                 }`}
@@ -199,8 +185,7 @@ export const Login: React.FC = () => {
                 </p>
               </div>
 
-              {/* 02 — LIVE & ON-DEMAND */}
-              <div
+                            <div
                 className={`p-4 sm:p-4.5 rounded-2xl border border-white/[0.07] bg-white/[0.02] backdrop-blur-sm transition-all duration-700 delay-500 hover:border-white/20 hover:bg-white/[0.04] ${
                   isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-3'
                 }`}
@@ -218,8 +203,7 @@ export const Login: React.FC = () => {
                 </p>
               </div>
 
-              {/* 03 — RESOURCES & PROGRESS */}
-              <div
+                            <div
                 className={`p-4 sm:p-4.5 rounded-2xl border border-white/[0.07] bg-white/[0.02] backdrop-blur-sm transition-all duration-700 delay-600 hover:border-white/20 hover:bg-white/[0.04] ${
                   isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-3'
                 }`}
@@ -251,9 +235,6 @@ export const Login: React.FC = () => {
 
           </div>
 
-          {/* ═════════════════════════════════════════════════════════
-              RIGHT SIDE: Focused Login Card
-          ═════════════════════════════════════════════════════════ */}
           <div className="lg:col-span-5 w-full max-w-[430px] mx-auto lg:mx-0">
             
             <div
@@ -297,7 +278,6 @@ export const Login: React.FC = () => {
                 </div>
               )}
 
-              {/* ── Form Fields ────────────────────────────────────────── */}
               <form onSubmit={handleSubmit} className="space-y-5 text-left">
                 
                 {/* EMAIL */}
@@ -373,7 +353,6 @@ export const Login: React.FC = () => {
 
               </form>
 
-              {/* ── Below Form ────────────────────────────────────────── */}
               <div className="mt-8 pt-6 border-t border-white/[0.07] text-center text-xs text-mono-400 flex flex-col sm:flex-row items-center justify-center gap-1.5 font-sans">
                 <span>Not enrolled yet?</span>
                 <Link

@@ -3,17 +3,6 @@ import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 import { useReducedMotion } from '../../hooks';
 
-// ─────────────────────────────────────────────────────────────────────────────
-// HeroMasterpiece — The Original Living Kinetic Viewport
-//
-// Al Syed Initiative Signature Atmosphere:
-// - Cinematic line-by-line blur-to-sharp entrance
-// - Interactive reacting "HOW." with silver/white glow
-// - Subtle interactive cursor tracking, background grid, and ambient spotlight
-// - Magnetic hover physics on CTAs
-// - 100% Monochrome Black / White / Gray
-// ─────────────────────────────────────────────────────────────────────────────
-
 interface HeroMasterpieceProps {
   onOpenAuth?: (mode?: 'login' | 'signup') => void;
 }
@@ -79,7 +68,6 @@ export const HeroMasterpiece: React.FC<HeroMasterpieceProps> = () => {
       ref={heroRef}
       className="relative w-full min-h-[92vh] flex flex-col items-center justify-center text-center select-none overflow-hidden pt-28 pb-16 sm:pt-36 sm:pb-24 lg:pt-40 lg:pb-28"
     >
-      {/* ── 1. Sophisticated Living Monochrome Background ──────────── */}
       
       {/* Dynamic Cursor Spotlight */}
       {/* Subtle Ambient Radial Backlight */}
@@ -102,7 +90,6 @@ export const HeroMasterpiece: React.FC<HeroMasterpieceProps> = () => {
         <div className="absolute top-1/2 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/[0.08] to-transparent" />
       </div>
 
-      {/* ── 2. Content Container ───────────────────────────────────── */}
       <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 w-full flex flex-col items-center">
         
         {/* Top Brand Eyebrow Pill */}
@@ -117,7 +104,6 @@ export const HeroMasterpiece: React.FC<HeroMasterpieceProps> = () => {
           </span>
         </div>
 
-        {/* ── 3. Monumental Kinetic Headline (Line-by-Line Entrance) ─── */}
         <h1
           className="font-display font-black text-white uppercase leading-[0.92] max-w-5xl mb-8 select-none"
           style={{
@@ -176,7 +162,6 @@ export const HeroMasterpiece: React.FC<HeroMasterpieceProps> = () => {
           </span>
         </h1>
 
-        {/* ── 4. Thoughtful Supporting Description ─────────────────── */}
         <p
           className={`text-mono-200 text-lg sm:text-xl lg:text-2xl font-sans max-w-3xl leading-relaxed mb-12 sm:mb-14 font-normal text-center mx-auto transition-all duration-700 delay-400 ${
             isLoaded ? 'opacity-100 translate-y-0 blur-0' : 'opacity-0 translate-y-5 blur-sm'
@@ -185,7 +170,6 @@ export const HeroMasterpiece: React.FC<HeroMasterpieceProps> = () => {
           Cybersecurity education built around structured learning, practical investigation, and the discipline to think beyond the tools.
         </p>
 
-        {/* ── 5. Balanced Action CTAs with Magnetic Feedback ───────── */}
         <div
           className={`flex flex-col sm:flex-row items-center justify-center gap-4 w-full sm:w-auto transition-all duration-700 delay-500 ${
             isLoaded ? 'opacity-100 translate-y-0 blur-0' : 'opacity-0 translate-y-5 blur-sm'
@@ -223,7 +207,6 @@ export const HeroMasterpiece: React.FC<HeroMasterpieceProps> = () => {
 
       </div>
 
-      {/* ── 6. Minimal Architectural Scroll Indicator ─────────────── */}
       <div
         className={`absolute bottom-6 sm:bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 pointer-events-none transition-all duration-1000 delay-700 ${
           isLoaded ? 'opacity-60 translate-y-0' : 'opacity-0 translate-y-3'

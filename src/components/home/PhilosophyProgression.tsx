@@ -1,21 +1,5 @@
 import React from 'react';
 
-// ─────────────────────────────────────────────────────────────────────────────
-// PhilosophyProgression (From "How?" to "Why?")
-//
-// Compact, visual mindset shift section.
-// Kept concise so it does not compete with Section 04 (The Al Syed Standard).
-//
-// Heading: FROM “HOW?” TO “WHY?”
-// Subtext: “Anyone can follow a walkthrough. The real skill is understanding why the workflow works.”
-//
-// 01 — QUESTION | CURIOSITY / CONTEXT
-// 02 — INVESTIGATE | PROCESS / PRECISION
-// 03 — UNDERSTAND | INSIGHT / JUDGEMENT
-//
-// Bottom: QUESTION → INVESTIGATE → UNDERSTAND
-// ─────────────────────────────────────────────────────────────────────────────
-
 interface ShiftItem {
   num: string;
   title: string;
@@ -44,7 +28,6 @@ export const PhilosophyProgression: React.FC = () => {
   return (
     <div className="w-full text-left">
       
-      {/* ── Compact Header ─────────────────────────────────────────── */}
       <div className="max-w-3xl mb-12">
         <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/[0.05] border border-white/20 mb-4 backdrop-blur-md">
           <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
@@ -62,7 +45,6 @@ export const PhilosophyProgression: React.FC = () => {
         </p>
       </div>
 
-      {/* ── Compact Visual Triad (Sleek Horizontal Blocks) ─────────── */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 mb-10">
         {ITEMS.map((item) => (
           <div
@@ -95,7 +77,6 @@ export const PhilosophyProgression: React.FC = () => {
         ))}
       </div>
 
-      {/* ── Bottom Progression Micro-Line ──────────────────────────── */}
       <div className="pt-6 border-t border-white/[0.08] flex flex-col sm:flex-row items-center justify-between gap-4">
         <div className="inline-flex items-center gap-3 text-xs sm:text-sm font-mono text-mono-200 tracking-[0.25em] uppercase font-bold">
           <span className="text-white">QUESTION</span>

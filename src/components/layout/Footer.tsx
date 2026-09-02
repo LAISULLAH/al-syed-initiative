@@ -2,17 +2,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, ArrowUpRight } from 'lucide-react';
 
-// ─────────────────────────────────────────────────────────────────────────────
-// Footer — Al Syed Initiative
-//
-// Distinctive, architectural brand footer:
-// - Monumental closing statement: "BUILD KNOWLEDGE. CARRY IT FORWARD."
-// - Structured navigation: EXPLORE, COMPANY, CONNECT
-// - Real institutional contacts (Instagram, X, Email, Phone)
-// - Minimalist CTA: "Ready to begin? Explore Al Syed →"
-// - Strictly Black / White / Gray monochrome with generous whitespace.
-// ─────────────────────────────────────────────────────────────────────────────
-
 export const Footer: React.FC = () => {
   return (
     <footer className="relative bg-[#040404] text-mono-100 border-t border-white/10 overflow-hidden select-none">
@@ -22,7 +11,6 @@ export const Footer: React.FC = () => {
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 sm:pt-28 pb-12 sm:pb-16 text-left">
         
-        {/* ── Top: Monumental Closing Statement & Mini CTA ─────────── */}
         <div className="pb-16 sm:pb-20 border-b border-white/10 flex flex-col lg:flex-row lg:items-end justify-between gap-10">
           <div className="space-y-4 max-w-3xl">
             <h2
@@ -56,7 +44,6 @@ export const Footer: React.FC = () => {
           </div>
         </div>
 
-        {/* ── Middle: Clean 3-Column Navigation Grid ────────────────── */}
         <div className="py-16 sm:py-20 grid grid-cols-1 md:grid-cols-3 gap-12 lg:gap-16 border-b border-white/10">
           
           {/* Column 1: EXPLORE */}
@@ -166,7 +153,6 @@ export const Footer: React.FC = () => {
 
         </div>
 
-        {/* ── Bottom Bar: Copyright & Legal Hairlines ────────────────── */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-5 text-xs font-mono text-mono-400">
           <span>© 2026 Al Syed Initiative. All rights reserved.</span>
 

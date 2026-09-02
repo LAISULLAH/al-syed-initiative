@@ -1,17 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { useReducedMotion } from '../../hooks';
 
-// ─────────────────────────────────────────────────────────────────────────────
-// GlobalAmbientLighting
-//
-// Living monochrome atmospheric layer:
-// - Smooth cursor-following ambient spotlight
-// - Faint architectural grid drift
-// - Ultra-subtle film grain overlay
-// - Slow moving light sweep across section boundaries
-// - Strictly black, white & silver/gray (ZERO color)
-// ─────────────────────────────────────────────────────────────────────────────
-
 export const GlobalAmbientLighting: React.FC = () => {
   const reducedMotion = useReducedMotion();
   const spotlightRef = useRef<HTMLDivElement>(null);
@@ -67,13 +56,11 @@ export const GlobalAmbientLighting: React.FC = () => {
 
   return (
     <div className="pointer-events-none fixed inset-0 z-30 overflow-hidden" aria-hidden="true">
-      {/* ── 1. Cursor-Following Ambient Spotlight (Direct DOM, zero React re-renders) ─ */}
-      <div
+            <div
         ref={spotlightRef}
         className="absolute inset-0 transition-opacity duration-300"
       />
 
-      {/* ── 2. Ultra-Subtle Film Grain Texture ─────────────────────── */}
       <div
         className="absolute inset-0 opacity-[0.022] mix-blend-overlay"
         style={{
@@ -83,7 +70,6 @@ export const GlobalAmbientLighting: React.FC = () => {
         }}
       />
 
-      {/* ── 3. Slow Ambient Light Sweep Hairline ───────────────────── */}
       <div className="absolute top-0 left-0 right-0 h-px overflow-hidden">
         <div className="w-1/3 h-full bg-gradient-to-r from-transparent via-white/25 to-transparent animate-beam-sweep" />
       </div>

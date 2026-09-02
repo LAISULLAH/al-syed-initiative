@@ -1,16 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useReducedMotion } from '../../hooks';
 
-// ─────────────────────────────────────────────────────────────────────────────
-// SitePreloader (Cinematic Splash & Brand Intro)
-//
-// Displays on initial page load / refresh:
-// - Authentic cutout diamond emblem (Zero square background, 100% transparent)
-// - Enlarged prominent scale with orbital luminous tracer arc
-// - Live typing "AL SYED INITIATIVE" typewriter animation
-// - 1-second stay time with silky smooth dissolve exit
-// ─────────────────────────────────────────────────────────────────────────────
-
 export const SitePreloader: React.FC = () => {
   const reducedMotion = useReducedMotion();
   const [mounted, setMounted] = useState<boolean>(true);
@@ -80,7 +70,6 @@ export const SitePreloader: React.FC = () => {
         }}
       />
 
-      {/* ── Centerpiece: Enlarged Diamond Emblem & Orbital Kinetic Tracer ──── */}
       <div className="relative flex flex-col items-center justify-center z-10">
         
         {/* Orbital Tracer & Emblem Container */}
@@ -140,7 +129,6 @@ export const SitePreloader: React.FC = () => {
           </div>
         </div>
 
-        {/* ── Brand Name with Active Typewriter Writing Animation ── */}
         <div className="mt-8 flex flex-col items-center text-center space-y-2 h-14">
           <h2 className="font-display font-black text-white text-base sm:text-lg tracking-[0.32em] sm:tracking-[0.38em] uppercase select-none min-h-[1.75rem] flex items-center justify-center">
             <span>{typedText}</span>

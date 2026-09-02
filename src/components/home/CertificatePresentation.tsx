@@ -2,17 +2,6 @@ import React, { useState, useRef, useEffect } from 'react';
 import { Award, FileText, CheckCircle2 } from 'lucide-react';
 import { useReducedMotion } from '../../hooks';
 
-// ─────────────────────────────────────────────────────────────────────────────
-// CertificatePresentation (Proof of Progress)
-//
-// High-craft archival credential showcase for Al Syed Initiative.
-// - Starts slightly blurred / concealed, smoothly reveals on scroll
-// - Subtle interactive perspective tilt & zoom on hover
-// - Elegant monochrome lighting (no holograms or neon gimmicks)
-// - 3 Details: COMPLETION, RECOGNITION, CREDENTIAL
-// - Bottom statement: LEARNED. COMPLETED. RECOGNIZED.
-// ─────────────────────────────────────────────────────────────────────────────
-
 interface DetailItem {
   label: string;
   desc: string;
@@ -95,7 +84,6 @@ export const CertificatePresentation: React.FC = () => {
         }}
       />
 
-      {/* ── Top Bar: Official Credential Archive Telemetry ──────────── */}
       <div className="relative z-10 flex flex-col sm:flex-row sm:items-center justify-between pb-8 border-b border-white/10 gap-5">
         <div className="flex items-center gap-4">
           <div className="w-11 h-11 rounded-xl bg-white/5 border border-white/15 flex items-center justify-center text-white shrink-0 shadow-sm">
@@ -121,7 +109,6 @@ export const CertificatePresentation: React.FC = () => {
         </div>
       </div>
 
-      {/* ── Central Archival Certificate Display with Scroll Reveal ─── */}
       <div className="relative z-10 my-10 flex justify-center">
         <div
           className={`relative w-full max-w-4xl rounded-2xl bg-[#0d0d0d] border border-white/20 p-4 sm:p-6 lg:p-8 shadow-[0_25px_80px_-20px_rgba(0,0,0,0.9)] overflow-hidden transition-all duration-450 ease-out group hover:border-white/45 ${
@@ -156,7 +143,6 @@ export const CertificatePresentation: React.FC = () => {
         </div>
       </div>
 
-      {/* ── Below Certificate: 3 Concise Details ─────────────────────── */}
       <div className="relative z-10 pt-8 border-t border-white/10 grid grid-cols-1 md:grid-cols-3 gap-6">
         {DETAILS.map((item, idx) => (
           <div
@@ -179,7 +165,6 @@ export const CertificatePresentation: React.FC = () => {
         ))}
       </div>
 
-      {/* ── Bottom Statement Line: LEARNED. COMPLETED. RECOGNIZED. ─── */}
       <div className="relative z-10 mt-12 pt-6 border-t border-white/[0.08] flex flex-col sm:flex-row items-center justify-between gap-4">
         <div className="inline-flex items-center gap-3 text-xs sm:text-sm font-mono text-mono-200 tracking-[0.28em] uppercase font-black">
           <span className="text-white">LEARNED.</span>

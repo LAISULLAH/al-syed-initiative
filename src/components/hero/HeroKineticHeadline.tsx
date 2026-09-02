@@ -66,8 +66,7 @@ export const HeroKineticHeadline: React.FC = () => {
       }}
       aria-label="The skill isn't knowing more. It's knowing how."
     >
-      {/* ── Line 1 ──────────────────────────────────────────────────── */}
-      <span
+            <span
         className="block transition-transform duration-300 ease-out will-change-transform"
         style={
           reducedMotion
@@ -99,8 +98,7 @@ export const HeroKineticHeadline: React.FC = () => {
         ))}
       </span>
 
-      {/* ── Line 2 ──────────────────────────────────────────────────── */}
-      <span
+            <span
         className="block transition-transform duration-300 ease-out will-change-transform mt-1"
         style={
           reducedMotion
@@ -132,8 +130,7 @@ export const HeroKineticHeadline: React.FC = () => {
         ))}
       </span>
 
-      {/* ── Line 3: Crisp Satin Contrast (ZERO artificial glow) ────── */}
-      <span
+            <span
         className="block transition-transform duration-300 ease-out will-change-transform mt-1"
         style={
           reducedMotion

@@ -44,45 +44,9 @@ const AppContent: React.FC = () => {
 
   const isPlayerView = location.pathname.startsWith('/course-player');
 
-  // Frontend image & visual asset protection: prevents casual "Save Image As" and drag-to-desktop on images only
-  useEffect(() => {
-    const handleContextMenu = (e: MouseEvent) => {
-      const target = e.target as HTMLElement | null;
-      if (
-        target &&
-        (target.tagName === 'IMG' ||
-          target.closest('img') ||
-          target.closest('[data-protected-image]'))
-      ) {
-        e.preventDefault();
-      }
-    };
-
-    const handleDragStart = (e: DragEvent) => {
-      const target = e.target as HTMLElement | null;
-      if (
-        target &&
-        (target.tagName === 'IMG' ||
-          target.closest('img') ||
-          target.closest('[data-protected-image]'))
-      ) {
-        e.preventDefault();
-      }
-    };
-
-    document.addEventListener('contextmenu', handleContextMenu, { capture: true });
-    document.addEventListener('dragstart', handleDragStart, { capture: true });
-
-    return () => {
-      document.removeEventListener('contextmenu', handleContextMenu, { capture: true });
-      document.removeEventListener('dragstart', handleDragStart, { capture: true });
-    };
-  }, []);
-
   return (
     <div className="flex flex-col min-h-screen bg-[#050505] text-mono-100 font-sans">
-      {/* 1-Second Cinematic Site Splash Preloader on Initial Load & Refresh */}
-      <SitePreloader />
+            <SitePreloader />
 
       <ScrollToTop />
       

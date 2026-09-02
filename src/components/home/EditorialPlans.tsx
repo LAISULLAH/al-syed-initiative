@@ -21,17 +21,6 @@ import {
   Zap
 } from 'lucide-react';
 
-// ─────────────────────────────────────────────────────────────────────────────
-// EditorialPlans — Alive, Kinetic & High-Tech OSINT Flagship Program Section
-//
-// Dynamic "Never Dead" Features:
-// - Live Operational Telemetry Feed with real-time status pulses
-// - Interactive Live Investigator Terminal that updates as you switch phases
-// - Animated Scanning Laser Horizon and glowing node connection lines
-// - Luminous Hover Aura & Kinetic Feedback on every card
-// - Real Verified Batch IV Enrollment Pipeline & WhatsApp Instant Dispatch
-// ─────────────────────────────────────────────────────────────────────────────
-
 interface EditorialPlansProps {
   onSelectPlan?: (planId: string) => void;
 }
@@ -200,7 +189,6 @@ export const EditorialPlans: React.FC<EditorialPlansProps> = ({ onSelectPlan }) 
   return (
     <div className="w-full space-y-16 select-none text-left">
       
-      {/* ── 1. The Monumental Master Program Card ─────────────────── */}
       <div className="relative rounded-3xl bg-[#060606] border border-white/20 p-6 sm:p-10 lg:p-14 shadow-[0_30px_100px_-20px_rgba(0,0,0,0.95)] overflow-hidden">
         
         {/* Subtle Architectural Fine Grid Overlay */}
@@ -217,7 +205,6 @@ export const EditorialPlans: React.FC<EditorialPlansProps> = ({ onSelectPlan }) 
           }}
         />
 
-        {/* ── Top Header Section: Live Operational HUD ─────────────── */}
         <div className="relative z-10 flex flex-col lg:flex-row lg:items-end justify-between pb-10 border-b border-white/10 gap-8">
           <div className="space-y-4 max-w-3xl">
             
@@ -268,7 +255,6 @@ export const EditorialPlans: React.FC<EditorialPlansProps> = ({ onSelectPlan }) 
           </div>
         </div>
 
-        {/* ── Cohort Telemetry HUD Bar (Live Statistics) ───────────── */}
         <div className="relative z-10 py-6 border-b border-white/10 grid grid-cols-2 md:grid-cols-4 gap-6 font-mono text-xs">
           <div className="p-3 rounded-xl bg-white/[0.02] border border-white/[0.06]">
             <span className="text-[10px] uppercase tracking-widest text-mono-400 block mb-1">
@@ -311,7 +297,6 @@ export const EditorialPlans: React.FC<EditorialPlansProps> = ({ onSelectPlan }) 
           </div>
         </div>
 
-        {/* ── 2. Interactive Curriculum Roadmap + Live Terminal ────── */}
         <div className="relative z-10 pt-10">
           
           <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2 mb-6">
@@ -456,7 +441,6 @@ export const EditorialPlans: React.FC<EditorialPlansProps> = ({ onSelectPlan }) 
 
         </div>
 
-        {/* ── 3. Six Core Program Inclusions (Kinetic Glass Cards) ─── */}
         <div className="relative z-10 mt-14 pt-10 border-t border-white/10">
           
           <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2 mb-8">

@@ -91,8 +91,7 @@ export const HeroEditorial: React.FC = () => {
       {/* Background fine grid */}
       <div className="absolute inset-0 bg-grid-fine opacity-50 pointer-events-none" />
 
-      {/* ── Top Deck Header ────────────────────────────────────────── */}
-      <div className="relative z-10 flex items-center justify-between pb-5 border-b border-white/[0.08]">
+            <div className="relative z-10 flex items-center justify-between pb-5 border-b border-white/[0.08]">
         <div className="flex items-center gap-3">
           <div className="w-8 h-8 rounded-lg bg-white/5 border border-white/15 flex items-center justify-center text-white shrink-0">
             <Shield className="w-4 h-4 text-mono-200" />
@@ -116,8 +115,7 @@ export const HeroEditorial: React.FC = () => {
         </div>
       </div>
 
-      {/* ── Interactive Stage Selector Stepper ─────────────────────── */}
-      <div className="relative z-10 grid grid-cols-3 gap-2 my-5">
+            <div className="relative z-10 grid grid-cols-3 gap-2 my-5">
         {STAGES.map((stage, idx) => {
           const isActive = activeStage === idx;
           const Icon = stage.icon;
@@ -146,8 +144,7 @@ export const HeroEditorial: React.FC = () => {
         })}
       </div>
 
-      {/* ── Live Stage Visual Simulator ────────────────────────────── */}
-      <div className="relative z-10 rounded-2xl bg-[#0c0c0c] border border-white/10 p-4 sm:p-5 overflow-hidden transition-all duration-300">
+            <div className="relative z-10 rounded-2xl bg-[#0c0c0c] border border-white/10 p-4 sm:p-5 overflow-hidden transition-all duration-300">
         
         {/* Stage 1: OSINT & Reconnaissance */}
         {activeStage === 0 && (
@@ -275,8 +272,7 @@ export const HeroEditorial: React.FC = () => {
         )}
       </div>
 
-      {/* ── Active Stage Detailed Narrative ────────────────────────── */}
-      <div className="relative z-10 mt-5 pt-4 border-t border-white/[0.08]">
+            <div className="relative z-10 mt-5 pt-4 border-t border-white/[0.08]">
         <div className="flex items-center gap-2 mb-1.5">
           <span className="font-mono text-[10px] text-mono-400 uppercase tracking-widest font-bold">
             {currentStage.badge}
@@ -291,8 +287,7 @@ export const HeroEditorial: React.FC = () => {
         </p>
       </div>
 
-      {/* ── Bottom Deck Footnote ─────────────────────────────────────── */}
-      <div className="relative z-10 mt-5 pt-3.5 border-t border-white/[0.08] flex items-center justify-between text-[10px] font-mono text-mono-500">
+            <div className="relative z-10 mt-5 pt-3.5 border-t border-white/[0.08] flex items-center justify-between text-[10px] font-mono text-mono-500">
         <span className="uppercase tracking-wider">
           Al syed Initiative
         </span>

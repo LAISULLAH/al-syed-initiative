@@ -3,20 +3,6 @@ import { Search, ShieldCheck, CheckCircle2, Award, Sparkles, Star, ChevronRight,
 import { BATCH_1_STUDENTS, BATCH_2_STUDENTS, CertifiedStudent } from '../data/hallOfFameData';
 import { useReducedMotion } from '../hooks';
 
-// ─────────────────────────────────────────────────────────────────────────────
-// Hall of Fame — The Imperial Golden Archive
-//
-// Trophy-Grade Prestige & Luxury Design:
-// - Palette: Deep Obsidian Void (#030201) & Imperial Liquid Gold (#ECC870, #D4AF37, #B3832B)
-// - Floating Golden Embers & Stardust Canvas Engine
-// - Monumental Golden Inscription Plaques for Every Laureate
-// - Strictly Preserves All 19 Real Verified Certified Students:
-//   Batch 01: Araxis, Al Haris, Zulqarnain, Orvax, Ibn Adam
-//   Batch 02: ALHaq, Bani Adam, Baseej, Fly-Nightingale, Jarvis, Khalid,
-//             Laisullah, LegallyStalking, RadicalGates, Shaikh Sahab,
-//             Spectre, STOIC MURDOCK, Vision, Yamach
-// ─────────────────────────────────────────────────────────────────────────────
-
 export const HallOfFame: React.FC = () => {
   const [hoveredId, setHoveredId] = useState<string | null>(null);
   const [searchQuery, setSearchQuery] = useState('');
@@ -148,7 +134,6 @@ export const HallOfFame: React.FC = () => {
       ref={containerRef}
       className="relative min-h-screen bg-[#030201] text-mono-100 overflow-hidden select-none selection:bg-[#ECC870] selection:text-black font-sans"
     >
-      {/* ── 0. Canvas Golden Embers Layer ────────────────────────── */}
       <canvas
         ref={canvasRef}
         className="fixed inset-0 pointer-events-none z-0 opacity-80"
@@ -183,9 +168,6 @@ export const HallOfFame: React.FC = () => {
 
       <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-28 sm:pt-36 pb-36">
         
-        {/* ═════════════════════════════════════════════════════════════
-            01 — HERO SECTION (THE IMPERIAL TROPHY PORTAL)
-        ═════════════════════════════════════════════════════════════ */}
         <section className="mb-24 sm:mb-32 text-left">
           
           {/* Imperial Laurel Eyebrow */}
@@ -266,9 +248,6 @@ export const HallOfFame: React.FC = () => {
 
         </section>
 
-        {/* ═════════════════════════════════════════════════════════════
-            02 — ARCHIVE INTRO (THE GOLDEN INSCRIPTION)
-        ═════════════════════════════════════════════════════════════ */}
         <section className="mb-24 sm:mb-32 py-14 sm:py-20 border-y border-[#ECC870]/25 relative overflow-hidden bg-gradient-to-b from-[#ECC870]/[0.03] via-transparent to-[#ECC870]/[0.03] text-left">
           
           {/* Golden Beam Horizon */}
@@ -315,9 +294,6 @@ export const HallOfFame: React.FC = () => {
           </div>
         </section>
 
-        {/* ═════════════════════════════════════════════════════════════
-            03 — BATCH 01: THE PIONEERS (5 CERTIFIED LAUREATES)
-        ═════════════════════════════════════════════════════════════ */}
         <section className="mb-24 sm:mb-32 text-left">
           
           {/* Section Header */}
@@ -405,9 +381,6 @@ export const HallOfFame: React.FC = () => {
 
         </section>
 
-        {/* ═════════════════════════════════════════════════════════════
-            06 — BATCH TRANSITION (THE GOLDEN PROGRESSION MONUMENT)
-        ═════════════════════════════════════════════════════════════ */}
         <section className="mb-24 sm:mb-32 py-16 sm:py-20 border border-[#ECC870]/35 bg-gradient-to-b from-[#120E05] via-[#090703] to-[#040301] rounded-3xl p-6 sm:p-12 relative overflow-hidden shadow-[0_0_60px_-15px_rgba(236,200,112,0.18)]">
           
           {/* Top Hairline Liquid Gold Beam */}
@@ -471,9 +444,6 @@ export const HallOfFame: React.FC = () => {
 
         </section>
 
-        {/* ═════════════════════════════════════════════════════════════
-            04 — BATCH 02: THE VANGUARD (14 CERTIFIED LAUREATES)
-        ═════════════════════════════════════════════════════════════ */}
         <section className="mb-28 sm:mb-36 text-left">
           
           {/* Section Header */}
@@ -561,9 +531,6 @@ export const HallOfFame: React.FC = () => {
 
         </section>
 
-        {/* ═════════════════════════════════════════════════════════════
-            07 — CLOSING STATEMENT (THE IMPERIAL INSCRIPTION)
-        ═════════════════════════════════════════════════════════════ */}
         <section className="pt-20 sm:pt-28 pb-16 border-t border-[#ECC870]/30 text-left relative">
           
           {/* Authentic Al Syed Archive Emblem */}

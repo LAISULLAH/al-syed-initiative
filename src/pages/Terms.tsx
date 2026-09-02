@@ -2,10 +2,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Mail, ArrowUpRight } from 'lucide-react';
 
-// ─────────────────────────────────────────────────────────────────────────────
-// Terms of Service Page — Al Syed Initiative
-// ─────────────────────────────────────────────────────────────────────────────
-
 export const Terms: React.FC = () => {
   return (
     <div className="relative min-h-screen bg-[#030303] text-mono-100 font-sans select-none overflow-x-hidden pt-28 sm:pt-36 pb-24 sm:pb-32">
@@ -14,7 +10,6 @@ export const Terms: React.FC = () => {
 
       <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-left">
         
-        {/* ── Top Legal Switcher Bar ───────────────────────────────── */}
         <div className="flex items-center justify-between pb-8 mb-12 border-b border-white/10">
           <div className="inline-flex items-center gap-2">
             <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
@@ -36,7 +31,6 @@ export const Terms: React.FC = () => {
           </div>
         </div>
 
-        {/* ── Document Title & Metadata ────────────────────────────── */}
         <div className="space-y-4 mb-16">
           <h1 className="font-display font-black text-4xl sm:text-6xl text-white tracking-tight uppercase leading-[0.95]">
             Terms of Service
@@ -53,7 +47,6 @@ export const Terms: React.FC = () => {
           </p>
         </div>
 
-        {/* ── Legal Content Sections ───────────────────────────────── */}
         <div className="space-y-12 sm:space-y-16">
           
           {/* Section 01: Introduction */}

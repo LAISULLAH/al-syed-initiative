@@ -1,16 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useReducedMotion } from '../../hooks';
 
-// ─────────────────────────────────────────────────────────────────────────────
-// ScrollReveal
-//
-// Lightweight, buttery-smooth scroll reveal component using IntersectionObserver.
-// - Natural blur-to-sharp transition
-// - Opacity & subtle translateY entrance
-// - Horizontal hairline expansion support
-// - Strictly respects prefers-reduced-motion
-// ─────────────────────────────────────────────────────────────────────────────
-
 interface ScrollRevealProps {
   children: React.ReactNode;
   className?: string;

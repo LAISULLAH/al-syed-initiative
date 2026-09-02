@@ -19,9 +19,6 @@ export const About: React.FC = () => {
     <PageContainer>
       <div className="max-w-5xl mx-auto text-left select-none pb-24">
         
-        {/* ═════════════════════════════════════════════════════════════
-            01 — HERO HEADER
-        ═════════════════════════════════════════════════════════════ */}
         <header className="pt-6 pb-20 border-b border-white/10">
           <div className="flex flex-wrap items-center gap-3 mb-6">
             <span className="font-mono text-xs uppercase tracking-[0.25em] text-mono-400 font-bold">
@@ -48,9 +45,6 @@ export const About: React.FC = () => {
           </div>
         </header>
 
-        {/* ═════════════════════════════════════════════════════════════
-            02 — WHAT WE FOCUS ON
-        ═════════════════════════════════════════════════════════════ */}
         <section className="py-20 border-b border-white/10">
           <div className="max-w-3xl mb-12">
             <span className="font-mono text-xs uppercase tracking-[0.25em] text-mono-400 block mb-3 font-bold">
@@ -123,9 +117,6 @@ export const About: React.FC = () => {
           </div>
         </section>
 
-        {/* ═════════════════════════════════════════════════════════════
-            03 — WHY AL SYED EXISTS
-        ═════════════════════════════════════════════════════════════ */}
         <section className="py-20 border-b border-white/10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
             <div className="lg:col-span-6 space-y-6">
@@ -177,9 +168,6 @@ export const About: React.FC = () => {
           </div>
         </section>
 
-        {/* ═════════════════════════════════════════════════════════════
-            04 — HOW WE TEACH
-        ═════════════════════════════════════════════════════════════ */}
         <section className="py-20 border-b border-white/10">
           <div className="mb-12">
             <span className="font-mono text-xs uppercase tracking-[0.25em] text-mono-400 block mb-3 font-bold">
@@ -234,9 +222,6 @@ export const About: React.FC = () => {
           </div>
         </section>
 
-        {/* ═════════════════════════════════════════════════════════════
-            05 — OUR TRAINING PRINCIPLES
-        ═════════════════════════════════════════════════════════════ */}
         <section className="py-20 border-b border-white/10">
           <div className="mb-12">
             <span className="font-mono text-xs uppercase tracking-[0.25em] text-mono-400 block mb-3 font-bold">
@@ -282,9 +267,6 @@ export const About: React.FC = () => {
           </div>
         </section>
 
-        {/* ═════════════════════════════════════════════════════════════
-            06 — THE AL SYED JOURNEY
-        ═════════════════════════════════════════════════════════════ */}
         <section className="py-20 border-b border-white/10">
           <div className="max-w-3xl mb-12">
             <span className="font-mono text-xs uppercase tracking-[0.25em] text-mono-400 block mb-3 font-bold">
@@ -341,9 +323,6 @@ export const About: React.FC = () => {
           </div>
         </section>
 
-        {/* ═════════════════════════════════════════════════════════════
-            07 — BUILT THROUGH PRACTICE (BATCHES & HALL OF FAME)
-        ═════════════════════════════════════════════════════════════ */}
         <section className="py-20 border-b border-white/10">
           <div className="max-w-3xl mb-12">
             <span className="font-mono text-xs uppercase tracking-[0.25em] text-mono-400 block mb-3 font-bold">
@@ -400,9 +379,6 @@ export const About: React.FC = () => {
           </div>
         </section>
 
-        {/* ═════════════════════════════════════════════════════════════
-            08 — OUR PURPOSE
-        ═════════════════════════════════════════════════════════════ */}
         <section className="py-20 border-b border-white/10">
           <span className="font-mono text-xs uppercase tracking-[0.25em] text-mono-400 block mb-3 font-bold">
             MISSION STATEMENT
@@ -415,9 +391,6 @@ export const About: React.FC = () => {
           </p>
         </section>
 
-        {/* ═════════════════════════════════════════════════════════════
-            09 — CALL TO ACTION
-        ═════════════════════════════════════════════════════════════ */}
         <section className="pt-20">
           <div className="p-8 sm:p-14 rounded-3xl bg-gradient-to-b from-white/[0.04] to-transparent border border-white/15 text-center flex flex-col items-center">
             <h3 className="font-display font-black text-2xl sm:text-4xl text-white uppercase tracking-tight mb-3">
