@@ -14,7 +14,10 @@ const HeroVideoBackground = React.memo(() => {
     const video = videoRef.current;
     if (!video) return;
 
+    video.playbackRate = 0.75;
+
     const playVideo = () => {
+      video.playbackRate = 0.75;
       const p = video.play();
       if (p !== undefined) {
         p.catch(() => {});
@@ -22,6 +25,10 @@ const HeroVideoBackground = React.memo(() => {
     };
 
     playVideo();
+
+    const handlePlay = () => {
+      video.playbackRate = 0.75;
+    };
 
     const handleLoop = () => {
       if (video.duration && video.currentTime >= video.duration - 0.08) {
@@ -35,10 +42,12 @@ const HeroVideoBackground = React.memo(() => {
       playVideo();
     };
 
+    video.addEventListener('play', handlePlay);
     video.addEventListener('timeupdate', handleLoop);
     video.addEventListener('ended', handleEnded);
 
     return () => {
+      video.removeEventListener('play', handlePlay);
       video.removeEventListener('timeupdate', handleLoop);
       video.removeEventListener('ended', handleEnded);
     };
