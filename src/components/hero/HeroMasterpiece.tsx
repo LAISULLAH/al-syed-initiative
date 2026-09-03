@@ -2,15 +2,131 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 import { useReducedMotion } from '../../hooks';
-import { HeroScene } from '../3d/HeroScene';
 
 interface HeroMasterpieceProps {
   onOpenAuth?: (mode?: 'login' | 'signup') => void;
 }
 
+const HeroVideoBackground = React.memo(() => {
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    const playVideo = () => {
+      const p = video.play();
+      if (p !== undefined) {
+        p.catch(() => {});
+      }
+    };
+
+    playVideo();
+
+    const handleLoop = () => {
+      if (video.duration && video.currentTime >= video.duration - 0.08) {
+        video.currentTime = 0.01;
+        playVideo();
+      }
+    };
+
+    const handleEnded = () => {
+      video.currentTime = 0;
+      playVideo();
+    };
+
+    video.addEventListener('timeupdate', handleLoop);
+    video.addEventListener('ended', handleEnded);
+
+    return () => {
+      video.removeEventListener('timeupdate', handleLoop);
+      video.removeEventListener('ended', handleEnded);
+    };
+  }, []);
+
+  return (
+    <>
+      <video
+        ref={videoRef}
+        autoPlay
+        loop
+        muted
+        playsInline
+        preload="auto"
+        disablePictureInPicture
+        className="hero-bg-video"
+      >
+        <source src={`${import.meta.env.BASE_URL}hero-bg.mp4`} type="video/mp4" />
+      </video>
+      <div className="hero-video-overlay" />
+      <div className="hero-grid-bg" />
+      <div className="hero-grid-gradient" />
+    </>
+  );
+});
+
+interface KineticLetterProps {
+  char: string;
+  index: number;
+  isLoaded: boolean;
+  isAccent?: boolean;
+}
+
+const CHAR_VECTORS = [
+  { kx1: '5px', ky1: '-15px', kz1: '28px', kx2: '-7px', ky2: '12px', kz2: '-16px', kx3: '4px', ky3: '-6px', kz3: '14px' },
+  { kx1: '-6px', ky1: '-12px', kz1: '22px', kx2: '8px', ky2: '10px', kz2: '-14px', kx3: '-4px', ky3: '-5px', kz3: '12px' },
+  { kx1: '7px', ky1: '-16px', kz1: '32px', kx2: '-9px', ky2: '14px', kz2: '-18px', kx3: '5px', ky3: '-7px', kz3: '16px' },
+  { kx1: '-5px', ky1: '-13px', kz1: '24px', kx2: '7px', ky2: '11px', kz2: '-15px', kx3: '-5px', ky3: '-6px', kz3: '14px' },
+  { kx1: '6px', ky1: '-15px', kz1: '26px', kx2: '-8px', ky2: '10px', kz2: '-14px', kx3: '4px', ky3: '-5px', kz3: '12px' },
+  { kx1: '-7px', ky1: '-14px', kz1: '30px', kx2: '9px', ky2: '12px', kz2: '-17px', kx3: '-6px', ky3: '-7px', kz3: '15px' },
+  { kx1: '4px', ky1: '-12px', kz1: '20px', kx2: '-6px', ky2: '8px', kz2: '-12px', kx3: '3px', ky3: '-4px', kz3: '10px' },
+  { kx1: '-6px', ky1: '-15px', kz1: '28px', kx2: '8px', ky2: '11px', kz2: '-16px', kx3: '-5px', ky3: '-6px', kz3: '14px' },
+  { kx1: '5px', ky1: '-13px', kz1: '22px', kx2: '-7px', ky2: '9px', kz2: '-13px', kx3: '4px', ky3: '-5px', kz3: '11px' },
+  { kx1: '-8px', ky1: '-16px', kz1: '32px', kx2: '10px', ky2: '14px', kz2: '-18px', kx3: '-6px', ky3: '-7px', kz3: '16px' },
+  { kx1: '4px', ky1: '-11px', kz1: '20px', kx2: '-5px', ky2: '8px', kz2: '-12px', kx3: '3px', ky3: '-4px', kz3: '10px' },
+  { kx1: '-6px', ky1: '-14px', kz1: '26px', kx2: '8px', ky2: '11px', kz2: '-15px', kx3: '-5px', ky3: '-6px', kz3: '13px' },
+  { kx1: '7px', ky1: '-15px', kz1: '30px', kx2: '-9px', ky2: '12px', kz2: '-17px', kx3: '5px', ky3: '-6px', kz3: '15px' },
+  { kx1: '-4px', ky1: '-12px', kz1: '22px', kx2: '6px', ky2: '9px', kz2: '-13px', kx3: '-3px', ky3: '-5px', kz3: '11px' },
+  { kx1: '6px', ky1: '-14px', kz1: '28px', kx2: '-8px', ky2: '11px', kz2: '-16px', kx3: '5px', ky3: '-6px', kz3: '14px' },
+  { kx1: '-7px', ky1: '-15px', kz1: '26px', kx2: '9px', ky2: '12px', kz2: '-15px', kx3: '-5px', ky3: '-6px', kz3: '13px' },
+  { kx1: '5px', ky1: '-16px', kz1: '34px', kx2: '-7px', ky2: '14px', kz2: '-20px', kx3: '4px', ky3: '-8px', kz3: '18px' },
+];
+
+const KineticLetter: React.FC<KineticLetterProps> = ({ char, index, isLoaded, isAccent }) => {
+  const v = CHAR_VECTORS[index % CHAR_VECTORS.length];
+  const delay = index * 0.42;
+
+  return (
+    <span
+      className={`char ${isAccent ? 'text-[#38bdf8] drop-shadow-[0_0_14px_rgba(56,189,248,0.75)]' : ''}`}
+      style={
+        {
+          '--kx1': v.kx1,
+          '--ky1': v.ky1,
+          '--kz1': v.kz1,
+          '--kx2': v.kx2,
+          '--ky2': v.ky2,
+          '--kz2': v.kz2,
+          '--kx3': v.kx3,
+          '--ky3': v.ky3,
+          '--kz3': v.kz3,
+          '--cycle-dur': '11s',
+          '--cycle-delay': `${delay}s`,
+          transition: `transform 0.75s cubic-bezier(0.16, 1, 0.3, 1) ${80 + index * 32}ms, opacity 0.75s ease ${80 + index * 32}ms`,
+          transform: isLoaded ? 'translateY(0%)' : 'translateY(120%)',
+          opacity: isLoaded ? 1 : 0,
+        } as React.CSSProperties
+      }
+    >
+      {char}
+    </span>
+  );
+};
+
 export const HeroMasterpiece: React.FC<HeroMasterpieceProps> = () => {
   const reducedMotion = useReducedMotion();
   const heroRef = useRef<HTMLDivElement>(null);
+  const tiltRef = useRef<HTMLDivElement>(null);
   const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
@@ -35,149 +151,179 @@ export const HeroMasterpiece: React.FC<HeroMasterpieceProps> = () => {
     };
   }, [reducedMotion]);
 
+  useEffect(() => {
+    if (reducedMotion) return;
+    const onMouseMove = (e: MouseEvent) => {
+      const x = (e.clientX / window.innerWidth - 0.5) * 2;
+      const y = (e.clientY / window.innerHeight - 0.5) * 2;
+      if (tiltRef.current) {
+        tiltRef.current.style.transform = `perspective(1000px) rotateY(${x * 2.2}deg) rotateX(${-y * 2.2}deg)`;
+      }
+    };
+    window.addEventListener('mousemove', onMouseMove, { passive: true });
+    return () => window.removeEventListener('mousemove', onMouseMove);
+  }, [reducedMotion]);
+
   return (
-    <div
+    <section
       ref={heroRef}
-      className="relative w-full min-h-[96vh] flex flex-col justify-between select-none overflow-hidden pt-24 pb-8 sm:pt-28 sm:pb-12"
+      className="hero relative min-h-screen flex flex-col justify-between select-none overflow-hidden pt-24 pb-12 sm:pt-28 sm:pb-16"
+      id="hero"
     >
-      <HeroScene />
+      <HeroVideoBackground />
 
-      <div
-        className="absolute inset-0 pointer-events-none transition-opacity duration-700 z-0"
-        style={{
-          background: 'radial-gradient(ellipse 95% 85% at 50% 50%, transparent 0%, rgba(0,0,0,0.35) 65%, #000000 100%)',
-        }}
-      />
-
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full my-auto py-8 sm:py-14">
+      <div className="relative z-10 max-w-7xl mx-auto px-5 sm:px-8 lg:px-12 w-full flex flex-col justify-between flex-1">
         
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center text-left">
+        <div
+          ref={tiltRef}
+          className="hero-main pt-8 sm:pt-14 max-w-3xl text-left"
+          style={{
+            transition: 'transform 0.22s cubic-bezier(0.2, 0.8, 0.2, 1)',
+          }}
+        >
           
-          <div className="lg:col-span-7 flex flex-col items-start space-y-6">
-            
-            <div
-              className={`inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/[0.05] border border-white/10 backdrop-blur-md text-mono-300 font-mono text-[10px] uppercase tracking-[0.2em] shadow-sm transition-all duration-700 ${
-                isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-2'
+          <div
+            className={`hero-subtitle-pill gap-2.5 transition-all duration-700 ${
+              isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-3'
+            }`}
+          >
+            <span className="w-1.5 h-1.5 rounded-full bg-[#30d158] shadow-[0_0_8px_#30d158] animate-pulse" />
+            <span className="font-semibold tracking-widest text-white text-[11px] uppercase font-mono">
+              ADL FRONT // ACTIVE COHORT IV
+            </span>
+            <span className="text-white/20 hidden sm:inline">|</span>
+            <span className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded bg-[#ff453a]/10 border border-[#ff453a]/25 text-[#ff453a] font-mono text-[9px] font-bold uppercase tracking-wider">
+              <span className="w-1 h-1 rounded-full bg-[#ff453a] animate-pulse" />
+              LIVE
+            </span>
+          </div>
+
+          <div className="overflow-hidden mt-2">
+            <h1 className="hero-title text-left select-none">
+              <div>
+                <span className="word inline-block overflow-hidden">
+                  <KineticLetter char="A" index={0} isLoaded={isLoaded} />
+                  <KineticLetter char="L" index={1} isLoaded={isLoaded} />
+                </span>{' '}
+                <span className="word inline-block overflow-hidden">
+                  <KineticLetter char="S" index={2} isLoaded={isLoaded} />
+                  <KineticLetter char="Y" index={3} isLoaded={isLoaded} />
+                  <KineticLetter char="E" index={4} isLoaded={isLoaded} />
+                  <KineticLetter char="D" index={5} isLoaded={isLoaded} />
+                </span>
+              </div>
+
+              <div className="mt-1">
+                <span className="word inline-block overflow-hidden">
+                  <KineticLetter char="I" index={6} isLoaded={isLoaded} />
+                  <KineticLetter char="N" index={7} isLoaded={isLoaded} />
+                  <KineticLetter char="I" index={8} isLoaded={isLoaded} />
+                  <KineticLetter char="T" index={9} isLoaded={isLoaded} />
+                  <KineticLetter char="I" index={10} isLoaded={isLoaded} />
+                  <KineticLetter char="A" index={11} isLoaded={isLoaded} />
+                  <KineticLetter char="T" index={12} isLoaded={isLoaded} />
+                  <KineticLetter char="I" index={13} isLoaded={isLoaded} />
+                  <KineticLetter char="V" index={14} isLoaded={isLoaded} />
+                  <KineticLetter char="E" index={15} isLoaded={isLoaded} />
+                  <KineticLetter char="." index={16} isLoaded={isLoaded} isAccent />
+                </span>
+              </div>
+            </h1>
+          </div>
+
+          <div className="overflow-hidden mt-6 mb-8">
+            <p
+              className={`hero-desc text-left transition-all duration-900 delay-300 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+                isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-[115%] opacity-0'
               }`}
             >
-              <span className="w-1.5 h-1.5 rounded-full bg-[#30d158] shadow-[0_0_8px_#30d158] animate-pulse" />
-              <span className="font-semibold tracking-widest text-white">
-                CYBERSECURITY • OSINT • DIGITAL LAWFORCE
+              The skill isn't knowing more.
+              <br />
+              It's knowing how.
+              <br />
+              <span className="text-white/60 text-sm sm:text-base font-normal mt-2 block">
+                Field-grade cyber intelligence education built around structured investigation and operational methodology.
               </span>
-            </div>
+            </p>
+          </div>
 
+          <div className="overflow-hidden">
             <div
-              className={`transition-all duration-700 delay-100 ${
-                isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
-              }`}
-            >
-              <h1
-                className="font-display font-black text-white tracking-tight uppercase leading-[0.92] select-none"
-                style={{ fontSize: 'clamp(3rem, 7.2vw, 6.2rem)', letterSpacing: '-0.04em' }}
-              >
-                AL SYED <br />
-                <span className="text-gradient-silver">INITIATIVE.</span>
-              </h1>
-            </div>
-
-            <div
-              className={`space-y-3 max-w-xl transition-all duration-700 delay-200 ${
-                isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
-              }`}
-            >
-              <p className="font-mono text-xs sm:text-sm text-[#86868b] tracking-wider uppercase font-semibold">
-                The skill isn't knowing more. It's knowing how.
-              </p>
-
-              <p className="text-mono-300 text-sm sm:text-base leading-relaxed font-normal">
-                Field-grade cyber intelligence education, dark-web reconnaissance, and tactical evidence synthesis built for serious investigators.
-              </p>
-            </div>
-
-            <div
-              className={`flex flex-wrap items-center gap-4 pt-2 transition-all duration-700 delay-300 ${
-                isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+              className={`featured-btn-group items-center transition-all duration-900 delay-450 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+                isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-[120%] opacity-0'
               }`}
             >
               <Link
                 to="/courses"
-                className="portfolio-btn-primary"
+                className="btn-primary btn-shine-sweep flex items-center gap-2 group shadow-[0_0_20px_rgba(255,255,255,0.18)] hover:shadow-[0_0_32px_rgba(56,189,248,0.3)]"
               >
                 <span>Explore Programs</span>
-                <ArrowRight className="w-3.5 h-3.5" />
+                <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
               </Link>
 
               <a
                 href="#divisions"
-                className="portfolio-btn-secondary"
+                className="btn-secondary flex items-center gap-2"
               >
                 <span>Our Methodology</span>
               </a>
             </div>
-
           </div>
-
-          <div className="hidden lg:block lg:col-span-5 pointer-events-none" />
 
         </div>
 
         <div
-          className={`w-full pt-12 mt-12 border-t border-white/[0.08] transition-all duration-700 delay-400 ${
-            isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
+          className={`hero-footer transition-all duration-1000 delay-600 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+            isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
           }`}
         >
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-10 text-left">
-            <div className="p-4 rounded-xl bg-black/40 border border-white/[0.06] backdrop-blur-sm">
-              <h3 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight font-display">
-                1,000+
-              </h3>
+          <div className="hero-metrics">
+            <div className="glass-stat-card text-left group">
+              <div className="flex items-center gap-1.5 mb-1.5">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#38bdf8] shadow-[0_0_6px_#38bdf8]" />
+                <span className="text-[10px] font-mono text-[#38bdf8] tracking-wider uppercase font-semibold">CADRE</span>
+              </div>
+              <h3 className="text-2xl sm:text-3xl font-black text-white tracking-tight">1,000+</h3>
               <p className="text-[11px] uppercase tracking-[0.08em] text-[#86868b] font-semibold mt-1 font-mono">
                 INVESTIGATORS TRAINED
               </p>
             </div>
 
-            <div className="p-4 rounded-xl bg-black/40 border border-white/[0.06] backdrop-blur-sm">
-              <h3 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight font-display">
-                100%
-              </h3>
+            <div className="glass-stat-card text-left group">
+              <div className="flex items-center gap-1.5 mb-1.5">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#30d158] shadow-[0_0_6px_#30d158]" />
+                <span className="text-[10px] font-mono text-[#30d158] tracking-wider uppercase font-semibold">COMPLIANCE</span>
+              </div>
+              <h3 className="text-2xl sm:text-3xl font-black text-white tracking-tight">100%</h3>
               <p className="text-[11px] uppercase tracking-[0.08em] text-[#86868b] font-semibold mt-1 font-mono">
                 LAWFUL & ETHICAL STANDARD
               </p>
             </div>
 
-            <div className="p-4 rounded-xl bg-black/40 border border-white/[0.06] backdrop-blur-sm">
-              <h3 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight font-display">
-                03
-              </h3>
+            <div className="glass-stat-card text-left group">
+              <div className="flex items-center gap-1.5 mb-1.5">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#ff453a] shadow-[0_0_6px_#ff453a]" />
+                <span className="text-[10px] font-mono text-[#ff453a] tracking-wider uppercase font-semibold">STATUS</span>
+              </div>
+              <h3 className="text-2xl sm:text-3xl font-black text-white tracking-tight">03</h3>
               <p className="text-[11px] uppercase tracking-[0.08em] text-[#86868b] font-semibold mt-1 font-mono">
                 COMPLETED OPERATIONAL COHORTS
               </p>
             </div>
           </div>
-        </div>
 
-      </div>
-
-      <div
-        className={`w-full max-w-7xl px-4 sm:px-6 lg:px-8 mt-auto flex items-center justify-between pointer-events-none transition-all duration-1000 delay-700 mx-auto ${
-          isLoaded ? 'opacity-70 translate-y-0' : 'opacity-0 translate-y-3'
-        }`}
-      >
-        <div className="flex items-center gap-2">
-          <span className="font-mono text-[9px] text-[#86868b] tracking-[0.25em] uppercase font-semibold">
-            SCROLL DOWN TO DISCOVER
-          </span>
-          <div className="w-3.5 h-5 rounded-full border border-white/20 p-0.5 flex justify-center">
-            <div className="w-1 h-1 rounded-full bg-white animate-bounce" />
+          <div className="hero-location flex items-center gap-2.5 pb-2">
+            <span className="w-2 h-2 rounded-full bg-[#30d158] shadow-[0_0_8px_#30d158] animate-pulse shrink-0" />
+            <span className="text-xs uppercase font-mono tracking-wider text-[#86868b] font-semibold">
+              ADL FRONT // BATCH IV ACTIVE
+            </span>
           </div>
         </div>
 
-        <div className="hidden sm:flex items-center gap-2 text-[10px] font-mono text-[#86868b] tracking-wider uppercase font-semibold">
-          <span className="w-1.5 h-1.5 rounded-full bg-[#30d158] animate-pulse" />
-          <span>ADL THREAT MATRIX ACTIVE // LAT: 19.0760° N</span>
-        </div>
       </div>
 
-    </div>
+      <div className="absolute bottom-0 inset-x-0 h-24 bg-gradient-to-t from-black via-black/40 to-transparent pointer-events-none z-10" />
+
+    </section>
   );
 };
