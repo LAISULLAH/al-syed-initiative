@@ -72,116 +72,113 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAuth }) => {
   return (
     <>
       <header
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 pointer-events-none ${
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 pointer-events-auto h-[70px] flex items-center border-b border-white/[0.06] backdrop-blur-xl bg-black/60 ${
           shouldShow ? 'translate-y-0 opacity-100' : '-translate-y-28 opacity-0'
         }`}
       >
-        <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 pt-3 sm:pt-5">
-          
-          <div
-            className={`pointer-events-auto w-full rounded-2xl sm:rounded-full bg-[#050505]/90 backdrop-blur-2xl border transition-all duration-500 px-3.5 sm:px-6 py-2 sm:py-3 flex items-center justify-between shadow-[0_20px_50px_-15px_rgba(0,0,0,0.9),0_0_0_1px_rgba(255,255,255,0.03)] relative overflow-hidden ${
-              scrolled
-                ? 'border-white/20 bg-black/95 shadow-[0_25px_60px_-10px_rgba(0,0,0,0.98)]'
-                : 'border-white/[0.12]'
-            }`}
-          >
-            <div className="absolute inset-x-8 top-0 h-px bg-gradient-to-r from-transparent via-white/25 to-transparent pointer-events-none" />
-
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full flex items-center justify-between">
+          <div className="flex items-center gap-4 select-none min-w-0">
             <Link
               to="/"
-              className="flex items-center gap-2.5 sm:gap-3.5 group shrink min-w-0 select-none"
+              className="flex items-center gap-2.5 group shrink min-w-0"
               onClick={() => setMobileOpen(false)}
             >
-              <div className="flex flex-col text-left min-w-0">
-                <div className="flex items-center gap-1.5 sm:gap-2">
-                  <span className="font-display font-black text-[11px] sm:text-sm tracking-tight text-white uppercase group-hover:text-mono-100 transition-colors leading-tight truncate">
-                    Al Syed Initiative
-                  </span>
-                  <span className="w-1.5 h-1.5 rounded-full bg-white shadow-[0_0_8px_white] animate-pulse hidden sm:inline-block shrink-0" />
-                </div>
-                <span className="text-[8px] sm:text-[9px] font-mono text-mono-400 tracking-[0.2em] sm:tracking-[0.22em] uppercase leading-none mt-0.5 truncate">
-                  Cybersecurity Education
-                </span>
-              </div>
+              <span className="font-display font-black text-xs sm:text-sm tracking-tight text-white uppercase group-hover:text-mono-200 transition-colors truncate">
+                Al Syed Initiative
+              </span>
             </Link>
+            
+            <div className="hidden sm:inline-flex items-center gap-2 pl-3 border-l border-white/[0.08]">
+              <span className="w-2 h-2 rounded-full bg-[#30d158] shadow-[0_0_8px_#30d158] animate-pulse shrink-0" />
+              <span className="text-[10px] font-mono font-semibold uppercase tracking-[0.1em] text-mono-400 truncate">
+                ADL FRONT // ACTIVE INITIATIVE
+              </span>
+            </div>
+          </div>
 
-            <nav className="hidden lg:flex items-center gap-1 sm:gap-1.5" aria-label="Main navigation">
-              {NAV_LINKS.map((link) => {
-                const active = location.pathname === link.path;
-                return (
-                  <Link
-                    key={link.path}
-                    to={link.path}
-                    className={`relative px-3.5 py-1.5 rounded-full text-xs font-medium transition-all duration-200 select-none ${
-                      active
-                        ? 'text-white bg-white/[0.12] border border-white/20 shadow-[0_2px_12px_rgba(255,255,255,0.08)] font-semibold scale-[1.02]'
-                        : 'text-mono-400 hover:text-white hover:bg-white/[0.05] border border-transparent'
-                    }`}
-                  >
-                    {link.name}
-                  </Link>
-                );
-              })}
-            </nav>
+          <nav className="hidden lg:flex items-center gap-7" aria-label="Main navigation">
+            {NAV_LINKS.map((link) => {
+              const active = location.pathname === link.path;
+              return (
+                <Link
+                  key={link.path}
+                  to={link.path}
+                  className={`text-[11px] uppercase tracking-[0.1em] font-semibold transition-colors duration-200 select-none ${
+                    active ? 'text-white' : 'text-[#86868b] hover:text-white'
+                  }`}
+                >
+                  {link.name}
+                </Link>
+              );
+            })}
+          </nav>
 
-            <div className="hidden lg:flex items-center gap-3 select-none">
-              {isAuthenticated && user ? (
-                <div ref={profileRef} className="relative">
-                  <button
-                    onClick={() => setProfileOpen(!profileOpen)}
-                    className="group flex items-center gap-2.5 px-3.5 py-1.5 rounded-full border border-white/15 bg-white/[0.04] hover:bg-white/[0.08] hover:border-white/35 transition-all duration-200 active:scale-[0.98]"
-                    aria-label="User profile menu"
-                  >
-                    <div className="w-7 h-7 rounded-full bg-white text-black font-display font-black text-xs flex items-center justify-center shrink-0 shadow-[0_0_12px_rgba(255,255,255,0.25)] group-hover:scale-105 transition-transform">
-                      {user.avatarInitials}
+          <div className="hidden lg:flex items-center gap-4 select-none">
+            {isAuthenticated && user ? (
+              <div ref={profileRef} className="relative">
+                <button
+                  onClick={() => setProfileOpen(!profileOpen)}
+                  className="group flex items-center gap-2.5 px-3 py-1.5 rounded-lg border border-white/10 bg-white/[0.03] hover:bg-white/[0.08] hover:border-white/25 transition-all duration-200 active:scale-[0.98]"
+                  aria-label="User profile menu"
+                >
+                  <div className="w-6 h-6 rounded-md bg-white text-black font-display font-black text-[11px] flex items-center justify-center shrink-0">
+                    {user.avatarInitials}
+                  </div>
+                  <span className="text-xs font-semibold text-mono-200 group-hover:text-white max-w-[120px] truncate transition-colors">
+                    {user.name}
+                  </span>
+                  <ChevronDown className={`w-3.5 h-3.5 text-mono-500 group-hover:text-white transition-transform duration-200 ${profileOpen ? 'rotate-180' : ''}`} />
+                </button>
+
+                {profileOpen && (
+                  <div className="absolute right-0 mt-3 w-60 bg-[#070707] border border-white/20 rounded-2xl shadow-[0_25px_60px_rgba(0,0,0,0.95)] p-2 z-50 animate-slide-up text-left">
+                    <div className="px-3.5 py-2.5 border-b border-white/[0.08] mb-1">
+                      <p className="text-xs font-bold text-white truncate">{user.name}</p>
+                      <p className="text-[10px] font-mono text-mono-400 truncate mt-0.5">{user.email}</p>
                     </div>
-                    <span className="text-xs font-semibold text-mono-200 group-hover:text-white max-w-[120px] truncate transition-colors">
-                      {user.name}
-                    </span>
-                    <ChevronDown className={`w-3.5 h-3.5 text-mono-500 group-hover:text-white transition-transform duration-200 ${profileOpen ? 'rotate-180' : ''}`} />
-                  </button>
-
-                  {profileOpen && (
-                    <div className="absolute right-0 mt-3 w-60 bg-[#070707] border border-white/20 rounded-2xl shadow-[0_25px_60px_rgba(0,0,0,0.95)] p-2 z-50 animate-slide-up text-left">
-                      <div className="px-3.5 py-2.5 border-b border-white/[0.08] mb-1">
-                        <p className="text-xs font-bold text-white truncate">{user.name}</p>
-                        <p className="text-[10px] font-mono text-mono-400 truncate mt-0.5">{user.email}</p>
-                      </div>
-                      <Link
-                        to="/my-learning"
-                        onClick={() => setProfileOpen(false)}
-                        className="flex items-center gap-2.5 px-3.5 py-2 text-xs text-mono-300 hover:text-white hover:bg-white/[0.06] rounded-xl transition-colors font-medium"
-                      >
-                        <BookOpen className="w-3.5 h-3.5 text-mono-400" />
-                        My Learning
-                      </Link>
-                      <Link
-                        to="/hall-of-fame"
-                        onClick={() => setProfileOpen(false)}
-                        className="flex items-center gap-2.5 px-3.5 py-2 text-xs text-mono-300 hover:text-white hover:bg-white/[0.06] rounded-xl transition-colors font-medium"
-                      >
-                        <Award className="w-3.5 h-3.5 text-mono-400" />
-                        Hall of Fame
-                      </Link>
-                      <button
-                        onClick={() => { setProfileOpen(false); logout(); }}
-                        className="w-full flex items-center gap-2.5 px-3.5 py-2 text-xs text-mono-400 hover:text-white hover:bg-white/[0.06] rounded-xl transition-colors text-left mt-1 pt-2 border-t border-white/[0.06]"
-                      >
-                        <LogOut className="w-3.5 h-3.5 text-mono-500" />
-                        Sign Out
-                      </button>
-                    </div>
-                  )}
-                </div>
-              ) : (
+                    <Link
+                      to="/my-learning"
+                      onClick={() => setProfileOpen(false)}
+                      className="flex items-center gap-2.5 px-3.5 py-2 text-xs text-mono-300 hover:text-white hover:bg-white/[0.06] rounded-xl transition-colors font-medium"
+                    >
+                      <BookOpen className="w-3.5 h-3.5 text-mono-400" />
+                      My Learning
+                    </Link>
+                    <Link
+                      to="/hall-of-fame"
+                      onClick={() => setProfileOpen(false)}
+                      className="flex items-center gap-2.5 px-3.5 py-2 text-xs text-mono-300 hover:text-white hover:bg-white/[0.06] rounded-xl transition-colors font-medium"
+                    >
+                      <Award className="w-3.5 h-3.5 text-mono-400" />
+                      Hall of Fame
+                    </Link>
+                    <button
+                      onClick={() => { setProfileOpen(false); logout(); }}
+                      className="w-full flex items-center gap-2.5 px-3.5 py-2 text-xs text-mono-400 hover:text-white hover:bg-white/[0.06] rounded-xl transition-colors text-left mt-1 pt-2 border-t border-white/[0.06]"
+                    >
+                      <LogOut className="w-3.5 h-3.5 text-mono-500" />
+                      Sign Out
+                    </button>
+                  </div>
+                )}
+              </div>
+            ) : (
+              <div className="flex items-center gap-3">
                 <Link
                   to="/login"
-                  className="inline-flex items-center gap-2 px-5 py-2 rounded-full border border-white/20 bg-white/[0.04] text-xs font-semibold text-mono-200 hover:text-white hover:border-white/40 hover:bg-white/[0.08] transition-all duration-200 active:scale-[0.98] shadow-sm"
+                  className="text-[11px] uppercase tracking-[0.1em] font-semibold text-[#86868b] hover:text-white transition-colors duration-200 px-2 py-1"
                 >
                   Log In
                 </Link>
-              )}
-            </div>
+                <Link
+                  to="/courses"
+                  className="portfolio-btn-primary !py-2 !px-4 !text-[11px]"
+                >
+                  Start Learning
+                </Link>
+              </div>
+            )}
+          </div>
 
             <div className="flex lg:hidden items-center gap-2 shrink-0">
               {!isAuthenticated && (
@@ -201,9 +198,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAuth }) => {
                 {mobileOpen ? <X className="w-5 h-5 text-white" /> : <Menu className="w-5 h-5 text-white" />}
               </button>
             </div>
-
           </div>
-        </div>
       </header>
 
       {mobileOpen && (

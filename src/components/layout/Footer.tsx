@@ -29,15 +29,18 @@ export const Footer: React.FC = () => {
           </div>
 
           <div className="shrink-0 flex flex-col items-start lg:items-end space-y-3">
-            <span className="text-xs font-mono text-mono-400 uppercase tracking-widest font-semibold">
-              Ready to begin?
-            </span>
+            <div className="inline-flex items-center gap-2">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#30d158] shadow-[0_0_8px_#30d158] animate-pulse" />
+              <span className="text-xs font-mono text-[#86868b] uppercase tracking-widest font-semibold">
+                ENROLLMENT OPEN // BATCH IV
+              </span>
+            </div>
             <Link
               to="/courses"
-              className="group inline-flex items-center gap-3 px-8 py-4 rounded-xl bg-white text-black text-xs font-bold uppercase tracking-wider transition-all duration-300 hover:bg-mono-100 hover:shadow-[0_0_35px_-5px_rgba(255,255,255,0.35)] active:scale-[0.98]"
+              className="portfolio-btn-primary"
             >
-              <span>Explore Al Syed</span>
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-200" />
+              <span>Explore Programs</span>
+              <ArrowRight className="w-3.5 h-3.5" />
             </Link>
           </div>
         </div>

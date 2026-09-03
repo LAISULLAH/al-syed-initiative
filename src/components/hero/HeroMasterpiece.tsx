@@ -83,18 +83,45 @@ export const HeroMasterpiece: React.FC<HeroMasterpieceProps> = () => {
       <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 w-full flex flex-col items-center">
         
         <div
-          className={`inline-flex items-center gap-2.5 px-5 py-2 rounded-full bg-white/[0.04] border border-white/15 backdrop-blur-md text-mono-200 font-mono text-xs uppercase tracking-[0.22em] mb-8 sm:mb-12 shadow-sm transition-all duration-450 ${
+          className={`relative w-28 h-28 sm:w-32 sm:h-32 mb-6 flex items-center justify-center transition-all duration-700 ${
+            isLoaded ? 'opacity-100 scale-100' : 'opacity-0 scale-75'
+          }`}
+        >
+          <svg className="absolute inset-0 w-full h-full animate-[spinSlow_20s_linear_infinite]" viewBox="0 0 200 200" fill="none">
+            <defs>
+              <linearGradient id="spinner-firstHalf" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stopColor="#ffffff" stopOpacity="0.8" />
+                <stop offset="100%" stopColor="#ffffff" stopOpacity="0.05" />
+              </linearGradient>
+              <linearGradient id="spinner-secondHalf" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stopColor="#ffffff" stopOpacity="0" />
+                <stop offset="100%" stopColor="#ffffff" stopOpacity="0.6" />
+              </linearGradient>
+            </defs>
+            <path stroke="url(#spinner-secondHalf)" strokeWidth="2.5" d="M 10 100 A 90 90 0 0 1 190 100" />
+            <path stroke="url(#spinner-firstHalf)" strokeWidth="2.5" d="M 190 100 A 90 90 0 0 1 10 100" />
+          </svg>
+          <svg className="absolute inset-2 w-[calc(100%-16px)] h-[calc(100%-16px)] animate-[spinSlowReverse_14s_linear_infinite] opacity-40" viewBox="0 0 200 200" fill="none">
+            <circle cx="100" cy="100" r="85" stroke="rgba(255,255,255,0.3)" strokeWidth="1.5" strokeDasharray="4 8" />
+          </svg>
+          <div className="relative z-10 w-12 h-12 rounded-full bg-white/[0.05] border border-white/20 backdrop-blur-md flex items-center justify-center shadow-[0_0_25px_rgba(255,255,255,0.15)]">
+            <span className="w-2 h-2 rounded-full bg-white animate-pulse shadow-[0_0_8px_white]" />
+          </div>
+        </div>
+
+        <div
+          className={`inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-white/[0.04] border border-white/10 backdrop-blur-md text-mono-200 font-mono text-[11px] uppercase tracking-[0.2em] mb-6 shadow-sm transition-all duration-450 ${
             isLoaded ? 'opacity-100 translate-y-0 blur-0' : 'opacity-0 translate-y-2 blur-[2px]'
           }`}
         >
-          <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse shadow-[0_0_8px_white]" />
+          <span className="w-1.5 h-1.5 rounded-full bg-[#30d158] shadow-[0_0_8px_#30d158] animate-pulse" />
           <span className="font-semibold tracking-widest text-white">
-            AL SYED INITIATIVE // CYBERSECURITY EDUCATION
+            AL SYED INITIATIVE // ADL FRONT
           </span>
         </div>
 
         <h1
-          className="font-display font-black text-white uppercase leading-[0.92] max-w-5xl mb-8 select-none"
+          className="font-display font-black text-white uppercase leading-[0.92] max-w-5xl mb-6 select-none"
           style={{
             fontSize: 'clamp(2.75rem, 7.2vw, 6.25rem)',
           }}
@@ -148,7 +175,7 @@ export const HeroMasterpiece: React.FC<HeroMasterpieceProps> = () => {
         </h1>
 
         <p
-          className={`text-mono-200 text-lg sm:text-xl lg:text-2xl font-sans max-w-3xl leading-relaxed mb-12 sm:mb-14 font-normal text-center mx-auto transition-all duration-700 delay-400 ${
+          className={`text-mono-200 text-base sm:text-lg lg:text-xl font-sans max-w-3xl leading-relaxed mb-10 font-normal text-center mx-auto transition-all duration-700 delay-300 ${
             isLoaded ? 'opacity-100 translate-y-0 blur-0' : 'opacity-0 translate-y-5 blur-sm'
           }`}
         >
@@ -156,49 +183,72 @@ export const HeroMasterpiece: React.FC<HeroMasterpieceProps> = () => {
         </p>
 
         <div
-          className={`flex flex-col sm:flex-row items-center justify-center gap-4 w-full sm:w-auto transition-all duration-700 delay-500 ${
+          className={`flex flex-col sm:flex-row items-center justify-center gap-4 w-full sm:w-auto mb-16 transition-all duration-700 delay-400 ${
             isLoaded ? 'opacity-100 translate-y-0 blur-0' : 'opacity-0 translate-y-5 blur-sm'
           }`}
         >
           <Link
             to="/courses"
-            onMouseMove={(e) => handleButtonMagnetic(e, setBtn1Offset)}
-            onMouseLeave={() => handleButtonLeave(setBtn1Offset)}
-            style={{
-              transform: `translate3d(${btn1Offset.x}px, ${btn1Offset.y}px, 0)`,
-              transition: btn1Offset.x === 0 ? 'transform 0.4s ease-out' : 'none',
-            }}
-            className="group w-full sm:w-auto inline-flex items-center justify-center gap-3 px-9 sm:px-11 py-4 bg-white text-black font-bold text-xs sm:text-sm tracking-wider uppercase rounded-xl shadow-sm hover:bg-mono-100 hover:shadow-[0_0_35px_-5px_rgba(255,255,255,0.4)] active:scale-[0.98]"
+            className="portfolio-btn-primary w-full sm:w-auto text-center"
           >
-            <span>Explore Al Syed</span>
-            <ArrowRight className="w-4 h-4 group-hover:translate-x-1.5 transition-transform duration-200" />
+            <span>Explore Programs</span>
+            <ArrowRight className="w-3.5 h-3.5" />
           </Link>
 
           <a
-            href="#approach"
-            onMouseMove={(e) => handleButtonMagnetic(e, setBtn2Offset)}
-            onMouseLeave={() => handleButtonLeave(setBtn2Offset)}
-            style={{
-              transform: `translate3d(${btn2Offset.x}px, ${btn2Offset.y}px, 0)`,
-              transition: btn2Offset.x === 0 ? 'transform 0.4s ease-out' : 'none',
-            }}
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-9 sm:px-11 py-4 text-mono-100 font-semibold text-xs sm:text-sm tracking-wider uppercase rounded-xl border border-white/20 bg-white/[0.03] backdrop-blur-md transition-all duration-300 hover:text-white hover:border-white/40 hover:bg-white/[0.08] active:scale-[0.98]"
+            href="#divisions"
+            className="portfolio-btn-secondary w-full sm:w-auto text-center"
           >
-            Our Approach
+            <span>Our Methodology</span>
           </a>
+        </div>
+
+        <div
+          className={`w-full max-w-5xl pt-8 border-t border-white/[0.08] transition-all duration-700 delay-500 ${
+            isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
+          }`}
+        >
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-10 text-left">
+            <div className="p-4 rounded-xl bg-white/[0.02] border border-white/[0.06]">
+              <h3 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight font-display">
+                1,000+
+              </h3>
+              <p className="text-[11px] uppercase tracking-[0.08em] text-[#86868b] font-semibold mt-1 font-mono">
+                INVESTIGATORS TRAINED
+              </p>
+            </div>
+
+            <div className="p-4 rounded-xl bg-white/[0.02] border border-white/[0.06]">
+              <h3 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight font-display">
+                100%
+              </h3>
+              <p className="text-[11px] uppercase tracking-[0.08em] text-[#86868b] font-semibold mt-1 font-mono">
+                LAWFUL & ETHICAL STANDARD
+              </p>
+            </div>
+
+            <div className="p-4 rounded-xl bg-white/[0.02] border border-white/[0.06]">
+              <h3 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight font-display">
+                03
+              </h3>
+              <p className="text-[11px] uppercase tracking-[0.08em] text-[#86868b] font-semibold mt-1 font-mono">
+                COMPLETED OPERATIONAL COHORTS
+              </p>
+            </div>
+          </div>
         </div>
 
       </div>
 
       <div
-        className={`absolute bottom-6 sm:bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 pointer-events-none transition-all duration-1000 delay-700 ${
+        className={`mt-12 flex flex-col items-center gap-2 pointer-events-none transition-all duration-1000 delay-700 ${
           isLoaded ? 'opacity-60 translate-y-0' : 'opacity-0 translate-y-3'
         }`}
       >
-        <span className="font-mono text-[9px] text-mono-400 tracking-[0.25em] uppercase font-semibold">
-          SCROLL
+        <span className="font-mono text-[9px] text-[#86868b] tracking-[0.25em] uppercase font-semibold">
+          Scroll down to discover
         </span>
-        <div className="w-4 h-7 rounded-full border border-white/20 p-1 flex justify-center">
+        <div className="w-4 h-6 rounded-full border border-white/20 p-0.5 flex justify-center">
           <div className="w-1 h-1.5 rounded-full bg-white animate-bounce" />
         </div>
       </div>

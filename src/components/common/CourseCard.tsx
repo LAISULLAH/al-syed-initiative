@@ -12,13 +12,13 @@ interface CourseCardProps {
 export const CourseCard: React.FC<CourseCardProps> = ({ course, viewMode = 'grid' }) => {
   if (viewMode === 'list') {
     return (
-      <div className="group relative bg-[#080808] border border-white/[0.08] rounded-2xl p-6 sm:p-7 transition-all duration-300 hover:border-white/25 hover:bg-[#0e0e0e] flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 shadow-[0_10px_30px_-15px_rgba(0,0,0,0.8)]">
+      <div className="group relative bg-[#0A0A0A] border border-white/[0.06] rounded-2xl p-6 sm:p-7 transition-all duration-300 hover:border-white/20 hover:bg-[#121212] flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 shadow-[0_10px_30px_-15px_rgba(0,0,0,0.8)]">
         <div className="flex-1 space-y-3">
           <div className="flex flex-wrap items-center gap-2">
-            <span className="px-2.5 py-1 rounded-md bg-white/5 border border-white/10 text-[10px] font-mono uppercase tracking-wider text-mono-300 font-semibold">
+            <span className="px-2.5 py-1 rounded-md bg-white/[0.04] border border-white/[0.08] text-[10px] font-mono uppercase tracking-wider text-mono-300 font-semibold">
               {course.category}
             </span>
-            <span className="px-2.5 py-1 rounded-md bg-white/[0.03] border border-white/[0.06] text-[10px] font-mono text-mono-400">
+            <span className="px-2.5 py-1 rounded-md bg-white/[0.02] border border-white/[0.06] text-[10px] font-mono text-mono-400">
               {course.difficulty}
             </span>
             {course.featured && (
@@ -59,10 +59,10 @@ export const CourseCard: React.FC<CourseCardProps> = ({ course, viewMode = 'grid
         <div className="w-full lg:w-auto shrink-0 pt-4 lg:pt-0 border-t lg:border-t-0 border-white/[0.08]">
           <Link
             to={`/courses/${course.slug}`}
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-6 py-3.5 bg-white text-black font-semibold text-xs rounded-xl hover:bg-mono-100 transition-all duration-200 shadow-sm active:scale-[0.98]"
+            className="portfolio-btn-primary w-full sm:w-auto text-center"
           >
             <span>View Syllabus</span>
-            <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5" />
+            <ArrowRight className="w-3.5 h-3.5" />
           </Link>
         </div>
       </div>
@@ -70,14 +70,14 @@ export const CourseCard: React.FC<CourseCardProps> = ({ course, viewMode = 'grid
   }
 
   return (
-    <div className="group relative h-full flex flex-col justify-between bg-[#080808] border border-white/[0.08] rounded-3xl p-6 sm:p-7 transition-all duration-300 hover:border-white/25 hover:bg-[#0e0e0e] shadow-[0_15px_40px_-20px_rgba(0,0,0,0.9)] overflow-hidden">
+    <div className="group relative h-full flex flex-col justify-between bg-[#0A0A0A] border border-white/[0.06] rounded-2xl p-6 sm:p-7 transition-all duration-300 hover:border-white/20 hover:bg-[#121212] shadow-[0_15px_40px_-20px_rgba(0,0,0,0.9)] overflow-hidden">
       <div>
         <div className="flex items-center justify-between gap-2 mb-4">
           <div className="flex items-center gap-2">
-            <span className="px-2.5 py-1 rounded-md bg-white/5 border border-white/10 text-[10px] font-mono uppercase tracking-wider text-mono-300 font-semibold">
+            <span className="px-2.5 py-1 rounded-md bg-white/[0.04] border border-white/[0.08] text-[10px] font-mono uppercase tracking-wider text-mono-300 font-semibold">
               {course.category}
             </span>
-            <span className="px-2.5 py-1 rounded-md bg-white/[0.03] border border-white/[0.06] text-[10px] font-mono text-mono-400">
+            <span className="px-2.5 py-1 rounded-md bg-white/[0.02] border border-white/[0.06] text-[10px] font-mono text-mono-400">
               {course.difficulty}
             </span>
           </div>
@@ -125,7 +125,7 @@ export const CourseCard: React.FC<CourseCardProps> = ({ course, viewMode = 'grid
 
         <Link
           to={`/courses/${course.slug}`}
-          className="w-full inline-flex items-center justify-center gap-2 py-3 px-4 bg-white/[0.04] border border-white/10 text-white font-semibold text-xs tracking-wider uppercase rounded-xl hover:bg-white hover:text-black hover:border-white transition-all duration-200 shadow-sm active:scale-[0.98]"
+          className="w-full inline-flex items-center justify-center gap-2 py-3 px-4 bg-white/[0.04] border border-white/10 text-white font-semibold text-xs tracking-wider uppercase rounded-lg hover:bg-white hover:text-black hover:border-white transition-all duration-200 shadow-sm active:scale-[0.98]"
         >
           <span>View Syllabus</span>
           <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5" />

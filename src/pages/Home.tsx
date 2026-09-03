@@ -33,11 +33,13 @@ interface HomeProps {
 
 export const Home: React.FC<HomeProps> = ({ onOpenAuth }) => {
   return (
-    <div className="relative min-h-screen bg-[#030303] text-mono-100 overflow-x-hidden font-sans select-none">
+    <div className="relative min-h-screen bg-[#000000] text-mono-100 overflow-x-hidden font-sans select-none">
+      <div className="floating-bg-blob blob-1" aria-hidden="true" />
+      <div className="floating-bg-blob blob-2" aria-hidden="true" />
       <GlobalAmbientLighting />
       
-            <section className="relative min-h-[90vh] flex flex-col justify-center overflow-hidden border-b border-white/[0.08] bg-[#030303]">
-        <div className="absolute inset-0 bg-grid-fine pointer-events-none opacity-20 z-0" aria-hidden="true" />
+      <section className="relative min-h-[90vh] flex flex-col justify-center overflow-hidden border-b border-white/[0.08] bg-[#000000]">
+        <div className="absolute inset-0 portfolio-grid-bg opacity-30 pointer-events-none z-0" aria-hidden="true" />
 
         <div
           className="absolute inset-0 pointer-events-none z-0"
@@ -48,98 +50,258 @@ export const Home: React.FC<HomeProps> = ({ onOpenAuth }) => {
           }}
         />
 
-        <div className="absolute inset-0 pointer-events-none overflow-hidden z-10" aria-hidden="true">
-          <div className="absolute left-[5%] top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-white/[0.05] to-transparent" />
-          <div className="absolute right-[5%] top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-white/[0.05] to-transparent" />
-        </div>
-
         <HeroMasterpiece onOpenAuth={onOpenAuth} />
       </section>
 
-            <section className="py-24 sm:py-32 border-b border-white/[0.08] bg-[#050505] relative overflow-hidden">
-        <div className="absolute inset-0 bg-grid-fine opacity-20 pointer-events-none" />
+      <section id="divisions" className="py-24 sm:py-32 border-b border-white/[0.08] bg-[#000000] relative overflow-hidden">
+        <div className="absolute inset-0 portfolio-grid-bg opacity-40 pointer-events-none" />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-left">
           
           <ScrollReveal className="max-w-4xl mb-16 lg:mb-20">
-            <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-white/[0.05] border border-white/20 mb-6 backdrop-blur-md">
-              <span className="w-2 h-2 rounded-full bg-white shadow-[0_0_8px_white] animate-pulse" />
+            <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-white/[0.04] border border-white/10 mb-6 backdrop-blur-md">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#30d158] shadow-[0_0_8px_#30d158] animate-pulse" />
               <span className="font-mono text-xs text-white uppercase tracking-widest font-bold">
-                CURRICULUM PURPOSE // WHAT YOU LEARN
+                OPERATIONAL WINGS // ADL FRONT DIVISIONS
               </span>
             </div>
 
-            <h2 className="font-display font-black text-4xl sm:text-6xl lg:text-7xl text-white tracking-tight uppercase leading-[0.96] mb-6">
-              What you’re really <br className="hidden sm:inline" />
-              <span className="text-gradient-silver">here to learn.</span>
+            <h2 className="font-display font-black text-4xl sm:text-6xl lg:text-7xl text-white tracking-tight uppercase leading-[0.94] mb-6">
+              Specialized Divisions. <br className="hidden sm:inline" />
+              <span className="text-gradient-silver">Integrated Intelligence.</span>
             </h2>
 
-            <p className="text-lg sm:text-xl text-mono-200 font-sans leading-relaxed max-w-2xl font-normal">
-              A structured approach to cybersecurity education — moving past basic walkthroughs and tool-collecting into systematic investigation and professional methodology.
+            <p className="text-base sm:text-lg text-[#86868b] font-sans leading-relaxed max-w-2xl font-normal">
+              Structured operational methodology applied to cyber defense, threat intelligence, and evidence synthesis across four specialized divisions.
             </p>
           </ScrollReveal>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-10 lg:gap-14 pt-8 border-t border-white/10">
-            
-            <ScrollReveal delayMs={0} className="space-y-6 group p-6 -m-6 rounded-2xl transition-all duration-300 hover:bg-white/[0.02] hover:border hover:border-white/15">
-              <div className="flex items-center justify-between pb-4 border-b border-white/[0.08]">
-                <span className="font-mono text-sm font-black text-white tracking-widest">
-                  01 //
-                </span>
-                <span className="text-[11px] font-mono text-mono-400 uppercase tracking-widest font-semibold group-hover:text-mono-200 transition-colors">
-                  PERSPECTIVE
-                </span>
+          <div className="space-y-6 sm:space-y-8">
+            <ScrollReveal delayMs={0}>
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 items-center p-6 sm:p-10 rounded-2xl bg-[#0A0A0A] border border-white/[0.06] hover:border-white/20 transition-all duration-300">
+                <div className="lg:col-span-1">
+                  <span className="font-mono font-black text-3xl sm:text-4xl text-white/30">
+                    01
+                  </span>
+                </div>
+                <div className="lg:col-span-4">
+                  <p className="text-[11px] font-mono text-[#86868b] uppercase tracking-widest font-bold mb-2">
+                    DIVISION 01 // RECONNAISSANCE
+                  </p>
+                  <h3 className="font-display font-black text-2xl sm:text-3xl text-white uppercase tracking-tight">
+                    Cyber Reconnaissance & Threat Wing
+                  </h3>
+                </div>
+                <div className="lg:col-span-5">
+                  <p className="text-sm sm:text-base text-mono-300 leading-relaxed font-sans mb-4">
+                    Passive attack-surface telemetry, autonomous infrastructure correlation, domain exposures, and network mapping strictly within lawful open-source intelligence boundaries.
+                  </p>
+                  <div className="flex flex-wrap gap-2">
+                    <span className="px-2.5 py-1 rounded-md bg-white/[0.04] border border-white/[0.06] text-[11px] font-mono text-mono-300">
+                      Passive OSINT
+                    </span>
+                    <span className="px-2.5 py-1 rounded-md bg-white/[0.04] border border-white/[0.06] text-[11px] font-mono text-mono-300">
+                      Attack Surface
+                    </span>
+                    <span className="px-2.5 py-1 rounded-md bg-white/[0.04] border border-white/[0.06] text-[11px] font-mono text-mono-300">
+                      Infrastructure Telemetry
+                    </span>
+                  </div>
+                </div>
+                <div className="lg:col-span-2 flex lg:justify-end">
+                  <Link to="/courses" className="link-block-montfort">
+                    <ArrowRight className="w-3.5 h-3.5 arrow-left text-white" />
+                    <span>View Track</span>
+                    <ArrowRight className="w-3.5 h-3.5 arrow-right text-white" />
+                  </Link>
+                </div>
               </div>
-
-              <h3 className="font-display font-black text-2xl sm:text-3xl text-white tracking-tight uppercase leading-snug group-hover:text-mono-100 transition-colors">
-                See the bigger picture
-              </h3>
-
-              <p className="text-base sm:text-lg text-mono-300 font-sans leading-relaxed">
-                OSINT, reconnaissance, attack-surface mapping and practical security workflows.
-              </p>
             </ScrollReveal>
 
-            <ScrollReveal delayMs={60} className="space-y-6 group p-6 -m-6 rounded-2xl transition-all duration-300 hover:bg-white/[0.02] hover:border hover:border-white/15">
-              <div className="flex items-center justify-between pb-4 border-b border-white/[0.08]">
-                <span className="font-mono text-sm font-black text-white tracking-widest">
-                  02 //
-                </span>
-                <span className="text-[11px] font-mono text-mono-400 uppercase tracking-widest font-semibold group-hover:text-mono-200 transition-colors">
-                  METHODOLOGY
-                </span>
+            <ScrollReveal delayMs={60}>
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 items-center p-6 sm:p-10 rounded-2xl bg-[#0A0A0A] border border-white/[0.06] hover:border-white/20 transition-all duration-300">
+                <div className="lg:col-span-1">
+                  <span className="font-mono font-black text-3xl sm:text-4xl text-white/30">
+                    02
+                  </span>
+                </div>
+                <div className="lg:col-span-4">
+                  <p className="text-[11px] font-mono text-[#86868b] uppercase tracking-widest font-bold mb-2">
+                    DIVISION 02 // SOCMINT
+                  </p>
+                  <h3 className="font-display font-black text-2xl sm:text-3xl text-white uppercase tracking-tight">
+                    Digital Lawforce & Persona Profiling
+                  </h3>
+                </div>
+                <div className="lg:col-span-5">
+                  <p className="text-sm sm:text-base text-mono-300 leading-relaxed font-sans mb-4">
+                    Persona unmasking across messaging channels, multi-platform footprint correlation, and digital identity mapping across open networks.
+                  </p>
+                  <div className="flex flex-wrap gap-2">
+                    <span className="px-2.5 py-1 rounded-md bg-white/[0.04] border border-white/[0.06] text-[11px] font-mono text-mono-300">
+                      Persona Tracing
+                    </span>
+                    <span className="px-2.5 py-1 rounded-md bg-white/[0.04] border border-white/[0.06] text-[11px] font-mono text-mono-300">
+                      SOCMINT
+                    </span>
+                    <span className="px-2.5 py-1 rounded-md bg-white/[0.04] border border-white/[0.06] text-[11px] font-mono text-mono-300">
+                      Ecosystem Mapping
+                    </span>
+                  </div>
+                </div>
+                <div className="lg:col-span-2 flex lg:justify-end">
+                  <Link to="/courses" className="link-block-montfort">
+                    <ArrowRight className="w-3.5 h-3.5 arrow-left text-white" />
+                    <span>View Track</span>
+                    <ArrowRight className="w-3.5 h-3.5 arrow-right text-white" />
+                  </Link>
+                </div>
               </div>
-
-              <h3 className="font-display font-black text-2xl sm:text-3xl text-white tracking-tight uppercase leading-snug group-hover:text-mono-100 transition-colors">
-                Work the process
-              </h3>
-
-              <p className="text-base sm:text-lg text-mono-300 font-sans leading-relaxed">
-                Understand how information is gathered, connected, tested and interpreted.
-              </p>
             </ScrollReveal>
 
-            <ScrollReveal delayMs={120} className="space-y-6 group p-6 -m-6 rounded-2xl transition-all duration-300 hover:bg-white/[0.02] hover:border hover:border-white/15">
-              <div className="flex items-center justify-between pb-4 border-b border-white/[0.08]">
-                <span className="font-mono text-sm font-black text-white tracking-widest">
-                  03 //
-                </span>
-                <span className="text-[11px] font-mono text-mono-400 uppercase tracking-widest font-semibold group-hover:text-mono-200 transition-colors">
-                  MINDSET
-                </span>
+            <ScrollReveal delayMs={120}>
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 items-center p-6 sm:p-10 rounded-2xl bg-[#0A0A0A] border border-white/[0.06] hover:border-white/20 transition-all duration-300">
+                <div className="lg:col-span-1">
+                  <span className="font-mono font-black text-3xl sm:text-4xl text-white/30">
+                    03
+                  </span>
+                </div>
+                <div className="lg:col-span-4">
+                  <p className="text-[11px] font-mono text-[#86868b] uppercase tracking-widest font-bold mb-2">
+                    DIVISION 03 // EVIDENCE SYNTHESIS
+                  </p>
+                  <h3 className="font-display font-black text-2xl sm:text-3xl text-white uppercase tracking-tight">
+                    Tactical Dossier & Evidence Synthesis
+                  </h3>
+                </div>
+                <div className="lg:col-span-5">
+                  <p className="text-sm sm:text-base text-mono-300 leading-relaxed font-sans mb-4">
+                    Transforming raw intelligence telemetry into court-grade investigative dossiers, maintaining unbroken chain of custody, and formal legal reporting.
+                  </p>
+                  <div className="flex flex-wrap gap-2">
+                    <span className="px-2.5 py-1 rounded-md bg-white/[0.04] border border-white/[0.06] text-[11px] font-mono text-mono-300">
+                      Legal Dossiers
+                    </span>
+                    <span className="px-2.5 py-1 rounded-md bg-white/[0.04] border border-white/[0.06] text-[11px] font-mono text-mono-300">
+                      Chain of Custody
+                    </span>
+                    <span className="px-2.5 py-1 rounded-md bg-white/[0.04] border border-white/[0.06] text-[11px] font-mono text-mono-300">
+                      Admissible Proof
+                    </span>
+                  </div>
+                </div>
+                <div className="lg:col-span-2 flex lg:justify-end">
+                  <Link to="/courses" className="link-block-montfort">
+                    <ArrowRight className="w-3.5 h-3.5 arrow-left text-white" />
+                    <span>View Track</span>
+                    <ArrowRight className="w-3.5 h-3.5 arrow-right text-white" />
+                  </Link>
+                </div>
               </div>
-
-              <h3 className="font-display font-black text-2xl sm:text-3xl text-white tracking-tight uppercase leading-snug group-hover:text-mono-100 transition-colors">
-                Think beyond the tool
-              </h3>
-
-              <p className="text-base sm:text-lg text-mono-300 font-sans leading-relaxed">
-                Develop judgement instead of simply learning which tool or technique to use.
-              </p>
             </ScrollReveal>
 
+            <ScrollReveal delayMs={180}>
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 items-center p-6 sm:p-10 rounded-2xl bg-[#0A0A0A] border border-white/[0.06] hover:border-white/20 transition-all duration-300">
+                <div className="lg:col-span-1">
+                  <span className="font-mono font-black text-3xl sm:text-4xl text-white/30">
+                    04
+                  </span>
+                </div>
+                <div className="lg:col-span-4">
+                  <p className="text-[11px] font-mono text-[#86868b] uppercase tracking-widest font-bold mb-2">
+                    DIVISION 04 // PUBLIC ACCOUNTABILITY
+                  </p>
+                  <h3 className="font-display font-black text-2xl sm:text-3xl text-white uppercase tracking-tight">
+                    Anti-Disinformation & Civic Defense
+                  </h3>
+                </div>
+                <div className="lg:col-span-5">
+                  <p className="text-sm sm:text-base text-mono-300 leading-relaxed font-sans mb-4">
+                    Tracking coordinated influence networks, astroturfing campaigns, and malicious cyber threats against human rights and public interest institutions.
+                  </p>
+                  <div className="flex flex-wrap gap-2">
+                    <span className="px-2.5 py-1 rounded-md bg-white/[0.04] border border-white/[0.06] text-[11px] font-mono text-mono-300">
+                      Influence Operations
+                    </span>
+                    <span className="px-2.5 py-1 rounded-md bg-white/[0.04] border border-white/[0.06] text-[11px] font-mono text-mono-300">
+                      Civic Defense
+                    </span>
+                    <span className="px-2.5 py-1 rounded-md bg-white/[0.04] border border-white/[0.06] text-[11px] font-mono text-mono-300">
+                      Public Accountability
+                    </span>
+                  </div>
+                </div>
+                <div className="lg:col-span-2 flex lg:justify-end">
+                  <Link to="/courses" className="link-block-montfort">
+                    <ArrowRight className="w-3.5 h-3.5 arrow-left text-white" />
+                    <span>View Track</span>
+                    <ArrowRight className="w-3.5 h-3.5 arrow-right text-white" />
+                  </Link>
+                </div>
+              </div>
+            </ScrollReveal>
           </div>
 
+        </div>
+      </section>
+
+      <section className="py-24 sm:py-32 border-b border-white/[0.08] bg-[#050505] relative overflow-hidden">
+        <div className="absolute inset-0 portfolio-grid-bg opacity-30 pointer-events-none" />
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-left">
+          <ScrollReveal className="max-w-4xl mb-16">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/[0.04] border border-white/10 mb-6 backdrop-blur-md">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#30d158] shadow-[0_0_8px_#30d158] animate-pulse" />
+              <span className="font-mono text-xs text-white uppercase tracking-widest font-bold">
+                GLOBAL REACH // THREAT TELEMETRY
+              </span>
+            </div>
+
+            <h2 className="font-display font-black text-4xl sm:text-6xl text-white tracking-tight uppercase leading-[0.98] mb-6">
+              Global threat intelligence & <br className="hidden sm:inline" />
+              <span className="text-gradient-silver">telemetry nodes.</span>
+            </h2>
+
+            <p className="text-base sm:text-lg text-[#86868b] font-sans leading-relaxed max-w-2xl font-normal">
+              Operating across international open intelligence vectors with coordinated monitoring nodes, evidence archival, and investigative research.
+            </p>
+          </ScrollReveal>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {[
+              { city: 'Zurich', lat: '47.3769° N', lon: '8.5417° E', role: 'Encrypted Telemetry Hub', status: 'ACTIVE' },
+              { city: 'Singapore', lat: '1.3521° N', lon: '103.8198° E', role: 'APAC OSINT Correlation Station', status: 'ONLINE' },
+              { city: 'London', lat: '51.5074° N', lon: '0.1278° W', role: 'Forensic Synthesis Archive', status: 'SYNCHRONIZED' },
+              { city: 'Dubai', lat: '25.2048° N', lon: '55.2708° E', role: 'MENA Threat Reconnaissance', status: 'MONITORING' },
+              { city: 'New York', lat: '40.7128° N', lon: '74.0060° W', role: 'Legal Documentation & Standards', status: 'ACTIVE' },
+              { city: 'Mumbai', lat: '19.0760° N', lon: '72.8777° E', role: 'ADL South Asia Operational Base', status: 'PRIMARY' }
+            ].map((node, i) => (
+              <ScrollReveal key={node.city} delayMs={i * 40}>
+                <div className="p-6 rounded-xl bg-[#0A0A0A] border border-white/[0.06] hover:border-white/20 transition-all duration-200 group">
+                  <div className="flex items-center justify-between mb-4">
+                    <div className="flex items-center gap-2">
+                      <span className="w-2 h-2 rounded-full bg-[#30d158] shadow-[0_0_8px_#30d158] animate-pulse" />
+                      <span className="font-mono text-[10px] text-white uppercase tracking-wider font-bold">
+                        {node.status}
+                      </span>
+                    </div>
+                    <span className="font-mono text-[10px] text-[#86868b]">
+                      NODE 0{i + 1}
+                    </span>
+                  </div>
+                  <h4 className="font-display font-black text-2xl text-white uppercase tracking-tight mb-1 group-hover:text-mono-100 transition-colors">
+                    {node.city}
+                  </h4>
+                  <p className="text-xs font-mono text-[#86868b] mb-4">
+                    {node.lat}, {node.lon}
+                  </p>
+                  <div className="pt-4 border-t border-white/[0.06] text-xs font-sans text-mono-300">
+                    {node.role}
+                  </div>
+                </div>
+              </ScrollReveal>
+            ))}
+          </div>
         </div>
       </section>
 
