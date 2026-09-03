@@ -92,65 +92,20 @@ export const HeroScene: React.FC = () => {
     const terrainPoints = new THREE.Points(terrainGeo, pointsMat);
     scene.add(terrainPoints);
 
-    const gyroGroup = new THREE.Group();
-    gyroGroup.position.set(0, 0.4, 0.5);
-    scene.add(gyroGroup);
-
-    const ring1Geo = new THREE.TorusGeometry(3.6, 0.022, 12, 100);
-    const ring1Mat = new THREE.MeshBasicMaterial({
-      color: 0x38bdf8,
-      transparent: true,
-      opacity: 0.6,
-      blending: THREE.AdditiveBlending,
-    });
-    const ring1 = new THREE.Mesh(ring1Geo, ring1Mat);
-    gyroGroup.add(ring1);
-
-    const ring2Geo = new THREE.TorusGeometry(2.7, 0.02, 12, 90);
-    const ring2Mat = new THREE.MeshBasicMaterial({
-      color: 0xffffff,
-      transparent: true,
-      opacity: 0.5,
-      blending: THREE.AdditiveBlending,
-    });
-    const ring2 = new THREE.Mesh(ring2Geo, ring2Mat);
-    gyroGroup.add(ring2);
-
-    const ring3Geo = new THREE.TorusGeometry(1.8, 0.025, 12, 80);
-    const ring3Mat = new THREE.MeshBasicMaterial({
-      color: 0x30d158,
-      transparent: true,
-      opacity: 0.75,
-      blending: THREE.AdditiveBlending,
-    });
-    const ring3 = new THREE.Mesh(ring3Geo, ring3Mat);
-    gyroGroup.add(ring3);
-
-    const coreGeo = new THREE.IcosahedronGeometry(0.7, 1);
-    const coreMat = new THREE.MeshBasicMaterial({
-      color: 0xffffff,
-      wireframe: true,
-      transparent: true,
-      opacity: 0.8,
-      blending: THREE.AdditiveBlending,
-    });
-    const coreMesh = new THREE.Mesh(coreGeo, coreMat);
-    gyroGroup.add(coreMesh);
-
-    const dustCount = 260;
+    const dustCount = 220;
     const dustGeo = new THREE.BufferGeometry();
     const dustPositions = new Float32Array(dustCount * 3);
     for (let i = 0; i < dustCount * 3; i += 3) {
-      dustPositions[i] = (Math.random() - 0.5) * 38;
+      dustPositions[i] = (Math.random() - 0.5) * 36;
       dustPositions[i + 1] = Math.random() * 10 - 2;
-      dustPositions[i + 2] = (Math.random() - 0.5) * 26;
+      dustPositions[i + 2] = (Math.random() - 0.5) * 24;
     }
     dustGeo.setAttribute('position', new THREE.BufferAttribute(dustPositions, 3));
     const dustMat = new THREE.PointsMaterial({
-      size: 0.12,
+      size: 0.10,
       map: glowTexture,
       transparent: true,
-      opacity: 0.45,
+      opacity: 0.4,
       blending: THREE.AdditiveBlending,
       depthWrite: false,
     });
@@ -186,32 +141,14 @@ export const HeroScene: React.FC = () => {
       if (!isVisible) return;
 
       const elapsed = clock.getElapsedTime();
-      const dt = clock.getDelta();
-      const speed = reducedMotion ? 0.2 : 0.85;
+      const speed = reducedMotion ? 0.2 : 0.75;
 
-      curMouseX += (targetMouseX - curMouseX) * 0.05;
-      curMouseY += (targetMouseY - curMouseY) * 0.05;
+      curMouseX += (targetMouseX - curMouseX) * 0.04;
+      curMouseY += (targetMouseY - curMouseY) * 0.04;
 
-      camera.position.x = curMouseX * 2.2;
-      camera.position.y = 3.8 - curMouseY * 1.5;
-      camera.lookAt(0, -0.2, 0);
-
-      gyroGroup.rotation.x = -curMouseY * 0.45;
-      gyroGroup.rotation.y = curMouseX * 0.65;
-
-      ring1.rotation.x += dt * 0.35 * speed;
-      ring1.rotation.y += dt * 0.25 * speed;
-
-      ring2.rotation.y -= dt * 0.45 * speed;
-      ring2.rotation.z += dt * 0.3 * speed;
-
-      ring3.rotation.z += dt * 0.6 * speed;
-      ring3.rotation.x -= dt * 0.35 * speed;
-
-      coreMesh.rotation.x += dt * 0.5 * speed;
-      coreMesh.rotation.y += dt * 0.7 * speed;
-      const coreScale = 1.0 + Math.sin(elapsed * 2.5) * 0.08;
-      coreMesh.scale.set(coreScale, coreScale, coreScale);
+      camera.position.x = curMouseX * 2.0;
+      camera.position.y = 3.6 - curMouseY * 1.2;
+      camera.lookAt(0, -0.6, 0);
 
       const mouseWorldX = curMouseX * 14;
       const mouseWorldZ = curMouseY * 10;
@@ -222,13 +159,13 @@ export const HeroScene: React.FC = () => {
 
         const dist = Math.sqrt((vx - mouseWorldX) * (vx - mouseWorldX) + (vz - mouseWorldZ) * (vz - mouseWorldZ));
         let mouseLift = 0;
-        if (dist < 6.5) {
-          const factor = Math.pow(1 - dist / 6.5, 2);
-          mouseLift = factor * 2.4 * Math.sin(dist * 2.2 - elapsed * 5.0);
+        if (dist < 6.0) {
+          const factor = Math.pow(1 - dist / 6.0, 2);
+          mouseLift = factor * 2.0 * Math.sin(dist * 2.0 - elapsed * 4.5);
         }
 
-        const wave1 = Math.sin(vx * 0.28 + elapsed * speed) * Math.cos(vz * 0.32 + elapsed * speed * 0.9) * 1.2;
-        const wave2 = Math.sin(vx * 0.55 - elapsed * speed * 0.75) * 0.45;
+        const wave1 = Math.sin(vx * 0.24 + elapsed * speed) * Math.cos(vz * 0.28 + elapsed * speed * 0.85) * 1.1;
+        const wave2 = Math.sin(vx * 0.5 - elapsed * speed * 0.7) * 0.35;
         const total = origY[i] + wave1 + wave2 + mouseLift;
 
         pos.setY(i, total);
@@ -238,7 +175,7 @@ export const HeroScene: React.FC = () => {
       const dPos = dustGeo.attributes.position as THREE.BufferAttribute;
       for (let i = 1; i < dustCount * 3; i += 3) {
         let py = dPos.array[i] as number;
-        py += 0.006 * speed;
+        py += 0.005 * speed;
         if (py > 8) py = -2;
         dPos.array[i] = py;
       }
@@ -269,14 +206,6 @@ export const HeroScene: React.FC = () => {
       wireMat.dispose();
       pointsMat.dispose();
       glowTexture.dispose();
-      ring1Geo.dispose();
-      ring1Mat.dispose();
-      ring2Geo.dispose();
-      ring2Mat.dispose();
-      ring3Geo.dispose();
-      ring3Mat.dispose();
-      coreGeo.dispose();
-      coreMat.dispose();
       dustGeo.dispose();
       dustMat.dispose();
       renderer.dispose();

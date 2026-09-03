@@ -51,55 +51,25 @@ export const HeroMasterpiece: React.FC<HeroMasterpieceProps> = () => {
         }}
       />
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full flex flex-col items-center">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full flex flex-col items-center pt-8 sm:pt-14">
         
         <div
-          className={`w-full flex items-center justify-between pb-6 mb-8 sm:mb-12 border-b border-white/[0.06] text-xs font-mono transition-all duration-700 ${
-            isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-3'
+          className={`inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/[0.04] border border-white/10 backdrop-blur-md text-mono-300 font-mono text-[10px] uppercase tracking-[0.2em] mb-8 shadow-sm transition-all duration-700 ${
+            isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-2'
           }`}
         >
-          <div className="flex items-center gap-6 sm:gap-8 overflow-x-auto no-scrollbar py-1">
-            <Link to="/" className="relative text-white font-bold tracking-wider uppercase pb-2">
-              AL SYED INITIATIVE
-              <span className="absolute bottom-0 left-0 right-0 h-[2px] bg-white" />
-            </Link>
-            <a href="#divisions" className="text-[#86868b] hover:text-white transition-colors tracking-wider uppercase whitespace-nowrap">
-              CYBER RECON
-            </a>
-            <a href="#divisions" className="text-[#86868b] hover:text-white transition-colors tracking-wider uppercase whitespace-nowrap">
-              DIGITAL LAWFORCE
-            </a>
-            <a href="#divisions" className="text-[#86868b] hover:text-white transition-colors tracking-wider uppercase whitespace-nowrap">
-              EVIDENCE SYNTHESIS
-            </a>
-            <Link to="/hall-of-fame" className="text-[#86868b] hover:text-white transition-colors tracking-wider uppercase whitespace-nowrap">
-              HALL OF FAME
-            </Link>
-          </div>
-
-          <div className="hidden sm:flex items-center gap-4 shrink-0">
-            <div className="flex items-center gap-2">
-              <span className="text-[11px] text-[#86868b] uppercase tracking-wider font-semibold">COHORT</span>
-              <span className="px-2 py-0.5 rounded-full bg-white text-black text-[10px] font-bold font-mono">
-                BATCH IV
-              </span>
-            </div>
-            <div className="flex items-center gap-1.5 pl-3 border-l border-white/[0.1]">
-              <span className="text-[11px] text-[#86868b] uppercase tracking-wider font-semibold">RADAR</span>
-              <div className="flex items-center gap-1">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#30d158] animate-pulse" />
-                <span className="w-1.5 h-1.5 rounded-full bg-white/40" />
-              </div>
-            </div>
-          </div>
+          <span className="w-1.5 h-1.5 rounded-full bg-[#30d158] shadow-[0_0_8px_#30d158] animate-pulse" />
+          <span className="font-semibold tracking-widest text-white">
+            ADL FRONT // ACTIVE COHORT IV
+          </span>
         </div>
 
         <div
-          className={`flex flex-col sm:flex-row items-center justify-center gap-5 sm:gap-8 my-6 sm:my-12 transition-all duration-700 delay-100 ${
+          className={`flex flex-col sm:flex-row items-center justify-center gap-6 sm:gap-8 mb-8 sm:mb-10 transition-all duration-700 delay-100 ${
             isLoaded ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-4 scale-95'
           }`}
         >
-          <div className="relative w-16 h-16 sm:w-20 sm:h-20 shrink-0 flex items-center justify-center">
+          <div className="relative w-14 h-14 sm:w-18 sm:h-18 shrink-0 flex items-center justify-center">
             <svg viewBox="0 0 100 100" className="w-full h-full text-white fill-current opacity-90 hover:opacity-100 transition-opacity">
               <circle cx="50" cy="18" r="3.2" />
               <circle cx="40" cy="22" r="3.0" /><circle cx="60" cy="22" r="3.0" />
@@ -118,7 +88,7 @@ export const HeroMasterpiece: React.FC<HeroMasterpieceProps> = () => {
             </svg>
           </div>
 
-          <div className="hidden sm:block w-[1.5px] h-16 sm:h-24 bg-white/20" />
+          <div className="hidden sm:block w-[1.5px] h-14 sm:h-20 bg-white/20" />
 
           <div className="flex flex-col text-center sm:text-left">
             <h1
@@ -127,12 +97,9 @@ export const HeroMasterpiece: React.FC<HeroMasterpieceProps> = () => {
             >
               AL SYED
             </h1>
-            <div className="inline-flex items-center gap-2 mt-3 justify-center sm:justify-start">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#30d158] shadow-[0_0_8px_#30d158] animate-pulse" />
-              <p className="font-mono text-[11px] sm:text-xs text-[#86868b] tracking-[0.28em] uppercase font-semibold">
-                OSINT & DIGITAL LAWFORCE // SYSTEMATIC INVESTIGATION
-              </p>
-            </div>
+            <p className="font-mono text-[11px] sm:text-xs text-[#86868b] tracking-[0.28em] uppercase font-semibold mt-2.5">
+              OSINT & DIGITAL LAWFORCE // SYSTEMATIC INVESTIGATION
+            </p>
           </div>
         </div>
 
