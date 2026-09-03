@@ -17,7 +17,7 @@ export const SitePreloader: React.FC = () => {
 
     let currentIndex = 0;
     const startDelay = 100;
-    const charInterval = 35; // 18 chars * 35ms = ~630ms
+    const charInterval = 35;
 
     let intervalId: ReturnType<typeof setInterval> | undefined;
     const typeTimer = setTimeout(() => {

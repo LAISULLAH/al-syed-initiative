@@ -1,4 +1,5 @@
 import React from 'react';
+import { Reveal, RevealGroup, Typewriter } from '../common/Reveal';
 
 export const InstitutionalBrandStory: React.FC = () => {
   return (
@@ -7,19 +8,19 @@ export const InstitutionalBrandStory: React.FC = () => {
       <div className="max-w-4xl mb-16 lg:mb-20">
         <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-white/[0.05] border border-white/20 mb-6 backdrop-blur-md">
           <span className="w-2 h-2 rounded-full bg-white shadow-[0_0_8px_white] animate-pulse" />
-          <span className="font-mono text-xs text-white uppercase tracking-widest font-bold">
-            FOUNDATIONAL STORY // INSTITUTION
+          <span className="font-mono text-xs text-white uppercase tracking-widest font-bold inline-flex items-center">
+            <Typewriter text="FOUNDATIONAL STORY // INSTITUTION" speedMs={20} />
           </span>
         </div>
 
-        <h2 className="font-display font-black text-4xl sm:text-6xl lg:text-7xl text-white tracking-tight uppercase leading-[0.96] mb-6">
+        <Reveal as="h2" className="font-display font-black text-4xl sm:text-6xl lg:text-7xl text-white tracking-tight uppercase leading-[0.96] mb-6">
           Why Al Syed <br className="hidden sm:inline" />
           <span className="text-gradient-silver">Exists.</span>
-        </h2>
+        </Reveal>
 
-        <p className="text-lg sm:text-xl text-mono-200 font-sans leading-relaxed max-w-2xl font-normal">
+        <Reveal as="p" delayMs={100} className="text-lg sm:text-xl text-mono-200 font-sans leading-relaxed max-w-2xl font-normal">
           A cybersecurity initiative built around knowledge, awareness, investigation, and responsible practice.
-        </p>
+        </Reveal>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
@@ -27,7 +28,7 @@ export const InstitutionalBrandStory: React.FC = () => {
         <div className="lg:col-span-6 space-y-10">
           
           <div className="space-y-6">
-            <p className="text-lg sm:text-xl text-mono-200 font-sans leading-relaxed font-normal">
+            <Reveal as="p" delayMs={100} className="text-lg sm:text-xl text-mono-200 font-sans leading-relaxed font-normal">
               Founded under the Advanced Digital Lawforce Front (ADL Front) by cyber activist Al Syed, this initiative carries forward an uncompromising commitment: cultivating a generation equipped with{' '}
               <span className="text-white font-black tracking-wide border-b border-white/30 pb-0.5">
                 CRITICAL THINKING
@@ -37,9 +38,9 @@ export const InstitutionalBrandStory: React.FC = () => {
                 DIGITAL AWARENESS
               </span>{' '}
               to confront injustice, manipulation, and disinformation in the digital era.
-            </p>
+            </Reveal>
 
-            <p className="text-lg sm:text-xl text-mono-300 font-sans leading-relaxed font-normal">
+            <Reveal as="p" delayMs={150} className="text-lg sm:text-xl text-mono-300 font-sans leading-relaxed font-normal">
               Built on the conviction that knowledge and disciplined method are the ultimate instruments of truth, the initiative provides rigorous education across OSINT, reconnaissance, and{' '}
               <span className="text-white font-black tracking-wide border-b border-white/30 pb-0.5">
                 PRACTICAL SECURITY
@@ -48,7 +49,7 @@ export const InstitutionalBrandStory: React.FC = () => {
               <span className="text-white font-black tracking-wide border-b border-white/30 pb-0.5">
                 RESPONSIBLE INVESTIGATION
               </span>.
-            </p>
+            </Reveal>
           </div>
 
           <div className="pt-8 border-t border-white/10 space-y-4">
@@ -58,15 +59,15 @@ export const InstitutionalBrandStory: React.FC = () => {
               </span>
             </div>
 
-            <blockquote className="font-display font-black text-2xl sm:text-3xl lg:text-4xl text-white tracking-tight uppercase leading-snug">
+            <Reveal as="blockquote" delayMs={100} className="font-display font-black text-2xl sm:text-3xl lg:text-4xl text-white tracking-tight uppercase leading-snug">
               “Build people who can think independently, investigate responsibly, and navigate the digital world with confidence.”
-            </blockquote>
+            </Reveal>
           </div>
 
         </div>
 
         <div className="lg:col-span-6">
-          <div className="p-8 sm:p-12 lg:p-14 rounded-3xl bg-[#060606] border border-white/15 flex flex-col items-center justify-between min-h-[500px] lg:min-h-[560px] relative overflow-hidden shadow-[0_30px_100px_-20px_rgba(0,0,0,0.95)] group hover:border-white/35 transition-all duration-500">
+          <div className="glass-card p-8 sm:p-12 lg:p-14 flex flex-col items-center justify-between min-h-[500px] lg:min-h-[560px] relative overflow-hidden group">
             
             <div className="absolute inset-0 bg-grid-fine opacity-25 pointer-events-none" />
 
@@ -83,7 +84,7 @@ export const InstitutionalBrandStory: React.FC = () => {
             <span className="absolute bottom-5 right-5 text-mono-500 font-mono text-xs pointer-events-none">+</span>
 
             <div className="relative z-10 w-full flex items-center justify-between pb-6 border-b border-white/10 mb-auto">
-              <span className="font-mono text-xs font-bold text-mono-400 uppercase tracking-widest">
+              <span className="mono-index font-bold uppercase tracking-widest">
                 OFFICIAL INSIGNIA
               </span>
               <span className="font-mono text-xs text-white font-bold tracking-wider">
@@ -140,9 +141,9 @@ export const InstitutionalBrandStory: React.FC = () => {
       </div>
 
       <div className="mt-20 pt-10 border-t border-white/10">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-left">
-          <div className="space-y-1">
-            <span className="font-mono text-xs text-mono-500 uppercase tracking-widest block">
+        <RevealGroup className="grid grid-cols-1 md:grid-cols-3 gap-6 text-left">
+          <div className="reveal-item space-y-1">
+            <span className="mono-index font-bold uppercase tracking-widest block">
               PILLAR I
             </span>
             <p className="font-display font-black text-lg sm:text-xl text-white tracking-tight uppercase">
@@ -150,8 +151,8 @@ export const InstitutionalBrandStory: React.FC = () => {
             </p>
           </div>
 
-          <div className="space-y-1">
-            <span className="font-mono text-xs text-mono-500 uppercase tracking-widest block">
+          <div className="reveal-item space-y-1">
+            <span className="mono-index font-bold uppercase tracking-widest block">
               PILLAR II
             </span>
             <p className="font-display font-black text-lg sm:text-xl text-white tracking-tight uppercase">
@@ -159,15 +160,15 @@ export const InstitutionalBrandStory: React.FC = () => {
             </p>
           </div>
 
-          <div className="space-y-1">
-            <span className="font-mono text-xs text-mono-500 uppercase tracking-widest block">
+          <div className="reveal-item space-y-1">
+            <span className="mono-index font-bold uppercase tracking-widest block">
               PILLAR III
             </span>
             <p className="font-display font-black text-lg sm:text-xl text-white tracking-tight uppercase">
               Responsibility is the standard.
             </p>
           </div>
-        </div>
+        </RevealGroup>
       </div>
 
     </div>

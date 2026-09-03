@@ -1,8 +1,9 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Search, Plus, Minus, ArrowRight, HelpCircle, Sparkles, MessageSquare } from 'lucide-react';
 import { FAQ_DATA } from '../data/faqData';
-import { useReducedMotion } from '../hooks';
+import { PageContainer } from '../components/layout/PageContainer';
+import { Reveal, RevealGroup, Typewriter } from '../components/common/Reveal';
 
 export const FAQ: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState('');
@@ -10,46 +11,10 @@ export const FAQ: React.FC = () => {
   const [openIds, setOpenIds] = useState<Set<string>>(new Set(['faq-01']));
   const [isLoaded, setIsLoaded] = useState(false);
 
-  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
-  const containerRef = useRef<HTMLDivElement>(null);
-  const reducedMotion = useReducedMotion();
-
   useEffect(() => {
     const timer = setTimeout(() => setIsLoaded(true), 60);
     return () => clearTimeout(timer);
   }, []);
-
-  useEffect(() => {
-    if (reducedMotion) return;
-
-    let targetX = 0;
-    let targetY = 0;
-    let currentX = 0;
-    let currentY = 0;
-    let rafId: number;
-
-    const handleMouseMove = (e: MouseEvent) => {
-      if (!containerRef.current) return;
-      const rect = containerRef.current.getBoundingClientRect();
-      targetX = e.clientX - rect.left;
-      targetY = e.clientY - rect.top;
-    };
-
-    const animate = () => {
-      currentX += (targetX - currentX) * 0.08;
-      currentY += (targetY - currentY) * 0.08;
-      setMousePos({ x: currentX, y: currentY });
-      rafId = requestAnimationFrame(animate);
-    };
-
-    window.addEventListener('mousemove', handleMouseMove, { passive: true });
-    rafId = requestAnimationFrame(animate);
-
-    return () => {
-      window.removeEventListener('mousemove', handleMouseMove);
-      cancelAnimationFrame(rafId);
-    };
-  }, [reducedMotion]);
 
   const categories = ['All', 'Admissions', 'Curriculum', 'Certification', 'Community', 'Technical Lab'];
 
@@ -77,36 +42,8 @@ export const FAQ: React.FC = () => {
   };
 
   return (
-    <div
-      ref={containerRef}
-      className="relative min-h-screen bg-[#030303] text-mono-100 overflow-hidden select-none selection:bg-white selection:text-black font-sans"
-    >
-      
-      <div
-        className="absolute inset-0 pointer-events-none transition-opacity duration-1000 z-0"
-        style={{
-          background: reducedMotion
-            ? 'radial-gradient(circle at 50% 25%, rgba(255,255,255,0.035) 0%, transparent 65%)'
-            : `radial-gradient(850px circle at ${mousePos.x}px ${mousePos.y}px, rgba(255,255,255,0.035) 0%, rgba(255,255,255,0.007) 35%, transparent 70%)`,
-        }}
-      />
-
-      <div
-        className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-[600px] pointer-events-none z-0"
-        style={{
-          background: 'radial-gradient(ellipse at 50% 0%, rgba(255,255,255,0.04) 0%, transparent 75%)',
-        }}
-      />
-
-      <div className="absolute inset-0 bg-grid-fine opacity-15 pointer-events-none z-0" />
-
-      <div className="absolute inset-0 pointer-events-none overflow-hidden z-0" aria-hidden="true">
-        <div className="absolute left-[6%] top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-white/[0.04] to-transparent" />
-        <div className="absolute right-[6%] top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-white/[0.04] to-transparent" />
-      </div>
-
-      <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-28 sm:pt-36 pb-32">
-        
+    <PageContainer maxWidth="5xl">
+      <div className="pb-16">
         <section className="mb-16 sm:mb-20 text-left">
           
           <div
@@ -116,27 +53,18 @@ export const FAQ: React.FC = () => {
           >
             <span className="w-1.5 h-1.5 rounded-full bg-white shadow-[0_0_8px_white] animate-pulse" />
             <span className="font-mono text-[10px] sm:text-[11px] font-semibold uppercase tracking-[0.25em] text-mono-300">
-              KNOWLEDGE BASE & SUPPORT
+              <Typewriter text="KNOWLEDGE BASE & SUPPORT //" speedMs={20} />
             </span>
           </div>
 
-          <h1
-            className={`font-display font-black uppercase tracking-[-0.03em] text-white leading-[0.92] mb-6 transition-all duration-800 delay-200 ease-[cubic-bezier(0.16,1,0.3,1)] ${
-              isLoaded ? 'opacity-100 blur-0 translate-y-0' : 'opacity-0 blur-[8px] translate-y-6'
-            }`}
-            style={{ fontSize: 'clamp(2.8rem, 7vw, 6.5rem)' }}
-          >
+          <Reveal as="h1" className="font-display font-black uppercase tracking-[-0.03em] text-white leading-[0.92] mb-6">
             <span className="block">FREQUENTLY ASKED</span>
             <span className="block text-gradient-silver">QUESTIONS.</span>
-          </h1>
+          </Reveal>
 
-          <p
-            className={`text-base sm:text-lg text-mono-300 font-sans leading-relaxed max-w-2xl transition-all duration-700 delay-300 ${
-              isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-3'
-            }`}
-          >
+          <Reveal as="p" delayMs={100} className="text-base sm:text-lg text-mono-300 font-sans leading-relaxed max-w-2xl">
             Clear, authoritative answers regarding OSINT cohort structure, curriculum standards, legal ethics, certification, and admissions requirements.
-          </p>
+          </Reveal>
 
         </section>
 
@@ -188,7 +116,7 @@ export const FAQ: React.FC = () => {
 
         </section>
 
-        <section className="mb-20 space-y-4 text-left">
+        <RevealGroup className="mb-20 space-y-4 text-left">
           {filteredFAQs.map((faq, idx) => {
             const isOpen = openIds.has(faq.id);
             const indexNumber = String(idx + 1).padStart(2, '0');
@@ -196,11 +124,7 @@ export const FAQ: React.FC = () => {
             return (
               <div
                 key={faq.id}
-                className={`rounded-2xl border transition-all duration-300 overflow-hidden ${
-                  isOpen
-                    ? 'border-white/25 bg-[#090909]/90 shadow-[0_10px_35px_rgba(0,0,0,0.8)]'
-                    : 'border-white/[0.08] bg-[#060606]/60 hover:border-white/20 hover:bg-white/[0.02]'
-                }`}
+                className="glass-card reveal-item"
               >
                 <button
                   onClick={() => toggleFAQ(faq.id)}
@@ -208,7 +132,7 @@ export const FAQ: React.FC = () => {
                   aria-expanded={isOpen}
                 >
                   <div className="flex items-baseline gap-4 sm:gap-6">
-                    <span className="font-mono text-xs text-mono-500 font-bold shrink-0">
+                    <span className="mono-index shrink-0 font-bold">
                       {indexNumber}
                     </span>
                     <h3 className={`font-display text-base sm:text-lg font-bold tracking-tight transition-colors ${
@@ -233,13 +157,17 @@ export const FAQ: React.FC = () => {
                   </div>
                 </button>
 
-                {isOpen && (
-                  <div className="px-6 sm:px-7 pb-7 pt-1 border-t border-white/[0.06] text-left animate-fade-in">
+                <div
+                  className={`transition-all duration-300 ease-in-out overflow-hidden ${
+                    isOpen ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0'
+                  }`}
+                >
+                  <div className="px-6 sm:px-7 pb-7 pt-1 border-t border-white/[0.06] text-left">
                     <p className="text-sm sm:text-base text-mono-300 font-sans leading-relaxed font-normal pl-8 sm:pl-10 select-text">
                       {faq.answer}
                     </p>
                   </div>
-                )}
+                </div>
               </div>
             );
           })}
@@ -253,7 +181,7 @@ export const FAQ: React.FC = () => {
               </p>
             </div>
           )}
-        </section>
+        </RevealGroup>
 
         <section className="p-8 sm:p-12 rounded-3xl bg-gradient-to-b from-[#090909] to-[#040404] border border-white/15 relative overflow-hidden text-left shadow-2xl">
           
@@ -264,9 +192,9 @@ export const FAQ: React.FC = () => {
               <span className="font-mono text-xs uppercase tracking-[0.25em] text-mono-400 font-bold block">
                 UNRESOLVED INQUIRY?
               </span>
-              <h3 className="font-display font-black text-2xl sm:text-3xl uppercase tracking-tight text-white">
+              <Reveal as="h3" className="font-display font-black text-2xl sm:text-3xl uppercase tracking-tight text-white">
                 Have specific questions regarding enrollment?
-              </h3>
+              </Reveal>
               <p className="text-xs sm:text-sm text-mono-300 font-sans leading-relaxed">
                 Connect directly with the admissions and verification coordinators via our official communication desk.
               </p>
@@ -284,6 +212,6 @@ export const FAQ: React.FC = () => {
         </section>
 
       </div>
-    </div>
+    </PageContainer>
   );
 };

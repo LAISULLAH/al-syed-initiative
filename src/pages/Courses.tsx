@@ -23,6 +23,7 @@ import { Skeleton } from '../components/ui/Skeleton';
 import { Button } from '../components/ui/Button';
 import { courseService, CourseFilterParams } from '../services/courseService';
 import { Course, CourseCategory, CourseDifficulty } from '../types';
+import { Reveal, RevealGroup, Typewriter } from '../components/common/Reveal';
 import { LIVE_CLASSES_TRACKS } from '../data/coursesData';
 
 export const Courses: React.FC = () => {
@@ -88,27 +89,27 @@ export const Courses: React.FC = () => {
       <div className="max-w-4xl pt-4 pb-10">
         <div className="inline-flex items-center gap-2.5 px-3 py-1 rounded-md bg-white/[0.04] border border-white/[0.08] mb-5">
           <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
-          <span className="font-mono text-xs text-mono-300 uppercase tracking-widest font-semibold">
-            ACADEMY CURRICULUM // OPEN-SOURCE INTELLIGENCE
+          <span className="font-mono text-xs text-mono-300 uppercase tracking-widest font-semibold inline-flex items-center">
+            <Typewriter text="ACADEMY CURRICULUM // OPEN-SOURCE INTELLIGENCE" speedMs={20} />
           </span>
         </div>
 
-        <h1 className="font-display text-3xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight uppercase leading-[1.05] mb-5">
+        <Reveal as="h1" className="font-display text-3xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight uppercase leading-[1.05] mb-5">
           OSINT Training Programs
-        </h1>
+        </Reveal>
 
-        <p className="text-base sm:text-lg text-mono-300 font-normal leading-relaxed max-w-2xl">
+        <Reveal as="p" delayMs={100} className="text-base sm:text-lg text-mono-300 font-normal leading-relaxed max-w-2xl">
           Specialized open-source intelligence training, persona unmasking, and target profiling programs engineered by ADL Front researchers for lawful investigation and ethical accountability.
-        </p>
+        </Reveal>
 
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 pt-8 mt-8 border-t border-white/[0.08]">
+        <RevealGroup className="grid grid-cols-2 md:grid-cols-4 gap-3 pt-8 mt-8 border-t border-white/[0.08]">
           {[
             { label: 'Controlled LMS Access', sub: 'Dedicated Student Portal' },
             { label: 'Live Cohort Classes', sub: 'Weekend Mentor Sessions' },
             { label: 'Practical Workflows', sub: 'Hands-on Labs & Targets' },
             { label: 'Official Certificate', sub: 'Authorized Recognition' },
           ].map((item) => (
-            <div key={item.label} className="p-3 rounded-xl bg-white/[0.02] border border-white/[0.05]">
+            <div key={item.label} className="reveal-item p-3 rounded-xl bg-white/[0.02] border border-white/[0.05]">
               <div className="flex items-center gap-1.5 text-xs text-white font-semibold">
                 <CheckCircle2 className="w-3.5 h-3.5 text-mono-400 shrink-0" />
                 <span>{item.label}</span>
@@ -116,7 +117,7 @@ export const Courses: React.FC = () => {
               <p className="text-[10px] font-mono text-mono-500 mt-0.5">{item.sub}</p>
             </div>
           ))}
-        </div>
+        </RevealGroup>
       </div>
 
       {flagshipCourse && !hasActiveFilters && activeCatalogTab === 'courses' && (
@@ -245,7 +246,7 @@ export const Courses: React.FC = () => {
       </div>
 
       {activeCatalogTab === 'courses' && (
-        <div className="bg-[#080808] border border-white/10 rounded-2xl p-4 sm:p-6 mb-10 space-y-4">
+        <div className="glass-card p-4 sm:p-6 mb-10 space-y-4">
           <div className="flex flex-col md:flex-row gap-4">
             <div className="relative flex-1">
               <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-mono-500" />
@@ -254,7 +255,7 @@ export const Courses: React.FC = () => {
                 placeholder="Search programs by title, topic, or keyword (e.g., OSINT, Recon, Dorking)..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-11 pr-10 py-3 bg-[#030303] border border-white/10 rounded-xl text-sm text-white placeholder-mono-500 focus:outline-none focus:border-white/40 transition-colors"
+                className="w-full pl-11 pr-10 py-3 bg-[#050505] border border-white/10 rounded-xl text-sm text-white placeholder-mono-500 focus:outline-none focus:border-white/40 transition-colors"
               />
               {searchQuery && (
                 <button
@@ -271,7 +272,7 @@ export const Courses: React.FC = () => {
               <select
                 value={selectedDifficulty}
                 onChange={(e) => setSelectedDifficulty(e.target.value as any)}
-                className="bg-[#030303] border border-white/10 rounded-xl text-xs sm:text-sm text-mono-300 px-4 py-3 focus:outline-none focus:border-white/40 cursor-pointer"
+                className="bg-[#050505] border border-white/10 rounded-xl text-xs sm:text-sm text-mono-300 px-4 py-3 focus:outline-none focus:border-white/40 cursor-pointer"
               >
                 {difficulties.map((diff) => (
                   <option key={diff} value={diff}>
@@ -283,7 +284,7 @@ export const Courses: React.FC = () => {
               <select
                 value={sortBy}
                 onChange={(e) => setSortBy(e.target.value as any)}
-                className="bg-[#030303] border border-white/10 rounded-xl text-xs sm:text-sm text-mono-300 px-4 py-3 focus:outline-none focus:border-white/40 cursor-pointer"
+                className="bg-[#050505] border border-white/10 rounded-xl text-xs sm:text-sm text-mono-300 px-4 py-3 focus:outline-none focus:border-white/40 cursor-pointer"
               >
                 <option value="popular">Most Popular</option>
                 <option value="rating">Highest Rated</option>
@@ -311,7 +312,7 @@ export const Courses: React.FC = () => {
                 className={`px-3.5 py-1.5 text-xs font-mono rounded-lg transition-all duration-150 ${
                   selectedCategory === cat
                     ? 'bg-white text-black font-semibold shadow-sm'
-                    : 'bg-[#030303] text-mono-400 hover:text-white border border-white/10 hover:border-white/20'
+                    : 'bg-white/[0.03] border border-white/[0.08] backdrop-blur-sm hover:border-white/25 text-mono-400 hover:text-white'
                 }`}
               >
                 {cat}
@@ -336,7 +337,7 @@ export const Courses: React.FC = () => {
             ))}
           </div>
         ) : courses.length > 0 ? (
-          <div
+          <RevealGroup
             className={
               viewMode === 'grid'
                 ? 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7'
@@ -344,9 +345,11 @@ export const Courses: React.FC = () => {
             }
           >
             {courses.map((course) => (
-              <CourseCard key={course.id} course={course} viewMode={viewMode} />
+              <div key={course.id} className="reveal-item">
+                <CourseCard course={course} viewMode={viewMode} />
+              </div>
             ))}
-          </div>
+          </RevealGroup>
         ) : (
           <div className="bg-[#080808] border border-white/10 rounded-3xl p-12 text-center max-w-lg mx-auto">
             <BookOpen className="w-12 h-12 text-mono-600 mx-auto mb-4" />
@@ -362,19 +365,19 @@ export const Courses: React.FC = () => {
       ) : (
         <div className="space-y-6">
           <div className="p-6 rounded-2xl bg-white/[0.02] border border-white/10 max-w-3xl mb-8">
-            <h3 className="font-display text-xl font-bold text-white mb-2">
+            <Reveal as="h3" className="font-display text-xl font-bold text-white mb-2">
               Live Interactive OSINT Class Tracks
-            </h3>
-            <p className="text-sm text-mono-400 leading-relaxed">
+            </Reveal>
+            <Reveal as="p" delayMs={100} className="text-sm text-mono-400 leading-relaxed">
               Every cohort features dedicated live weekend interactive sessions with instructor demonstration, practical workflow walkthroughs, and live doubt resolution.
-            </p>
+            </Reveal>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <RevealGroup className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {LIVE_CLASSES_TRACKS.map((track) => (
               <div
                 key={track.id}
-                className="rounded-3xl bg-[#080808] border border-white/10 p-6 sm:p-7 flex flex-col justify-between hover:border-white/25 transition-all shadow-[0_15px_40px_-20px_rgba(0,0,0,0.9)]"
+                className="reveal-item rounded-3xl bg-[#080808] border border-white/10 p-6 sm:p-7 flex flex-col justify-between hover:border-white/25 transition-all shadow-[0_15px_40px_-20px_rgba(0,0,0,0.9)]"
               >
                 <div>
                   <div className="flex items-center justify-between mb-4">
@@ -423,7 +426,7 @@ export const Courses: React.FC = () => {
                 </div>
               </div>
             ))}
-          </div>
+          </RevealGroup>
         </div>
       )}
 

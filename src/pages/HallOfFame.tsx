@@ -1,117 +1,18 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Search, ShieldCheck, CheckCircle2, Award, Sparkles, Star, ChevronRight, Flame } from 'lucide-react';
 import { BATCH_1_STUDENTS, BATCH_2_STUDENTS, CertifiedStudent } from '../data/hallOfFameData';
-import { useReducedMotion } from '../hooks';
+import { PageContainer } from '../components/layout/PageContainer';
+import { Reveal, RevealGroup, CountUp, Typewriter } from '../components/common/Reveal';
 
 export const HallOfFame: React.FC = () => {
   const [hoveredId, setHoveredId] = useState<string | null>(null);
   const [searchQuery, setSearchQuery] = useState('');
   const [isLoaded, setIsLoaded] = useState(false);
 
-  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
-  const containerRef = useRef<HTMLDivElement>(null);
-  const canvasRef = useRef<HTMLCanvasElement>(null);
-  const reducedMotion = useReducedMotion();
-
   useEffect(() => {
     const timer = setTimeout(() => setIsLoaded(true), 60);
     return () => clearTimeout(timer);
   }, []);
-
-  useEffect(() => {
-    if (reducedMotion) return;
-
-    let targetX = 0;
-    let targetY = 0;
-    let currentX = 0;
-    let currentY = 0;
-    let rafId: number;
-
-    const handleMouseMove = (e: MouseEvent) => {
-      if (!containerRef.current) return;
-      const rect = containerRef.current.getBoundingClientRect();
-      targetX = e.clientX - rect.left;
-      targetY = e.clientY - rect.top;
-    };
-
-    const animate = () => {
-      currentX += (targetX - currentX) * 0.08;
-      currentY += (targetY - currentY) * 0.08;
-      setMousePos({ x: currentX, y: currentY });
-      rafId = requestAnimationFrame(animate);
-    };
-
-    window.addEventListener('mousemove', handleMouseMove, { passive: true });
-    rafId = requestAnimationFrame(animate);
-
-    return () => {
-      window.removeEventListener('mousemove', handleMouseMove);
-      cancelAnimationFrame(rafId);
-    };
-  }, [reducedMotion]);
-
-  useEffect(() => {
-    if (reducedMotion) return;
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    const ctx = canvas.getContext('2d');
-    if (!ctx) return;
-
-    let animId: number;
-    let width = (canvas.width = window.innerWidth);
-    let height = (canvas.height = window.innerHeight);
-
-    const handleResize = () => {
-      if (!canvas) return;
-      width = canvas.width = window.innerWidth;
-      height = canvas.height = window.innerHeight;
-    };
-    window.addEventListener('resize', handleResize);
-
-    const particleCount = 45;
-    const particles = Array.from({ length: particleCount }, () => ({
-      x: Math.random() * width,
-      y: Math.random() * height,
-      size: Math.random() * 2.5 + 0.8,
-      speedY: Math.random() * 0.45 + 0.15,
-      speedX: (Math.random() - 0.5) * 0.25,
-      opacity: Math.random() * 0.6 + 0.2,
-      pulse: Math.random() * Math.PI * 2,
-    }));
-
-    const render = () => {
-      ctx.clearRect(0, 0, width, height);
-
-      particles.forEach((p) => {
-        p.y -= p.speedY;
-        p.x += p.speedX;
-        p.pulse += 0.025;
-
-        if (p.y < -10) {
-          p.y = height + 10;
-          p.x = Math.random() * width;
-        }
-
-        const alpha = p.opacity * (0.6 + 0.4 * Math.sin(p.pulse));
-
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(236, 200, 112, ${alpha})`;
-        ctx.shadowBlur = 10;
-        ctx.shadowColor = 'rgba(212, 175, 55, 0.8)';
-        ctx.fill();
-      });
-
-      animId = requestAnimationFrame(render);
-    };
-
-    render();
-
-    return () => {
-      cancelAnimationFrame(animId);
-      window.removeEventListener('resize', handleResize);
-    };
-  }, [reducedMotion]);
 
   const q = searchQuery.trim().toLowerCase();
   const filterList = (list: CertifiedStudent[]) => {
@@ -124,41 +25,9 @@ export const HallOfFame: React.FC = () => {
   const totalFound = filteredBatch1.length + filteredBatch2.length;
 
   return (
-    <div
-      ref={containerRef}
-      className="relative min-h-screen bg-[#030201] text-mono-100 overflow-hidden select-none selection:bg-[#ECC870] selection:text-black font-sans"
-    >
-      <canvas
-        ref={canvasRef}
-        className="fixed inset-0 pointer-events-none z-0 opacity-80"
-      />
-
-      <div
-        className="absolute inset-0 pointer-events-none transition-opacity duration-1000 z-0"
-        style={{
-          background: reducedMotion
-            ? 'radial-gradient(circle at 50% 25%, rgba(212,175,55,0.08) 0%, transparent 65%)'
-            : `radial-gradient(900px circle at ${mousePos.x}px ${mousePos.y}px, rgba(236,200,112,0.08) 0%, rgba(212,175,55,0.02) 40%, transparent 70%)`,
-        }}
-      />
-
-      <div
-        className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-[750px] pointer-events-none z-0"
-        style={{
-          background: 'radial-gradient(ellipse at 50% -10%, rgba(236,200,112,0.12) 0%, rgba(212,175,55,0.03) 45%, transparent 75%)',
-        }}
-      />
-
-      <div className="absolute inset-0 bg-grid-fine opacity-20 pointer-events-none z-0" />
-
-      <div className="absolute inset-0 pointer-events-none overflow-hidden z-0" aria-hidden="true">
-        <div className="absolute left-[5%] top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-[#ECC870]/20 to-transparent" />
-        <div className="absolute right-[5%] top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-[#ECC870]/20 to-transparent" />
-      </div>
-
-      <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-28 sm:pt-36 pb-36">
-        
-        <section className="mb-24 sm:mb-32 text-left">
+    <PageContainer maxWidth="6xl">
+      <div className="pb-16">
+        <section className="mb-20 sm:mb-28 text-left">
           
           <div
             className={`inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full border border-[#ECC870]/40 bg-gradient-to-r from-[#1F190B]/80 to-[#120F05]/80 backdrop-blur-xl mb-6 sm:mb-8 transition-all duration-700 delay-100 shadow-[0_0_25px_rgba(236,200,112,0.15)] ${
@@ -167,7 +36,7 @@ export const HallOfFame: React.FC = () => {
           >
             <Sparkles className="w-3.5 h-3.5 text-[#ECC870] animate-pulse" />
             <span className="font-mono text-[10px] sm:text-[11px] font-bold uppercase tracking-[0.3em] text-transparent bg-clip-text bg-gradient-to-r from-[#FFF8E7] via-[#F2D07E] to-[#B3832B]">
-              AL SYED INITIATIVE // OFFICIAL CERTIFICATION ARCHIVE
+              <Typewriter text="AL SYED INITIATIVE // OFFICIAL CERTIFICATION ARCHIVE" speedMs={20} />
             </span>
           </div>
 
@@ -222,7 +91,7 @@ export const HallOfFame: React.FC = () => {
                     </span>
                     <span className="text-mono-600">·</span>
                     <span className="text-xs text-black font-black tracking-wider bg-gradient-to-r from-[#FFF8E7] via-[#F2D07E] to-[#B3832B] px-2 py-0.5 rounded shadow-[0_0_12px_rgba(236,200,112,0.5)]">
-                      19 CERTIFIED
+                      <CountUp end={19} /> CERTIFIED
                     </span>
                   </div>
                 </div>
@@ -252,25 +121,25 @@ export const HallOfFame: React.FC = () => {
 
           <div className="mt-8 max-w-md">
             <div className="relative">
-              <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-[#ECC870]" />
+              <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-mono-400" />
               <input
                 type="text"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="Search certified record..."
-                className="w-full pl-10 pr-4 py-2.5 bg-[#090703] border border-[#ECC870]/30 rounded-xl text-xs sm:text-sm text-white placeholder-mono-500 font-mono focus:outline-none focus:border-[#ECC870] focus:ring-1 focus:ring-[#ECC870]/30 transition-all shadow-inner"
+                className="w-full pl-11 pr-10 py-3 bg-[#050505] border border-white/10 rounded-xl text-xs sm:text-sm text-white placeholder-mono-500 font-mono focus:outline-none focus:border-white/40 transition-colors"
               />
               {searchQuery && (
                 <button
                   onClick={() => setSearchQuery('')}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-xs font-mono text-[#ECC870] hover:text-white"
+                  className="absolute right-3.5 top-1/2 -translate-y-1/2 text-xs font-mono text-mono-400 hover:text-white"
                 >
                   CLEAR
                 </button>
               )}
             </div>
             {searchQuery && (
-              <p className="text-[11px] font-mono text-[#ECC870] mt-2">
+              <p className="text-[11px] font-mono text-mono-400 mt-2">
                 Found {totalFound} matching certification record{totalFound === 1 ? '' : 's'}
               </p>
             )}
@@ -279,75 +148,62 @@ export const HallOfFame: React.FC = () => {
 
         <section className="mb-24 sm:mb-32 text-left">
           
-          <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-3 pb-6 border-b border-[#ECC870]/30 mb-8">
+          <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-3 pb-6 border-b border-white/10 mb-8">
             <div>
               <div className="flex items-center gap-2 mb-1">
-                <Award className="w-4 h-4 text-[#ECC870]" />
-                <span className="font-mono text-[11px] font-bold uppercase tracking-[0.3em] text-[#ECC870]">
+                <Award className="w-4 h-4 text-white" />
+                <span className="mono-index font-bold uppercase tracking-[0.3em] text-white">
                   PIONEER COHORT
                 </span>
               </div>
-              <h2 className="font-display font-black text-2xl sm:text-3xl md:text-4xl uppercase tracking-tight text-white">
+              <Reveal as="h2" className="font-display font-black text-2xl sm:text-3xl md:text-4xl uppercase tracking-tight text-white">
                 01 / BATCH ONE
-              </h2>
+              </Reveal>
             </div>
 
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#181308] border border-[#ECC870]/40 font-mono text-xs text-[#ECC870] font-bold tracking-widest uppercase shadow-[0_0_15px_rgba(236,200,112,0.15)]">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#ECC870] shadow-[0_0_8px_#ECC870] animate-pulse" />
-              <span>5 CERTIFIED</span>
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/[0.04] border border-white/15 font-mono text-xs text-white font-bold tracking-widest uppercase">
+              <span className="w-1.5 h-1.5 rounded-full bg-white shadow-[0_0_8px_white] animate-pulse" />
+              <span><CountUp end={5} /> CERTIFIED</span>
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
-            {filteredBatch1.map((student, idx) => {
-              const isHovered = hoveredId === student.id;
-
+          <RevealGroup className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
+            {filteredBatch1.map((student) => {
               return (
                 <div
                   key={student.id}
-                  onMouseEnter={() => setHoveredId(student.id)}
-                  onMouseLeave={() => setHoveredId(null)}
-                  className={`group relative rounded-2xl p-6 sm:p-7 transition-all duration-300 cursor-default overflow-hidden border ${
-                    isHovered
-                      ? 'border-[#ECC870] bg-gradient-to-b from-[#1E1709] via-[#100D05] to-[#050402] -translate-y-1.5 shadow-[0_15px_40px_-10px_rgba(236,200,112,0.25)]'
-                      : 'border-[#ECC870]/20 bg-gradient-to-b from-[#100D06]/90 to-[#060502]/95 hover:border-[#ECC870]/50'
-                  }`}
+                  className="glass-card reveal-item group p-6 sm:p-7 flex flex-col justify-between"
                 >
-                  <div className="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-px bg-gradient-to-r from-transparent via-[#ECC870]/60 to-transparent pointer-events-none" />
+                  <div>
+                    <div className="flex items-center justify-between gap-2 mb-5">
+                      <span className="mono-index font-bold tracking-widest text-white bg-white/[0.06] px-2.5 py-1 rounded-md border border-white/15">
+                        #{student.number}
+                      </span>
 
-                  <div className="absolute top-2.5 left-2.5 w-2 h-2 border-t border-l border-[#ECC870]/40 pointer-events-none" />
-                  <div className="absolute top-2.5 right-2.5 w-2 h-2 border-t border-r border-[#ECC870]/40 pointer-events-none" />
-                  <div className="absolute bottom-2.5 left-2.5 w-2 h-2 border-b border-l border-[#ECC870]/40 pointer-events-none" />
-                  <div className="absolute bottom-2.5 right-2.5 w-2 h-2 border-b border-r border-[#ECC870]/40 pointer-events-none" />
+                      <span className="mono-index uppercase tracking-[0.2em] text-mono-400 px-2 py-0.5 rounded bg-white/[0.03] border border-white/[0.06]">
+                        BATCH 01 PIONEER
+                      </span>
+                    </div>
 
-                  <div className="flex items-center justify-between gap-2 mb-5">
-                    <span className="font-mono text-xs font-bold tracking-widest text-[#ECC870] bg-[#ECC870]/10 px-2 py-0.5 rounded border border-[#ECC870]/25">
-                      #{student.number}
-                    </span>
-
-                    <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-mono-400">
-                      BATCH 01 PIONEER
-                    </span>
-                  </div>
-
-                  <div className="mb-6">
-                    <h3 className="font-display font-black text-2xl sm:text-3xl uppercase tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-white via-[#FFF8E7] to-[#ECC870] group-hover:drop-shadow-[0_0_15px_rgba(236,200,112,0.5)] transition-all duration-300">
-                      {student.name}
-                    </h3>
+                    <div className="mb-6">
+                      <h3 className="font-display font-black text-2xl sm:text-3xl uppercase tracking-tight text-white group-hover:text-mono-200 transition-colors">
+                        {student.name}
+                      </h3>
+                    </div>
                   </div>
 
                   <div className="pt-4 border-t border-white/[0.08] flex items-center justify-between">
-                    <div className="inline-flex items-center gap-2 font-mono text-[10px] font-bold tracking-wider uppercase text-[#ECC870]">
-                      <CheckCircle2 className="w-3.5 h-3.5 text-[#ECC870]" />
-                      <span>CERTIFIED STUDENT</span>
+                    <div className="inline-flex items-center gap-1.5 font-mono text-[10px] font-bold tracking-wider uppercase text-emerald-400">
+                      <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" />
+                      <span>VERIFIED</span>
                     </div>
 
-                    <ShieldCheck className="w-4 h-4 text-[#ECC870]/60 group-hover:text-[#ECC870] transition-colors" />
+                    <ShieldCheck className="w-4 h-4 text-mono-400 group-hover:text-white transition-colors" />
                   </div>
                 </div>
               );
             })}
-          </div>
+          </RevealGroup>
 
           {filteredBatch1.length === 0 && (
             <p className="py-8 text-xs font-mono text-mono-500">
@@ -368,7 +224,7 @@ export const HallOfFame: React.FC = () => {
                 BATCH 01
               </span>
               <span className="font-display font-black text-3xl sm:text-4xl text-white tracking-tight">
-                05
+                <CountUp end={5} />
               </span>
               <span className="font-mono text-[10px] uppercase tracking-widest text-mono-400 mt-1">
                 CERTIFIED
@@ -385,7 +241,7 @@ export const HallOfFame: React.FC = () => {
                 BATCH 02
               </span>
               <span className="font-display font-black text-3xl sm:text-4xl text-white tracking-tight">
-                14
+                <CountUp end={14} />
               </span>
               <span className="font-mono text-[10px] uppercase tracking-widest text-mono-400 mt-1">
                 CERTIFIED
@@ -403,7 +259,7 @@ export const HallOfFame: React.FC = () => {
                 TOTAL ARCHIVE
               </span>
               <span className="font-display font-black text-4xl sm:text-5xl text-transparent bg-clip-text bg-gradient-to-r from-[#FFF8E7] via-[#F2D07E] to-[#B3832B] tracking-tight filter drop-shadow-[0_0_15px_rgba(236,200,112,0.4)]">
-                19
+                <CountUp end={19} />
               </span>
               <span className="font-mono text-[10px] uppercase tracking-widest text-white mt-1 font-bold">
                 TOTAL CERTIFIED
@@ -424,67 +280,54 @@ export const HallOfFame: React.FC = () => {
                   OPERATIONAL COHORT
                 </span>
               </div>
-              <h2 className="font-display font-black text-2xl sm:text-3xl md:text-4xl uppercase tracking-tight text-white">
+              <Reveal as="h2" className="font-display font-black text-2xl sm:text-3xl md:text-4xl uppercase tracking-tight text-white">
                 02 / BATCH TWO
-              </h2>
+              </Reveal>
             </div>
 
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#181308] border border-[#ECC870]/40 font-mono text-xs text-[#ECC870] font-bold tracking-widest uppercase shadow-[0_0_15px_rgba(236,200,112,0.15)]">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#ECC870] shadow-[0_0_8px_#ECC870] animate-pulse" />
-              <span>14 CERTIFIED</span>
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/[0.04] border border-white/15 font-mono text-xs text-white font-bold tracking-widest uppercase">
+              <span className="w-1.5 h-1.5 rounded-full bg-white shadow-[0_0_8px_white] animate-pulse" />
+              <span><CountUp end={14} /> CERTIFIED</span>
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+          <RevealGroup className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
             {filteredBatch2.map((student) => {
-              const isHovered = hoveredId === student.id;
-
               return (
                 <div
                   key={student.id}
-                  onMouseEnter={() => setHoveredId(student.id)}
-                  onMouseLeave={() => setHoveredId(null)}
-                  className={`group relative rounded-2xl p-5 sm:p-6 transition-all duration-300 cursor-default overflow-hidden border ${
-                    isHovered
-                      ? 'border-[#ECC870] bg-gradient-to-b from-[#1E1709] via-[#100D05] to-[#050402] -translate-y-1.5 shadow-[0_15px_35px_-10px_rgba(236,200,112,0.22)]'
-                      : 'border-[#ECC870]/20 bg-gradient-to-b from-[#0F0C05]/85 to-[#050402]/95 hover:border-[#ECC870]/45'
-                  }`}
+                  className="glass-card reveal-item group p-5 sm:p-6 flex flex-col justify-between"
                 >
-                  <div className="absolute top-0 left-1/2 -translate-x-1/2 w-28 h-px bg-gradient-to-r from-transparent via-[#ECC870]/50 to-transparent pointer-events-none" />
+                  <div>
+                    <div className="flex items-center justify-between gap-2 mb-4">
+                      <span className="mono-index font-bold tracking-widest text-white bg-white/[0.06] px-2 py-0.5 rounded border border-white/15">
+                        #{student.number}
+                      </span>
 
-                  <div className="absolute top-2 left-2 w-1.5 h-1.5 border-t border-l border-[#ECC870]/30 pointer-events-none" />
-                  <div className="absolute top-2 right-2 w-1.5 h-1.5 border-t border-r border-[#ECC870]/30 pointer-events-none" />
-                  <div className="absolute bottom-2 left-2 w-1.5 h-1.5 border-b border-l border-[#ECC870]/30 pointer-events-none" />
-                  <div className="absolute bottom-2 right-2 w-1.5 h-1.5 border-b border-r border-[#ECC870]/30 pointer-events-none" />
+                      <span className="mono-index uppercase tracking-[0.18em] text-mono-400 px-2 py-0.5 rounded bg-white/[0.03] border border-white/[0.06]">
+                        BATCH 02
+                      </span>
+                    </div>
 
-                  <div className="flex items-center justify-between gap-2 mb-4">
-                    <span className="font-mono text-[11px] font-bold tracking-widest text-[#ECC870] bg-[#ECC870]/10 px-2 py-0.5 rounded border border-[#ECC870]/20">
-                      #{student.number}
-                    </span>
-
-                    <span className="font-mono text-[9px] uppercase tracking-[0.18em] text-mono-400">
-                      BATCH 02
-                    </span>
-                  </div>
-
-                  <div className="mb-5 min-h-[3rem] flex items-center">
-                    <h3 className="font-display font-black text-xl sm:text-2xl uppercase tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-white via-[#FFF8E7] to-[#ECC870] group-hover:drop-shadow-[0_0_12px_rgba(236,200,112,0.45)] transition-all duration-300 leading-tight">
-                      {student.name}
-                    </h3>
+                    <div className="mb-5 min-h-[3rem] flex items-center">
+                      <h3 className="font-display font-black text-xl sm:text-2xl uppercase tracking-tight text-white group-hover:text-mono-200 transition-colors leading-tight">
+                        {student.name}
+                      </h3>
+                    </div>
                   </div>
 
                   <div className="pt-3.5 border-t border-white/[0.08] flex items-center justify-between">
-                    <div className="inline-flex items-center gap-1.5 font-mono text-[9px] font-bold tracking-wider uppercase text-[#ECC870]">
-                      <CheckCircle2 className="w-3 h-3 text-[#ECC870]" />
-                      <span>CERTIFIED STUDENT</span>
+                    <div className="inline-flex items-center gap-1.5 font-mono text-[9px] font-bold tracking-wider uppercase text-emerald-400">
+                      <CheckCircle2 className="w-3 h-3 text-emerald-400" />
+                      <span>VERIFIED</span>
                     </div>
 
-                    <ShieldCheck className="w-3.5 h-3.5 text-[#ECC870]/50 group-hover:text-[#ECC870] transition-colors" />
+                    <ShieldCheck className="w-3.5 h-3.5 text-mono-400 group-hover:text-white transition-colors" />
                   </div>
                 </div>
               );
             })}
-          </div>
+          </RevealGroup>
 
           {filteredBatch2.length === 0 && (
             <p className="py-8 text-xs font-mono text-mono-500">
@@ -541,6 +384,6 @@ export const HallOfFame: React.FC = () => {
         </section>
 
       </div>
-    </div>
+    </PageContainer>
   );
 };

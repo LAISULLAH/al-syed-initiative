@@ -13,6 +13,7 @@ import {
   BookOpen
 } from 'lucide-react';
 import { PageContainer } from '../components/layout/PageContainer';
+import { Reveal, RevealGroup, Typewriter } from '../components/common/Reveal';
 
 export const About: React.FC = () => {
   return (
@@ -21,54 +22,56 @@ export const About: React.FC = () => {
         
         <header className="pt-6 pb-20 border-b border-white/10">
           <div className="flex flex-wrap items-center gap-3 mb-6">
-            <span className="font-mono text-xs uppercase tracking-[0.25em] text-mono-400 font-bold">
-              ABOUT AL SYED INITIATIVE
+            <span className="mono-index uppercase tracking-[0.25em] text-white/80 font-bold px-3 py-1.5 rounded-full bg-white/[0.04] border border-white/10 backdrop-blur-md inline-flex items-center">
+              <span className="text-white/40 font-mono mr-1.5">[</span>
+              <Typewriter text="ADL ACADEMY // DOCTRINE" speedMs={25} />
+              <span className="text-white/40 font-mono ml-1.5">]</span>
             </span>
             <span className="text-mono-600">·</span>
-            <span className="px-3 py-1 rounded-full bg-white/[0.06] border border-white/15 text-[11px] font-mono text-white tracking-wider uppercase font-semibold">
-              PRACTICAL OSINT TRAINING
+            <span className="px-3 py-1 rounded-full bg-white/[0.06] border border-white/15 text-[11px] font-mono text-white tracking-wider uppercase font-semibold inline-flex items-center">
+              <Typewriter text="PRACTICAL OSINT TRAINING" speedMs={20} delayMs={500} />
             </span>
           </div>
 
-          <h1 className="font-display font-black text-4xl sm:text-6xl lg:text-7xl text-white tracking-tight uppercase leading-[1.02] mb-8">
+          <Reveal as="h1" className="font-display font-black text-4xl sm:text-6xl lg:text-7xl text-white tracking-tight uppercase leading-[1.02] mb-8">
             Learn to investigate. <br />
             <span className="text-gradient-silver">Learn to understand.</span>
-          </h1>
+          </Reveal>
 
           <div className="max-w-3xl space-y-4">
-            <p className="text-xl sm:text-2xl text-white font-sans font-medium leading-relaxed">
+            <Reveal as="p" delayMs={100} className="text-xl sm:text-2xl text-white font-sans font-medium leading-relaxed">
               Al Syed Initiative is a practical cybersecurity training platform focused on Open-Source Intelligence (OSINT).
-            </p>
-            <p className="text-base sm:text-lg text-mono-300 font-sans leading-relaxed">
+            </Reveal>
+            <Reveal as="p" delayMs={200} className="text-base sm:text-lg text-mono-300 font-sans leading-relaxed">
               Our training is built around the skills that matter beyond individual tools — finding information, connecting evidence, analysing digital footprints, and documenting findings with clarity and responsibility.
-            </p>
+            </Reveal>
           </div>
         </header>
 
         <section className="py-20 border-b border-white/10">
           <div className="max-w-3xl mb-12">
-            <span className="font-mono text-xs uppercase tracking-[0.25em] text-mono-400 block mb-3 font-bold">
-              CORE CAPABILITIES
+            <span className="mono-index uppercase tracking-[0.25em] block mb-3 font-bold">
+              <Typewriter text="CORE CAPABILITIES //" speedMs={25} />
             </span>
-            <h2 className="font-display font-black text-3xl sm:text-4xl text-white uppercase tracking-tight leading-tight mb-4">
+            <Reveal as="h2" className="font-display font-black text-3xl sm:text-4xl text-white uppercase tracking-tight leading-tight mb-4">
               WHAT WE FOCUS ON
-            </h2>
-            <p className="text-lg text-white font-sans leading-relaxed">
+            </Reveal>
+            <Reveal as="p" delayMs={100} className="text-lg text-white font-sans leading-relaxed">
               OSINT is more than searching the internet.
-            </p>
-            <p className="text-base text-mono-300 font-sans leading-relaxed mt-2">
+            </Reveal>
+            <Reveal as="p" delayMs={150} className="text-base text-mono-300 font-sans leading-relaxed mt-2">
               It is the ability to turn publicly available information into meaningful, well-supported findings.
-            </p>
+            </Reveal>
             <p className="text-xs font-mono text-mono-400 tracking-wider uppercase mt-4">
               Our approach focuses on:
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <RevealGroup className="grid grid-cols-1 md:grid-cols-3 gap-6">
             
-            <div className="p-8 rounded-2xl bg-white/[0.02] border border-white/10 hover:border-white/25 transition-all duration-300 flex flex-col justify-between">
+            <div className="glass-card reveal-item p-8 flex flex-col justify-between">
               <div>
-                <span className="text-xs font-mono font-bold text-mono-400 tracking-widest block mb-4">
+                <span className="mono-index font-bold tracking-widest block mb-4">
                   01 / DISCOVERY
                 </span>
                 <p className="text-base text-mono-200 font-sans leading-relaxed">
@@ -81,9 +84,9 @@ export const About: React.FC = () => {
               </div>
             </div>
 
-            <div className="p-8 rounded-2xl bg-white/[0.02] border border-white/10 hover:border-white/25 transition-all duration-300 flex flex-col justify-between">
+            <div className="glass-card reveal-item p-8 flex flex-col justify-between">
               <div>
-                <span className="text-xs font-mono font-bold text-mono-400 tracking-widest block mb-4">
+                <span className="mono-index font-bold tracking-widest block mb-4">
                   02 / ANALYSIS
                 </span>
                 <p className="text-base text-mono-200 font-sans leading-relaxed">
@@ -96,9 +99,9 @@ export const About: React.FC = () => {
               </div>
             </div>
 
-            <div className="p-8 rounded-2xl bg-white/[0.02] border border-white/10 hover:border-white/25 transition-all duration-300 flex flex-col justify-between">
+            <div className="glass-card reveal-item p-8 flex flex-col justify-between">
               <div>
-                <span className="text-xs font-mono font-bold text-mono-400 tracking-widest block mb-4">
+                <span className="mono-index font-bold tracking-widest block mb-4">
                   03 / DOCUMENTATION
                 </span>
                 <p className="text-base text-mono-200 font-sans leading-relaxed">
@@ -111,35 +114,35 @@ export const About: React.FC = () => {
               </div>
             </div>
 
-          </div>
+          </RevealGroup>
         </section>
 
         <section className="py-20 border-b border-white/10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
             <div className="lg:col-span-6 space-y-6">
-              <span className="font-mono text-xs uppercase tracking-[0.25em] text-mono-400 block font-bold">
-                INSTITUTIONAL PURPOSE
+              <span className="mono-index uppercase tracking-[0.25em] block font-bold">
+                <Typewriter text="INSTITUTIONAL PURPOSE //" speedMs={25} />
               </span>
-              <h2 className="font-display font-black text-3xl sm:text-4xl text-white uppercase tracking-tight leading-tight">
+              <Reveal as="h2" className="font-display font-black text-3xl sm:text-4xl text-white uppercase tracking-tight leading-tight">
                 WHY AL SYED EXISTS
-              </h2>
+              </Reveal>
               
               <div className="space-y-4 text-base sm:text-lg text-mono-200 font-sans leading-relaxed">
-                <p>
+                <Reveal as="p" delayMs={100}>
                   The internet contains an enormous amount of information.
-                </p>
-                <p className="text-white font-medium">
+                </Reveal>
+                <Reveal as="p" delayMs={150} className="text-white font-medium">
                   The difficult part is not finding more of it. <br />
                   The difficult part is knowing what matters.
-                </p>
-                <p className="text-mono-300">
+                </Reveal>
+                <Reveal as="p" delayMs={200} className="text-mono-300">
                   Al Syed Initiative was created to make OSINT learning more structured and practical — helping learners move beyond random searches and isolated tools towards a repeatable investigation process.
-                </p>
+                </Reveal>
               </div>
             </div>
 
-            <div className="lg:col-span-6 p-8 rounded-3xl bg-[#090909] border border-white/15 space-y-6 shadow-2xl">
-              <span className="font-mono text-xs uppercase tracking-[0.2em] text-mono-400 font-bold block">
+            <div className="lg:col-span-6 glass-card p-8 space-y-6">
+              <span className="mono-index uppercase tracking-[0.2em] font-bold block">
                 OUR FOCUS IS SIMPLE:
               </span>
               
@@ -167,17 +170,17 @@ export const About: React.FC = () => {
 
         <section className="py-20 border-b border-white/10">
           <div className="mb-12">
-            <span className="font-mono text-xs uppercase tracking-[0.25em] text-mono-400 block mb-3 font-bold">
-              PEDAGOGICAL METHODOLOGY
+            <span className="mono-index uppercase tracking-[0.25em] block mb-3 font-bold">
+              <Typewriter text="PEDAGOGICAL METHODOLOGY //" speedMs={25} />
             </span>
-            <h2 className="font-display font-black text-3xl sm:text-4xl text-white uppercase tracking-tight leading-tight">
+            <Reveal as="h2" className="font-display font-black text-3xl sm:text-4xl text-white uppercase tracking-tight leading-tight">
               HOW WE TEACH
-            </h2>
+            </Reveal>
           </div>
 
-          <div className="space-y-6">
+          <RevealGroup className="space-y-6">
             
-            <div className="p-8 rounded-2xl bg-white/[0.02] border border-white/10 hover:border-white/20 transition-all">
+            <div className="glass-card reveal-item p-8">
               <h3 className="font-display font-black text-xl sm:text-2xl text-white uppercase tracking-tight mb-2">
                 THINK BEFORE YOU SEARCH
               </h3>
@@ -189,7 +192,7 @@ export const About: React.FC = () => {
               </p>
             </div>
 
-            <div className="p-8 rounded-2xl bg-white/[0.02] border border-white/10 hover:border-white/20 transition-all">
+            <div className="glass-card reveal-item p-8">
               <h3 className="font-display font-black text-xl sm:text-2xl text-white uppercase tracking-tight mb-2">
                 FOLLOW THE EVIDENCE
               </h3>
@@ -201,7 +204,7 @@ export const About: React.FC = () => {
               </p>
             </div>
 
-            <div className="p-8 rounded-2xl bg-white/[0.02] border border-white/10 hover:border-white/20 transition-all">
+            <div className="glass-card reveal-item p-8">
               <h3 className="font-display font-black text-xl sm:text-2xl text-white uppercase tracking-tight mb-2">
                 DOCUMENT THE FINDING
               </h3>
@@ -213,23 +216,23 @@ export const About: React.FC = () => {
               </p>
             </div>
 
-          </div>
+          </RevealGroup>
         </section>
 
         <section className="py-20 border-b border-white/10">
           <div className="mb-12">
-            <span className="font-mono text-xs uppercase tracking-[0.25em] text-mono-400 block mb-3 font-bold">
-              FOUNDATIONAL ETHOS
+            <span className="mono-index uppercase tracking-[0.25em] block mb-3 font-bold">
+              <Typewriter text="FOUNDATIONAL ETHOS //" speedMs={25} />
             </span>
-            <h2 className="font-display font-black text-3xl sm:text-4xl text-white uppercase tracking-tight leading-tight">
+            <Reveal as="h2" className="font-display font-black text-3xl sm:text-4xl text-white uppercase tracking-tight leading-tight">
               OUR TRAINING PRINCIPLES
-            </h2>
+            </Reveal>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <RevealGroup className="grid grid-cols-1 md:grid-cols-3 gap-6">
             
-            <div className="p-8 rounded-2xl bg-[#080808] border border-white/10 hover:border-white/25 transition-all">
-              <span className="text-xs font-mono font-bold text-mono-400 tracking-widest block mb-3">
+            <div className="glass-card reveal-item p-8">
+              <span className="mono-index font-bold tracking-widest block mb-3">
                 01 / CURIOSITY
               </span>
               <p className="text-lg text-white font-sans font-medium leading-relaxed">
@@ -237,8 +240,8 @@ export const About: React.FC = () => {
               </p>
             </div>
 
-            <div className="p-8 rounded-2xl bg-[#080808] border border-white/10 hover:border-white/25 transition-all">
-              <span className="text-xs font-mono font-bold text-mono-400 tracking-widest block mb-3">
+            <div className="glass-card reveal-item p-8">
+              <span className="mono-index font-bold tracking-widest block mb-3">
                 02 / DISCIPLINE
               </span>
               <p className="text-lg text-white font-sans font-medium leading-relaxed">
@@ -246,8 +249,8 @@ export const About: React.FC = () => {
               </p>
             </div>
 
-            <div className="p-8 rounded-2xl bg-[#080808] border border-white/10 hover:border-white/25 transition-all">
-              <span className="text-xs font-mono font-bold text-mono-400 tracking-widest block mb-3">
+            <div className="glass-card reveal-item p-8">
+              <span className="mono-index font-bold tracking-widest block mb-3">
                 03 / RESPONSIBILITY
               </span>
               <p className="text-lg text-white font-sans font-medium leading-relaxed">
@@ -255,23 +258,23 @@ export const About: React.FC = () => {
               </p>
             </div>
 
-          </div>
+          </RevealGroup>
         </section>
 
         <section className="py-20 border-b border-white/10">
           <div className="max-w-3xl mb-12">
-            <span className="font-mono text-xs uppercase tracking-[0.25em] text-mono-400 block mb-3 font-bold">
-              INVESTIGATIVE WORKFLOW
+            <span className="mono-index uppercase tracking-[0.25em] block mb-3 font-bold">
+              <Typewriter text="INVESTIGATIVE WORKFLOW //" speedMs={25} />
             </span>
-            <h2 className="font-display font-black text-3xl sm:text-4xl text-white uppercase tracking-tight leading-tight mb-4">
+            <Reveal as="h2" className="font-display font-black text-3xl sm:text-4xl text-white uppercase tracking-tight leading-tight mb-4">
               THE AL SYED JOURNEY
-            </h2>
-            <p className="text-base sm:text-lg text-mono-300 font-sans leading-relaxed">
+            </Reveal>
+            <Reveal as="p" delayMs={100} className="text-base sm:text-lg text-mono-300 font-sans leading-relaxed">
               From the first question to a documented finding.
-            </p>
+            </Reveal>
           </div>
 
-          <div className="p-8 sm:p-10 rounded-3xl bg-[#060606] border border-white/15 shadow-2xl relative overflow-hidden">
+          <div className="glass-card p-8 sm:p-10 relative overflow-hidden">
             <div className="grid grid-cols-1 sm:grid-cols-5 gap-3 sm:gap-2 items-center text-center font-display font-black text-sm sm:text-base tracking-wider text-white">
               <div className="p-4 rounded-xl bg-white/[0.04] border border-white/10">
                 QUESTION
@@ -315,47 +318,47 @@ export const About: React.FC = () => {
 
         <section className="py-20 border-b border-white/10">
           <div className="max-w-3xl mb-12">
-            <span className="font-mono text-xs uppercase tracking-[0.25em] text-mono-400 block mb-3 font-bold">
-              VERIFIED TRACK RECORD
+            <span className="mono-index uppercase tracking-[0.25em] block mb-3 font-bold">
+              <Typewriter text="VERIFIED TRACK RECORD //" speedMs={25} />
             </span>
-            <h2 className="font-display font-black text-3xl sm:text-4xl text-white uppercase tracking-tight leading-tight mb-4">
+            <Reveal as="h2" className="font-display font-black text-3xl sm:text-4xl text-white uppercase tracking-tight leading-tight mb-4">
               BUILT THROUGH PRACTICE
-            </h2>
-            <p className="text-base sm:text-lg text-mono-300 font-sans leading-relaxed">
+            </Reveal>
+            <Reveal as="p" delayMs={100} className="text-base sm:text-lg text-mono-300 font-sans leading-relaxed">
               The Al Syed Initiative has conducted multiple OSINT Professional Training Program batches, bringing learners through structured, instructor-led training and practical investigation workflows.
-            </p>
+            </Reveal>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-8">
-            <div className="p-6 rounded-2xl bg-white/[0.02] border border-white/10 text-center">
+          <RevealGroup className="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-8">
+            <div className="glass-card reveal-item p-6 text-center">
               <span className="font-display font-black text-xl text-white uppercase block mb-1">
                 BATCH I
               </span>
-              <span className="font-mono text-xs text-mono-400 uppercase tracking-widest">
+              <span className="mono-index uppercase tracking-widest">
                 CERTIFIED STUDENTS
               </span>
             </div>
 
-            <div className="p-6 rounded-2xl bg-white/[0.02] border border-white/10 text-center">
+            <div className="glass-card reveal-item p-6 text-center">
               <span className="font-display font-black text-xl text-white uppercase block mb-1">
                 BATCH II
               </span>
-              <span className="font-mono text-xs text-mono-400 uppercase tracking-widest">
+              <span className="mono-index uppercase tracking-widest">
                 CERTIFIED STUDENTS
               </span>
             </div>
 
-            <div className="p-6 rounded-2xl bg-white/[0.02] border border-white/10 text-center">
+            <div className="glass-card reveal-item p-6 text-center">
               <span className="font-display font-black text-xl text-white uppercase block mb-1">
                 BATCH III
               </span>
-              <span className="font-mono text-xs text-mono-400 uppercase tracking-widest">
+              <span className="mono-index uppercase tracking-widest">
                 CERTIFIED STUDENTS
               </span>
             </div>
-          </div>
+          </RevealGroup>
 
-          <div className="p-6 rounded-2xl bg-[#090909] border border-white/15 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div className="glass-card p-6 flex flex-col sm:flex-row items-center justify-between gap-4">
             <p className="text-sm text-mono-300 font-sans">
               Explore the Hall of Fame to see the certified students who completed the journey.
             </p>
@@ -370,28 +373,28 @@ export const About: React.FC = () => {
         </section>
 
         <section className="py-20 border-b border-white/10">
-          <span className="font-mono text-xs uppercase tracking-[0.25em] text-mono-400 block mb-3 font-bold">
-            MISSION STATEMENT
+          <span className="mono-index uppercase tracking-[0.25em] block mb-3 font-bold">
+            <Typewriter text="MISSION STATEMENT //" speedMs={25} />
           </span>
-          <h2 className="font-display font-black text-3xl sm:text-4xl text-white uppercase tracking-tight leading-tight mb-6">
+          <Reveal as="h2" className="font-display font-black text-3xl sm:text-4xl text-white uppercase tracking-tight leading-tight mb-6">
             OUR PURPOSE
-          </h2>
-          <p className="text-xl sm:text-2xl text-white font-sans font-medium leading-relaxed max-w-4xl">
+          </Reveal>
+          <Reveal as="p" delayMs={100} className="text-xl sm:text-2xl text-white font-sans font-medium leading-relaxed max-w-4xl">
             To help people develop the knowledge, investigative thinking and responsible practices needed to navigate publicly available information with clarity and confidence.
-          </p>
+          </Reveal>
         </section>
 
         <section className="pt-20">
-          <div className="p-8 sm:p-14 rounded-3xl bg-gradient-to-b from-white/[0.04] to-transparent border border-white/15 text-center flex flex-col items-center">
-            <h3 className="font-display font-black text-2xl sm:text-4xl text-white uppercase tracking-tight mb-3">
+          <div className="glass-card p-8 sm:p-14 text-center flex flex-col items-center">
+            <Reveal as="h3" className="font-display font-black text-2xl sm:text-4xl text-white uppercase tracking-tight mb-3">
               READY TO START YOUR OSINT JOURNEY?
-            </h3>
-            <p className="text-base sm:text-lg text-mono-300 font-sans mb-8 max-w-xl">
+            </Reveal>
+            <Reveal as="p" delayMs={100} className="text-base sm:text-lg text-mono-300 font-sans mb-8 max-w-xl">
               Explore the OSINT Professional Training Program.
-            </p>
+            </Reveal>
             <Link
               to="/courses"
-              className="inline-flex items-center gap-3 px-8 py-4 rounded-xl bg-white text-black text-xs sm:text-sm font-bold uppercase tracking-widest hover:bg-mono-100 transition-all shadow-[0_0_30px_rgba(255,255,255,0.25)] active:scale-95"
+              className="btn-primary btn-shine-sweep inline-flex items-center gap-3 px-8 py-4 rounded-xl bg-white text-black text-xs sm:text-sm font-bold uppercase tracking-widest hover:bg-mono-100 transition-all shadow-[0_0_30px_rgba(255,255,255,0.25)] active:scale-95"
             >
               <span>VIEW PROGRAMS</span>
               <ArrowRight className="w-4 h-4" />

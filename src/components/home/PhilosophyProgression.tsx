@@ -1,4 +1,5 @@
 import React from 'react';
+import { Reveal, RevealGroup, Typewriter } from '../common/Reveal';
 
 interface ShiftItem {
   num: string;
@@ -31,31 +32,31 @@ export const PhilosophyProgression: React.FC = () => {
       <div className="max-w-3xl mb-12">
         <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/[0.05] border border-white/20 mb-4 backdrop-blur-md">
           <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
-          <span className="font-mono text-[11px] text-white uppercase tracking-widest font-bold">
-            MINDSET TRANSITION
+          <span className="font-mono text-[11px] text-white uppercase tracking-widest font-bold inline-flex items-center">
+            <Typewriter text="MINDSET TRANSITION //" speedMs={20} />
           </span>
         </div>
 
-        <h2 className="font-display font-black text-3xl sm:text-4xl lg:text-5xl text-white tracking-tight uppercase leading-tight mb-3">
+        <Reveal as="h2" className="font-display font-black text-3xl sm:text-4xl lg:text-5xl text-white tracking-tight uppercase leading-tight mb-3">
           From “How?” <span className="text-gradient-silver">to “Why?”</span>
-        </h2>
+        </Reveal>
 
-        <p className="text-base sm:text-lg text-mono-300 font-sans leading-relaxed">
+        <Reveal as="p" delayMs={100} className="text-base sm:text-lg text-mono-300 font-sans leading-relaxed">
           Anyone can follow a walkthrough. The real skill is understanding why the workflow works.
-        </p>
+        </Reveal>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 mb-10">
+      <RevealGroup className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 mb-10">
         {ITEMS.map((item) => (
           <div
             key={item.num}
-            className="group relative p-6 sm:p-7 rounded-2xl bg-[#080808] border border-white/10 hover:border-white/30 hover:bg-[#0d0d0d] transition-all duration-300 flex flex-col justify-between shadow-sm overflow-hidden"
+            className="glass-card reveal-item group p-6 sm:p-7 flex flex-col justify-between"
           >
             <div className="flex items-center justify-between pb-4 border-b border-white/[0.08] mb-6">
-              <span className="font-mono text-xs font-black tracking-widest text-mono-400 group-hover:text-white transition-colors">
+              <span className="mono-index font-black text-xs tracking-widest text-mono-400 group-hover:text-white transition-colors">
                 {item.num} //
               </span>
-              <span className="font-mono text-[10px] text-mono-500 uppercase tracking-widest">
+              <span className="mono-index text-[10px] uppercase tracking-widest">
                 STAGE
               </span>
             </div>
@@ -74,7 +75,7 @@ export const PhilosophyProgression: React.FC = () => {
             </div>
           </div>
         ))}
-      </div>
+      </RevealGroup>
 
       <div className="pt-6 border-t border-white/[0.08] flex flex-col sm:flex-row items-center justify-between gap-4">
         <div className="inline-flex items-center gap-3 text-xs sm:text-sm font-mono text-mono-200 tracking-[0.25em] uppercase font-bold">
@@ -85,8 +86,8 @@ export const PhilosophyProgression: React.FC = () => {
           <span className="text-white">UNDERSTAND</span>
         </div>
 
-        <div className="text-[11px] font-mono text-mono-500 uppercase tracking-widest">
-          COGNITIVE FRAMEWORK // AL SYED INITIATIVE
+        <div className="text-[11px] font-mono text-mono-500 uppercase tracking-widest inline-flex items-center">
+          <Typewriter text="COGNITIVE FRAMEWORK // AL SYED INITIATIVE" speedMs={20} delayMs={500} />
         </div>
       </div>
 

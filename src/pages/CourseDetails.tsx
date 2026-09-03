@@ -23,6 +23,7 @@ import { Accordion, AccordionItem } from '../components/ui/Accordion';
 import { courseService } from '../services/courseService';
 import { useAuth } from '../context/AuthContext';
 import { Course } from '../types';
+import { Reveal, RevealGroup, CountUp } from '../components/common/Reveal';
 
 export const CourseDetails: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -103,13 +104,13 @@ export const CourseDetails: React.FC = () => {
               </span>
             </div>
 
-            <h1 className="text-3xl sm:text-5xl font-black text-white tracking-tight uppercase leading-[1.1]">
+            <Reveal as="h1" className="text-3xl sm:text-5xl font-black text-white tracking-tight uppercase leading-[1.1]">
               {course.title}
-            </h1>
+            </Reveal>
 
-            <p className="text-base sm:text-xl text-mono-300 font-normal leading-relaxed">
+            <Reveal as="p" delayMs={100} className="text-base sm:text-xl text-mono-300 font-normal leading-relaxed">
               {course.description}
-            </p>
+            </Reveal>
 
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 py-4 border-y border-mono-900 text-xs font-mono text-mono-400">
               <div>
@@ -123,21 +124,21 @@ export const CourseDetails: React.FC = () => {
                 <span className="text-mono-600 block text-[10px] uppercase">Content</span>
                 <span className="text-white font-semibold flex items-center gap-1 mt-0.5">
                   <BookOpen className="w-3.5 h-3.5" />
-                  {course.totalLessons} Lessons ({course.hoursTotal}h)
+                  <CountUp end={course.totalLessons} /> Lessons ({course.hoursTotal}h)
                 </span>
               </div>
               <div>
                 <span className="text-mono-600 block text-[10px] uppercase">Rating</span>
                 <span className="text-white font-semibold flex items-center gap-1 mt-0.5">
                   <Star className="w-3.5 h-3.5 fill-white" />
-                  {course.rating.toFixed(2)} ({course.reviewCount})
+                  {course.rating.toFixed(2)} (<CountUp end={course.reviewCount} />)
                 </span>
               </div>
               <div>
                 <span className="text-mono-600 block text-[10px] uppercase">Enrolled</span>
                 <span className="text-white font-semibold flex items-center gap-1 mt-0.5">
                   <UserCheck className="w-3.5 h-3.5" />
-                  {course.enrolledCount}+ Students
+                  <CountUp end={course.enrolledCount} />+ Students
                 </span>
               </div>
             </div>
@@ -156,7 +157,7 @@ export const CourseDetails: React.FC = () => {
             </div>
           </div>
 
-          <div className="lg:col-span-4 bg-[#0d0d0d] border border-white/15 rounded-3xl p-6 sm:p-8 space-y-6 shadow-2xl sticky top-28">
+          <div className="lg:col-span-4 glass-card p-6 sm:p-8 space-y-6 sticky top-28">
             <div className="space-y-1">
               <span className="text-xs font-mono text-mono-400 uppercase tracking-widest block">
                 Admission Status
@@ -167,6 +168,34 @@ export const CourseDetails: React.FC = () => {
               <p className="text-xs text-mono-400 font-mono">
                 Live Cohort with Direct Instructor Access
               </p>
+            </div>
+
+            <div className="p-3.5 rounded-xl bg-white/[0.03] border border-white/[0.08] space-y-2">
+              <div className="flex items-center justify-between text-[11px] font-mono">
+                <span className="text-mono-400 uppercase tracking-wider">Cohort IV Starts In</span>
+                <span className="flex items-center gap-1.5 text-emerald-400 font-semibold">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                  ADMISSIONS OPEN
+                </span>
+              </div>
+              <div className="grid grid-cols-4 gap-2 text-center font-mono">
+                <div className="p-1.5 rounded-lg bg-black/50 border border-white/5">
+                  <div className="text-sm sm:text-base font-bold text-white">14</div>
+                  <div className="text-[9px] text-mono-500 uppercase">Days</div>
+                </div>
+                <div className="p-1.5 rounded-lg bg-black/50 border border-white/5">
+                  <div className="text-sm sm:text-base font-bold text-white">08</div>
+                  <div className="text-[9px] text-mono-500 uppercase">Hours</div>
+                </div>
+                <div className="p-1.5 rounded-lg bg-black/50 border border-white/5">
+                  <div className="text-sm sm:text-base font-bold text-white">45</div>
+                  <div className="text-[9px] text-mono-500 uppercase">Mins</div>
+                </div>
+                <div className="p-1.5 rounded-lg bg-black/50 border border-white/5">
+                  <div className="text-sm sm:text-base font-bold text-white">12</div>
+                  <div className="text-[9px] text-mono-500 uppercase">Secs</div>
+                </div>
+              </div>
             </div>
 
             <div className="space-y-3 pt-4 border-t border-mono-900 text-xs text-mono-300 font-mono">
@@ -191,19 +220,17 @@ export const CourseDetails: React.FC = () => {
             <div className="space-y-3 pt-2">
               {isAlreadyEnrolled ? (
                 <Link to="/course-player" className="block">
-                  <Button variant="primary" size="lg" className="w-full">
+                  <button className="btn-primary btn-shine-sweep w-full py-3.5 text-xs font-semibold uppercase tracking-wider flex items-center justify-center gap-2 rounded-xl text-black bg-white hover:bg-mono-100 transition-all shadow-md active:scale-[0.98]">
                     Resume in Classroom
-                  </Button>
+                  </button>
                 </Link>
               ) : (
-                <Button
-                  variant="primary"
-                  size="lg"
-                  className="w-full"
+                <button
+                  className="btn-primary btn-shine-sweep w-full py-3.5 text-xs font-semibold uppercase tracking-wider flex items-center justify-center gap-2 rounded-xl text-black bg-white hover:bg-mono-100 transition-all shadow-md active:scale-[0.98]"
                   onClick={() => setEnrollModalOpen(true)}
                 >
                   Apply & Enroll Now
-                </Button>
+                </button>
               )}
 
               <a
@@ -220,39 +247,39 @@ export const CourseDetails: React.FC = () => {
       </div>
 
       <div className="mb-20">
-        <h2 className="text-2xl sm:text-3xl font-bold text-white tracking-tight mb-8 uppercase">
+        <Reveal as="h2" className="text-2xl sm:text-3xl font-bold text-white tracking-tight mb-8 uppercase">
           Key Learning Outcomes
-        </h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        </Reveal>
+        <RevealGroup className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {course.learningOutcomes.map((outcome, idx) => (
             <div
               key={idx}
-              className="p-5 rounded-2xl bg-[#0d0d0d] border border-white/10 flex items-start gap-3.5"
+              className="glass-card reveal-item p-5 flex items-start gap-3.5"
             >
               <CheckCircle2 className="w-5 h-5 text-white shrink-0 mt-0.5" />
               <p className="text-xs sm:text-sm text-mono-300 leading-relaxed">{outcome}</p>
             </div>
           ))}
-        </div>
+        </RevealGroup>
       </div>
 
       <div className="mb-20">
         <div className="flex items-center justify-between mb-8">
           <div>
-            <h2 className="text-2xl sm:text-3xl font-bold text-white tracking-tight uppercase">
+            <Reveal as="h2" className="text-2xl sm:text-3xl font-bold text-white tracking-tight uppercase">
               Course Curriculum
-            </h2>
+            </Reveal>
             <p className="text-xs sm:text-sm font-mono text-mono-400 mt-1">
-              {course.modules.length} Modules • {course.totalLessons} Total Lessons • {course.hoursTotal} Hours
+              <CountUp end={course.modules.length} /> Modules • <CountUp end={course.totalLessons} /> Total Lessons • {course.hoursTotal} Hours
             </p>
           </div>
         </div>
 
-        <div className="space-y-4">
+        <RevealGroup className="space-y-4">
           {course.modules.map((mod, idx) => (
             <div
               key={mod.id}
-              className="border border-white/10 rounded-2xl overflow-hidden bg-[#0d0d0d]"
+              className="glass-card reveal-item"
             >
               <button
                 onClick={() => setActiveModuleIndex(activeModuleIndex === idx ? null : idx)}
@@ -275,18 +302,22 @@ export const CourseDetails: React.FC = () => {
                   <span className="hidden sm:inline-block text-xs font-mono text-mono-500">
                     {mod.duration}
                   </span>
-                  <div className={`w-7 h-7 rounded-lg bg-mono-900 border border-mono-800 flex items-center justify-center text-mono-400 transition-transform ${activeModuleIndex === idx ? 'rotate-180 text-white' : ''}`}>
+                  <div className={`w-7 h-7 rounded-lg bg-mono-900 border border-mono-800 flex items-center justify-center text-mono-400 transition-transform duration-300 ${activeModuleIndex === idx ? 'rotate-180 text-white' : ''}`}>
                     <ChevronDown className="w-4 h-4" />
                   </div>
                 </div>
               </button>
 
-              {activeModuleIndex === idx && (
-                <div className="border-t border-mono-900 p-5 sm:p-6 bg-mono-950/60 space-y-3">
+              <div
+                className={`transition-all duration-300 ease-in-out overflow-hidden ${
+                  activeModuleIndex === idx ? 'max-h-[900px] opacity-100' : 'max-h-0 opacity-0'
+                }`}
+              >
+                <div className="border-t border-white/[0.08] p-5 sm:p-6 bg-black/40 space-y-3">
                   {mod.lessons.map((lesson) => (
                     <div
                       key={lesson.id}
-                      className="p-3.5 rounded-xl bg-mono-900/40 border border-mono-800/80 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs"
+                      className="p-3.5 rounded-xl bg-white/[0.02] border border-white/[0.06] flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs hover:border-white/15 transition-colors"
                     >
                       <div className="flex items-center gap-3">
                         <PlayCircle className="w-4 h-4 text-mono-400 shrink-0" />
@@ -306,14 +337,14 @@ export const CourseDetails: React.FC = () => {
                     </div>
                   ))}
                 </div>
-              )}
+              </div>
             </div>
           ))}
-        </div>
+        </RevealGroup>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-20">
-        <div className="p-8 rounded-3xl bg-[#0d0d0d] border border-white/10">
+        <div className="glass-card p-8">
           <h3 className="text-xl font-bold text-white mb-4 uppercase tracking-tight">
             Prerequisites
           </h3>
@@ -327,7 +358,7 @@ export const CourseDetails: React.FC = () => {
           </ul>
         </div>
 
-        <div className="p-8 rounded-3xl bg-[#0d0d0d] border border-white/10">
+        <div className="glass-card p-8">
           <h3 className="text-xl font-bold text-white mb-4 uppercase tracking-tight">
             Who This Program Is For
           </h3>

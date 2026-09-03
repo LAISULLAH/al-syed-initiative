@@ -20,6 +20,7 @@ import {
   Activity,
   Zap
 } from 'lucide-react';
+import { Reveal, RevealGroup, Typewriter } from '../common/Reveal';
 
 interface EditorialPlansProps {
   onSelectPlan?: (planId: string) => void;
@@ -209,17 +210,19 @@ export const EditorialPlans: React.FC<EditorialPlansProps> = ({ onSelectPlan }) 
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75" />
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-white" />
               </span>
-              <span>LIVE COHORT PIPELINE // BATCH IV SYLLABUS</span>
+              <span className="inline-flex items-center">
+                <Typewriter text="LIVE COHORT PIPELINE // BATCH IV SYLLABUS" speedMs={20} />
+              </span>
             </div>
 
-            <h3 className="font-display font-black text-3xl sm:text-4xl lg:text-5xl text-white uppercase tracking-tight leading-[1.02]">
+            <Reveal as="h3" className="font-display font-black text-3xl sm:text-4xl lg:text-5xl text-white uppercase tracking-tight leading-[1.02]">
               OSINT Professional <br className="hidden sm:inline" />
               <span className="text-gradient-silver">Training Program.</span>
-            </h3>
+            </Reveal>
 
-            <p className="text-base sm:text-lg text-mono-200 font-sans leading-relaxed">
+            <Reveal as="p" delayMs={100} className="text-base sm:text-lg text-mono-200 font-sans leading-relaxed">
               A structured, 12-week comprehensive investigative academy teaching real-world open-source intelligence, identity attribution, geospatial triangulation, and ethical digital forensics.
-            </p>
+            </Reveal>
           </div>
 
           <div className="shrink-0 flex flex-col items-start lg:items-end gap-3.5">
@@ -231,7 +234,7 @@ export const EditorialPlans: React.FC<EditorialPlansProps> = ({ onSelectPlan }) 
             <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 w-full sm:w-auto">
               <button
                 onClick={() => onSelectPlan && onSelectPlan('batch-4')}
-                className="inline-flex items-center justify-center gap-3 px-8 py-4 bg-white text-black font-bold text-xs tracking-wider uppercase rounded-xl transition-all duration-300 hover:bg-mono-100 hover:shadow-[0_0_40px_-5px_rgba(255,255,255,0.45)] active:scale-[0.98] cursor-pointer"
+                className="btn-primary btn-shine-sweep inline-flex items-center justify-center gap-3 px-8 py-4 bg-white text-black font-bold text-xs tracking-wider uppercase rounded-xl transition-all duration-300 hover:bg-mono-100 hover:shadow-[0_0_40px_-5px_rgba(255,255,255,0.45)] active:scale-[0.98] cursor-pointer"
               >
                 <span>INQUIRE FOR BATCH IV</span>
                 <ArrowRight className="w-4 h-4" />
@@ -341,7 +344,7 @@ export const EditorialPlans: React.FC<EditorialPlansProps> = ({ onSelectPlan }) 
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
             
-            <div className="lg:col-span-7 p-6 sm:p-8 rounded-2xl bg-white/[0.02] border border-white/15 flex flex-col justify-between backdrop-blur-md">
+            <div className="lg:col-span-7 glass-card p-6 sm:p-8 flex flex-col justify-between">
               <div>
                 <div className="flex items-center justify-between pb-4 border-b border-white/10 mb-5">
                   <span className="font-mono text-xs uppercase tracking-[0.2em] text-mono-400 font-bold">
@@ -378,7 +381,7 @@ export const EditorialPlans: React.FC<EditorialPlansProps> = ({ onSelectPlan }) 
               </div>
             </div>
 
-            <div className="lg:col-span-5 rounded-2xl bg-[#030303] border border-white/20 p-5 font-mono text-xs flex flex-col justify-between shadow-2xl relative overflow-hidden">
+            <div className="lg:col-span-5 glass-card p-5 font-mono text-xs flex flex-col justify-between shadow-2xl relative overflow-hidden">
               
               <div>
                 <div className="flex items-center justify-between pb-3 border-b border-white/10 mb-4">
@@ -437,14 +440,14 @@ export const EditorialPlans: React.FC<EditorialPlansProps> = ({ onSelectPlan }) 
             </span>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <RevealGroup className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {PROGRAM_INCLUSIONS.map((item, idx) => {
               const Icon = item.icon;
 
               return (
                 <div
                   key={idx}
-                  className="group p-7 rounded-2xl bg-white/[0.02] border border-white/[0.08] hover:border-white/35 hover:bg-white/[0.05] hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between shadow-sm hover:shadow-[0_15px_30px_rgba(0,0,0,0.8)]"
+                  className="glass-card reveal-item group p-7 flex flex-col justify-between"
                 >
                   <div>
                     <div className="flex items-center justify-between mb-5">
@@ -474,7 +477,7 @@ export const EditorialPlans: React.FC<EditorialPlansProps> = ({ onSelectPlan }) 
                 </div>
               );
             })}
-          </div>
+          </RevealGroup>
 
         </div>
 

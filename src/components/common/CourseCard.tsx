@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { Clock, BookOpen, Star, ArrowRight, ShieldCheck, CheckCircle2 } from 'lucide-react';
 import { Course } from '../../types';
 import { Badge } from '../ui/Badge';
+import { CountUp } from './Reveal';
 
 interface CourseCardProps {
   course: Course;
@@ -10,15 +11,28 @@ interface CourseCardProps {
 }
 
 export const CourseCard: React.FC<CourseCardProps> = ({ course, viewMode = 'grid' }) => {
+  const getDifficultyBadge = (difficulty: string) => {
+    switch (difficulty.toLowerCase()) {
+      case 'beginner':
+        return 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20';
+      case 'intermediate':
+        return 'bg-amber-500/10 text-amber-400 border-amber-500/20';
+      case 'advanced':
+        return 'bg-rose-500/10 text-rose-400 border-rose-500/20';
+      default:
+        return 'bg-white/[0.04] text-mono-300 border-white/10';
+    }
+  };
+
   if (viewMode === 'list') {
     return (
-      <div className="group relative bg-[#0A0A0A] border border-white/[0.06] rounded-2xl p-6 sm:p-7 transition-all duration-300 hover:border-white/20 hover:bg-[#121212] flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 shadow-[0_10px_30px_-15px_rgba(0,0,0,0.8)]">
+      <div className="glass-card group p-6 sm:p-7 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6">
         <div className="flex-1 space-y-3">
           <div className="flex flex-wrap items-center gap-2">
             <span className="px-2.5 py-1 rounded-md bg-white/[0.04] border border-white/[0.08] text-[10px] font-mono uppercase tracking-wider text-mono-300 font-semibold">
               {course.category}
             </span>
-            <span className="px-2.5 py-1 rounded-md bg-white/[0.02] border border-white/[0.06] text-[10px] font-mono text-mono-400">
+            <span className={`px-2.5 py-1 rounded-full border text-[10px] font-mono uppercase tracking-wider font-semibold ${getDifficultyBadge(course.difficulty)}`}>
               {course.difficulty}
             </span>
             {course.featured && (
@@ -43,14 +57,16 @@ export const CourseCard: React.FC<CourseCardProps> = ({ course, viewMode = 'grid
             </span>
             <span className="flex items-center gap-1.5 text-mono-300">
               <BookOpen className="w-3.5 h-3.5 text-mono-400" />
-              {course.totalLessons} Lessons ({course.hoursTotal}h)
+              <span className="mono-index mr-1">MODULES</span>
+              <CountUp end={course.totalLessons} /> Lessons ({course.hoursTotal}h)
             </span>
             <span className="flex items-center gap-1.5 text-white font-medium">
               <Star className="w-3.5 h-3.5 fill-white text-white" />
-              {course.rating.toFixed(2)} ({course.reviewCount} reviews)
+              {course.rating.toFixed(2)} (<CountUp end={course.reviewCount} /> reviews)
             </span>
             <span className="flex items-center gap-1.5 text-mono-400 hidden sm:flex">
               <ShieldCheck className="w-3.5 h-3.5 text-mono-400" />
+              <span className="mono-index mr-1">LEAD</span>
               {course.instructor.name}
             </span>
           </div>
@@ -59,10 +75,10 @@ export const CourseCard: React.FC<CourseCardProps> = ({ course, viewMode = 'grid
         <div className="w-full lg:w-auto shrink-0 pt-4 lg:pt-0 border-t lg:border-t-0 border-white/[0.08]">
           <Link
             to={`/courses/${course.slug}`}
-            className="portfolio-btn-primary w-full sm:w-auto text-center"
+            className="portfolio-btn-primary btn-shine-sweep w-full sm:w-auto text-center inline-flex items-center justify-center gap-2"
           >
             <span>View Syllabus</span>
-            <ArrowRight className="w-3.5 h-3.5" />
+            <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
           </Link>
         </div>
       </div>
@@ -70,14 +86,14 @@ export const CourseCard: React.FC<CourseCardProps> = ({ course, viewMode = 'grid
   }
 
   return (
-    <div className="group relative h-full flex flex-col justify-between bg-[#0A0A0A] border border-white/[0.06] rounded-2xl p-6 sm:p-7 transition-all duration-300 hover:border-white/20 hover:bg-[#121212] shadow-[0_15px_40px_-20px_rgba(0,0,0,0.9)] overflow-hidden">
+    <div className="glass-card group h-full flex flex-col justify-between p-6 sm:p-7">
       <div>
         <div className="flex items-center justify-between gap-2 mb-4">
           <div className="flex items-center gap-2">
             <span className="px-2.5 py-1 rounded-md bg-white/[0.04] border border-white/[0.08] text-[10px] font-mono uppercase tracking-wider text-mono-300 font-semibold">
               {course.category}
             </span>
-            <span className="px-2.5 py-1 rounded-md bg-white/[0.02] border border-white/[0.06] text-[10px] font-mono text-mono-400">
+            <span className={`px-2.5 py-0.5 rounded-full border text-[10px] font-mono uppercase tracking-wider font-semibold ${getDifficultyBadge(course.difficulty)}`}>
               {course.difficulty}
             </span>
           </div>
@@ -108,13 +124,15 @@ export const CourseCard: React.FC<CourseCardProps> = ({ course, viewMode = 'grid
           </div>
           <div className="flex items-center gap-1.5">
             <BookOpen className="w-3.5 h-3.5 text-mono-500 shrink-0" />
-            <span className="truncate">{course.totalLessons} Lessons</span>
+            <span className="mono-index mr-0.5">MOD</span>
+            <span className="truncate"><CountUp end={course.totalLessons} /> Lessons</span>
           </div>
         </div>
 
         <div className="flex items-center justify-between text-xs font-mono pt-1 text-mono-400">
           <div className="flex items-center gap-1.5 truncate max-w-[170px]">
             <ShieldCheck className="w-3.5 h-3.5 text-mono-500 shrink-0" />
+            <span className="mono-index mr-0.5">LEAD</span>
             <span className="truncate text-mono-300">{course.instructor.name}</span>
           </div>
           <div className="flex items-center gap-1 text-white font-medium shrink-0">
@@ -128,7 +146,7 @@ export const CourseCard: React.FC<CourseCardProps> = ({ course, viewMode = 'grid
           className="w-full inline-flex items-center justify-center gap-2 py-3 px-4 bg-white/[0.04] border border-white/10 text-white font-semibold text-xs tracking-wider uppercase rounded-lg hover:bg-white hover:text-black hover:border-white transition-all duration-200 shadow-sm active:scale-[0.98]"
         >
           <span>View Syllabus</span>
-          <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5" />
+          <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
         </Link>
       </div>
     </div>

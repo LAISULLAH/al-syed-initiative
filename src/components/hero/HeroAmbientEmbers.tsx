@@ -53,14 +53,14 @@ export const HeroAmbientEmbers: React.FC = () => {
     window.addEventListener('mousemove', handleMouseMove);
 
     const sparkPalette = [
-      { fill: 'rgba(255, 80, 60, ', glow: 'rgba(220, 38, 38, 0.4)' },     // Subtle ruby spark
-      { fill: 'rgba(255, 255, 255, ', glow: 'rgba(255, 255, 255, 0.6)' }, // Silver-white core
-      { fill: 'rgba(240, 90, 60, ', glow: 'rgba(185, 28, 28, 0.35)' },   // Deep flame spark
-      { fill: 'rgba(220, 220, 230, ', glow: 'rgba(200, 200, 220, 0.5)' }, // Cool starlight
+      { fill: 'rgba(255, 80, 60, ', glow: 'rgba(220, 38, 38, 0.4)' },
+      { fill: 'rgba(255, 255, 255, ', glow: 'rgba(255, 255, 255, 0.6)' },
+      { fill: 'rgba(240, 90, 60, ', glow: 'rgba(185, 28, 28, 0.35)' },
+      { fill: 'rgba(220, 220, 230, ', glow: 'rgba(200, 200, 220, 0.5)' },
     ];
 
     const sparks: Spark[] = [];
-    const sparkCount = 38; // Perfectly balanced, delicate, non-distracting
+    const sparkCount = 38;
 
     const createSpark = (fromBottom = false): Spark => {
       const palette = sparkPalette[Math.floor(Math.random() * sparkPalette.length)];
@@ -69,7 +69,7 @@ export const HeroAmbientEmbers: React.FC = () => {
       return {
         x: Math.random() * width,
         y: fromBottom ? height + Math.random() * 20 : Math.random() * height,
-        size: Math.random() * 2 + 0.6, // Micro-sized, elegant sparks
+        size: Math.random() * 2 + 0.6,
         speedY: Math.random() * 0.9 + 0.4,
         speedX: (Math.random() - 0.5) * 0.25,
         opacity: 0,

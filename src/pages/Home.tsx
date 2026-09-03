@@ -26,6 +26,7 @@ import { PhilosophyProgression } from '../components/home/PhilosophyProgression'
 import { InstitutionalBrandStory } from '../components/home/InstitutionalBrandStory';
 import { ScrollReveal } from '../components/common/ScrollReveal';
 import { GlobalAmbientLighting } from '../components/common/GlobalAmbientLighting';
+import { Reveal, RevealGroup, Typewriter } from '../components/common/Reveal';
 
 interface HomeProps {
   onOpenAuth: (mode?: 'login' | 'signup') => void;
@@ -58,32 +59,31 @@ export const Home: React.FC<HomeProps> = ({ onOpenAuth }) => {
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-left">
           
-          <ScrollReveal className="max-w-4xl mb-16 lg:mb-20">
+          <div className="max-w-4xl mb-16 lg:mb-20">
             <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-white/[0.04] border border-white/10 mb-6 backdrop-blur-md">
               <span className="w-1.5 h-1.5 rounded-full bg-[#30d158] shadow-[0_0_8px_#30d158] animate-pulse" />
-              <span className="font-mono text-xs text-white uppercase tracking-widest font-bold">
-                OPERATIONAL WINGS // ADL FRONT DIVISIONS
+              <span className="font-mono text-xs text-white uppercase tracking-widest font-bold inline-flex items-center">
+                <Typewriter text="OPERATIONAL WINGS // ADL FRONT DIVISIONS" speedMs={20} />
               </span>
             </div>
 
-            <h2 className="font-display font-black text-4xl sm:text-6xl lg:text-7xl text-white tracking-tight uppercase leading-[0.94] mb-6">
+            <Reveal as="h2" className="font-display font-black text-4xl sm:text-6xl lg:text-7xl text-white tracking-tight uppercase leading-[0.94] mb-6">
               Specialized Divisions. <br className="hidden sm:inline" />
               <span className="text-gradient-silver">Integrated Intelligence.</span>
-            </h2>
+            </Reveal>
 
-            <p className="text-base sm:text-lg text-[#86868b] font-sans leading-relaxed max-w-2xl font-normal">
+            <Reveal as="p" delayMs={100} className="text-base sm:text-lg text-[#86868b] font-sans leading-relaxed max-w-2xl font-normal">
               Structured operational methodology applied to cyber defense, threat intelligence, and evidence synthesis across four specialized divisions.
-            </p>
-          </ScrollReveal>
+            </Reveal>
+          </div>
 
-          <div className="space-y-6 sm:space-y-8">
-            <ScrollReveal delayMs={0}>
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 items-center p-6 sm:p-10 rounded-2xl bg-[#0A0A0A] border border-white/[0.06] hover:border-white/20 transition-all duration-300">
-                <div className="lg:col-span-1">
-                  <span className="font-mono font-black text-3xl sm:text-4xl text-white/30">
-                    01
-                  </span>
-                </div>
+          <RevealGroup className="space-y-6 sm:space-y-8">
+            <div className="glass-card reveal-item grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 items-center p-6 sm:p-10">
+              <div className="lg:col-span-1">
+                <span className="mono-index font-black text-3xl sm:text-4xl text-white/40 block">
+                  01
+                </span>
+              </div>
                 <div className="lg:col-span-4">
                   <p className="text-[11px] font-mono text-[#86868b] uppercase tracking-widest font-bold mb-2">
                     DIVISION 01 // RECONNAISSANCE
@@ -116,12 +116,10 @@ export const Home: React.FC<HomeProps> = ({ onOpenAuth }) => {
                   </Link>
                 </div>
               </div>
-            </ScrollReveal>
 
-            <ScrollReveal delayMs={60}>
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 items-center p-6 sm:p-10 rounded-2xl bg-[#0A0A0A] border border-white/[0.06] hover:border-white/20 transition-all duration-300">
+              <div className="glass-card reveal-item grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 items-center p-6 sm:p-10">
                 <div className="lg:col-span-1">
-                  <span className="font-mono font-black text-3xl sm:text-4xl text-white/30">
+                  <span className="mono-index font-black text-3xl sm:text-4xl text-white/40 block">
                     02
                   </span>
                 </div>
@@ -157,12 +155,10 @@ export const Home: React.FC<HomeProps> = ({ onOpenAuth }) => {
                   </Link>
                 </div>
               </div>
-            </ScrollReveal>
 
-            <ScrollReveal delayMs={120}>
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 items-center p-6 sm:p-10 rounded-2xl bg-[#0A0A0A] border border-white/[0.06] hover:border-white/20 transition-all duration-300">
+              <div className="glass-card reveal-item grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 items-center p-6 sm:p-10">
                 <div className="lg:col-span-1">
-                  <span className="font-mono font-black text-3xl sm:text-4xl text-white/30">
+                  <span className="mono-index font-black text-3xl sm:text-4xl text-white/40 block">
                     03
                   </span>
                 </div>
@@ -198,12 +194,10 @@ export const Home: React.FC<HomeProps> = ({ onOpenAuth }) => {
                   </Link>
                 </div>
               </div>
-            </ScrollReveal>
 
-            <ScrollReveal delayMs={180}>
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 items-center p-6 sm:p-10 rounded-2xl bg-[#0A0A0A] border border-white/[0.06] hover:border-white/20 transition-all duration-300">
+              <div className="glass-card reveal-item grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 items-center p-6 sm:p-10">
                 <div className="lg:col-span-1">
-                  <span className="font-mono font-black text-3xl sm:text-4xl text-white/30">
+                  <span className="mono-index font-black text-3xl sm:text-4xl text-white/40 block">
                     04
                   </span>
                 </div>
@@ -239,8 +233,7 @@ export const Home: React.FC<HomeProps> = ({ onOpenAuth }) => {
                   </Link>
                 </div>
               </div>
-            </ScrollReveal>
-          </div>
+          </RevealGroup>
 
         </div>
       </section>

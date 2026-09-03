@@ -12,7 +12,8 @@ import {
   ChevronDown,
   Check
 } from 'lucide-react';
-import { useReducedMotion } from '../hooks';
+import { PageContainer } from '../components/layout/PageContainer';
+import { Reveal, RevealGroup, Typewriter } from '../components/common/Reveal';
 
 export const Contact: React.FC = () => {
   const [name, setName] = useState('');
@@ -25,10 +26,7 @@ export const Contact: React.FC = () => {
   const [errorMessage, setErrorMessage] = useState('');
   const [isLoaded, setIsLoaded] = useState(false);
 
-  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
-  const containerRef = useRef<HTMLDivElement>(null);
   const dropdownRef = useRef<HTMLDivElement>(null);
-  const reducedMotion = useReducedMotion();
 
   const inquiryOptions = [
     { value: 'OSINT Professional Cohort Admission', label: 'OSINT Professional Training Cohort Admission' },
@@ -52,38 +50,6 @@ export const Contact: React.FC = () => {
     const timer = setTimeout(() => setIsLoaded(true), 60);
     return () => clearTimeout(timer);
   }, []);
-
-  useEffect(() => {
-    if (reducedMotion) return;
-
-    let targetX = 0;
-    let targetY = 0;
-    let currentX = 0;
-    let currentY = 0;
-    let rafId: number;
-
-    const handleMouseMove = (e: MouseEvent) => {
-      if (!containerRef.current) return;
-      const rect = containerRef.current.getBoundingClientRect();
-      targetX = e.clientX - rect.left;
-      targetY = e.clientY - rect.top;
-    };
-
-    const animate = () => {
-      currentX += (targetX - currentX) * 0.08;
-      currentY += (targetY - currentY) * 0.08;
-      setMousePos({ x: currentX, y: currentY });
-      rafId = requestAnimationFrame(animate);
-    };
-
-    window.addEventListener('mousemove', handleMouseMove, { passive: true });
-    rafId = requestAnimationFrame(animate);
-
-    return () => {
-      window.removeEventListener('mousemove', handleMouseMove);
-      cancelAnimationFrame(rafId);
-    };
-  }, [reducedMotion]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -109,36 +75,8 @@ export const Contact: React.FC = () => {
   };
 
   return (
-    <div
-      ref={containerRef}
-      className="relative min-h-screen bg-[#030303] text-mono-100 overflow-hidden select-none selection:bg-white selection:text-black font-sans"
-    >
-      
-      <div
-        className="absolute inset-0 pointer-events-none transition-opacity duration-1000 z-0"
-        style={{
-          background: reducedMotion
-            ? 'radial-gradient(circle at 50% 25%, rgba(255,255,255,0.035) 0%, transparent 65%)'
-            : `radial-gradient(850px circle at ${mousePos.x}px ${mousePos.y}px, rgba(255,255,255,0.035) 0%, rgba(255,255,255,0.007) 35%, transparent 70%)`,
-        }}
-      />
-
-      <div
-        className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-[600px] pointer-events-none z-0"
-        style={{
-          background: 'radial-gradient(ellipse at 50% 0%, rgba(255,255,255,0.04) 0%, transparent 75%)',
-        }}
-      />
-
-      <div className="absolute inset-0 bg-grid-fine opacity-15 pointer-events-none z-0" />
-
-      <div className="absolute inset-0 pointer-events-none overflow-hidden z-0" aria-hidden="true">
-        <div className="absolute left-[6%] top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-white/[0.04] to-transparent" />
-        <div className="absolute right-[6%] top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-white/[0.04] to-transparent" />
-      </div>
-
-      <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-28 sm:pt-36 pb-36">
-        
+    <PageContainer maxWidth="6xl">
+      <div className="pb-16">
         <section className="mb-16 sm:mb-20 text-left">
           
           <div
@@ -148,37 +86,26 @@ export const Contact: React.FC = () => {
           >
             <span className="w-1.5 h-1.5 rounded-full bg-white shadow-[0_0_8px_white] animate-pulse" />
             <span className="font-mono text-[10px] sm:text-[11px] font-semibold uppercase tracking-[0.28em] text-mono-300">
-              OFFICIAL COMMUNICATION DESK
+              <Typewriter text="OFFICIAL COMMUNICATION DESK //" speedMs={20} />
             </span>
           </div>
 
-          <h1
-            className={`font-display font-black uppercase tracking-[-0.03em] text-white leading-[0.92] mb-6 transition-all duration-800 delay-200 ease-[cubic-bezier(0.16,1,0.3,1)] ${
-              isLoaded ? 'opacity-100 blur-0 translate-y-0' : 'opacity-0 blur-[8px] translate-y-6'
-            }`}
-            style={{ fontSize: 'clamp(3rem, 8vw, 7rem)' }}
-          >
+          <Reveal as="h1" className="font-display font-black uppercase tracking-[-0.03em] text-white leading-[0.92] mb-6">
             <span className="block">CONNECT WITH</span>
             <span className="block text-gradient-silver">AL SYED.</span>
-          </h1>
+          </Reveal>
 
-          <p
-            className={`text-base sm:text-lg text-mono-300 font-sans leading-relaxed max-w-2xl transition-all duration-700 delay-300 ${
-              isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-3'
-            }`}
-          >
+          <Reveal as="p" delayMs={100} className="text-base sm:text-lg text-mono-300 font-sans leading-relaxed max-w-2xl">
             For OSINT training cohort enrollment, corporate workshops, institutional briefings, or case referrals, communicate directly through our official channels.
-          </p>
+          </Reveal>
 
         </section>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start text-left">
           
           <div className="lg:col-span-7">
-            <div className="rounded-3xl bg-[#060606]/90 border border-white/15 p-7 sm:p-10 backdrop-blur-2xl shadow-[0_20px_60px_rgba(0,0,0,0.85)] relative overflow-hidden">
+            <div className="glass-card p-7 sm:p-10 relative overflow-hidden">
               
-              <div className="absolute top-0 left-1/2 -translate-x-1/2 w-40 h-px bg-gradient-to-r from-transparent via-white/30 to-transparent pointer-events-none" />
-
               {submitted ? (
                 <div className="text-center py-12 space-y-5 animate-fade-in">
                   <div className="w-16 h-16 rounded-full bg-white text-black flex items-center justify-center mx-auto shadow-[0_0_30px_rgba(255,255,255,0.3)]">
@@ -206,7 +133,7 @@ export const Contact: React.FC = () => {
                 <form onSubmit={handleSubmit} className="space-y-6">
                   
                   <div className="border-b border-white/[0.08] pb-4 mb-2">
-                    <span className="font-mono text-[10px] uppercase tracking-[0.25em] text-mono-400 font-semibold block mb-1">
+                    <span className="mono-index uppercase tracking-[0.25em] font-semibold block mb-1">
                       DIRECT INQUIRY FORM
                     </span>
                     <h2 className="font-display font-bold text-xl uppercase tracking-tight text-white">
@@ -214,51 +141,67 @@ export const Contact: React.FC = () => {
                     </h2>
                   </div>
 
-                  {errorMessage && (
-                    <div className="p-3 rounded-xl bg-white/[0.04] border border-white/20 text-xs text-white font-mono flex items-center gap-2">
-                      <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
+                  <div className={`transition-all duration-200 overflow-hidden ${errorMessage ? 'max-h-14 opacity-100 mb-2' : 'max-h-0 opacity-0 mb-0'}`}>
+                    <div className="p-3 rounded-xl bg-rose-500/10 border border-rose-500/30 text-xs text-rose-300 font-mono flex items-center gap-2">
+                      <span className="w-1.5 h-1.5 rounded-full bg-rose-500 animate-pulse shrink-0" />
                       <span>{errorMessage}</span>
                     </div>
-                  )}
+                  </div>
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                    <div>
-                      <label className="block text-[11px] font-mono font-semibold uppercase tracking-[0.2em] text-mono-300 mb-2">
-                        YOUR NAME
-                      </label>
+                    <div className="relative">
                       <input
+                        id="name-input"
                         type="text"
                         required
-                        placeholder="e.g. Tariq Merchant"
+                        placeholder=" "
                         value={name}
                         onChange={(e) => setName(e.target.value)}
-                        className="w-full px-4 py-3 bg-white/[0.03] border border-white/10 rounded-xl text-white text-sm placeholder-mono-500 focus:outline-none focus:border-white/40 focus:bg-white/[0.06] focus:ring-1 focus:ring-white/20 transition-all select-text"
+                        className={`peer w-full px-4 pt-6 pb-2.5 bg-[#050505] border rounded-xl text-white text-sm focus:outline-none focus:bg-[#070707] transition-all font-mono select-text ${
+                          errorMessage && !name.trim()
+                            ? 'border-rose-500/80 focus:border-rose-500'
+                            : 'border-white/10 focus:border-white/40 focus:ring-1 focus:ring-white/20'
+                        }`}
                       />
+                      <label
+                        htmlFor="name-input"
+                        className="absolute text-[10px] font-mono font-bold uppercase tracking-[0.2em] text-mono-400 duration-200 transform -translate-y-3.5 scale-90 top-5 z-10 origin-[0] left-4 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:text-xs peer-placeholder-shown:text-mono-500 peer-focus:scale-90 peer-focus:-translate-y-3.5 peer-focus:text-white pointer-events-none"
+                      >
+                        NAME_INPUT //
+                      </label>
                     </div>
 
-                    <div>
-                      <label className="block text-[11px] font-mono font-semibold uppercase tracking-[0.2em] text-mono-300 mb-2">
-                        OFFICIAL EMAIL
-                      </label>
+                    <div className="relative">
                       <input
+                        id="email-input"
                         type="email"
                         required
-                        placeholder="analyst@domain.com"
+                        placeholder=" "
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
-                        className="w-full px-4 py-3 bg-white/[0.03] border border-white/10 rounded-xl text-white text-sm placeholder-mono-500 focus:outline-none focus:border-white/40 focus:bg-white/[0.06] focus:ring-1 focus:ring-white/20 transition-all select-text"
+                        className={`peer w-full px-4 pt-6 pb-2.5 bg-[#050505] border rounded-xl text-white text-sm focus:outline-none focus:bg-[#070707] transition-all font-mono select-text ${
+                          errorMessage && !email.trim()
+                            ? 'border-rose-500/80 focus:border-rose-500'
+                            : 'border-white/10 focus:border-white/40 focus:ring-1 focus:ring-white/20'
+                        }`}
                       />
+                      <label
+                        htmlFor="email-input"
+                        className="absolute text-[10px] font-mono font-bold uppercase tracking-[0.2em] text-mono-400 duration-200 transform -translate-y-3.5 scale-90 top-5 z-10 origin-[0] left-4 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:text-xs peer-placeholder-shown:text-mono-500 peer-focus:scale-90 peer-focus:-translate-y-3.5 peer-focus:text-white pointer-events-none"
+                      >
+                        EMAIL_INPUT //
+                      </label>
                     </div>
                   </div>
 
                   <div ref={dropdownRef} className="relative">
-                    <label className="block text-[11px] font-mono font-semibold uppercase tracking-[0.2em] text-mono-300 mb-2">
-                      INQUIRY TOPIC
-                    </label>
+                    <span className="block text-[10px] font-mono font-bold uppercase tracking-[0.2em] text-mono-400 mb-1.5">
+                      TOPIC_SELECT //
+                    </span>
                     <button
                       type="button"
                       onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                      className="w-full px-4 py-3 bg-white/[0.03] border border-white/10 rounded-xl text-white text-sm focus:outline-none focus:border-white/40 focus:bg-white/[0.06] transition-all cursor-pointer font-sans flex items-center justify-between text-left select-none"
+                      className="w-full px-4 py-3 bg-[#050505] border border-white/10 rounded-xl text-white text-sm focus:outline-none focus:border-white/40 focus:bg-[#070707] transition-all cursor-pointer font-sans flex items-center justify-between text-left select-none"
                     >
                       <span className="truncate">{inquiryTopic}</span>
                       <ChevronDown
@@ -295,24 +238,32 @@ export const Contact: React.FC = () => {
                     )}
                   </div>
 
-                  <div>
-                    <label className="block text-[11px] font-mono font-semibold uppercase tracking-[0.2em] text-mono-300 mb-2">
-                      INQUIRY DETAILS
-                    </label>
+                  <div className="relative">
                     <textarea
+                      id="details-input"
                       rows={5}
                       required
-                      placeholder="Outline your background, learning objectives, or the specific context of your communication..."
+                      placeholder=" "
                       value={message}
                       onChange={(e) => setMessage(e.target.value)}
-                      className="w-full px-4 py-3 bg-white/[0.03] border border-white/10 rounded-xl text-white text-sm placeholder-mono-500 focus:outline-none focus:border-white/40 focus:bg-white/[0.06] focus:ring-1 focus:ring-white/20 transition-all select-text resize-none"
+                      className={`peer w-full px-4 pt-7 pb-2.5 bg-[#050505] border rounded-xl text-white text-sm focus:outline-none focus:bg-[#070707] transition-all font-mono select-text resize-none ${
+                        errorMessage && !message.trim()
+                          ? 'border-rose-500/80 focus:border-rose-500'
+                          : 'border-white/10 focus:border-white/40 focus:ring-1 focus:ring-white/20'
+                      }`}
                     />
+                    <label
+                      htmlFor="details-input"
+                      className="absolute text-[10px] font-mono font-bold uppercase tracking-[0.2em] text-mono-400 duration-200 transform -translate-y-3.5 scale-90 top-5 z-10 origin-[0] left-4 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:text-xs peer-placeholder-shown:text-mono-500 peer-focus:scale-90 peer-focus:-translate-y-3.5 peer-focus:text-white pointer-events-none"
+                    >
+                      DETAILS_INPUT //
+                    </label>
                   </div>
 
                   <button
                     type="submit"
                     disabled={isLoading}
-                    className="group w-full py-4 px-6 bg-white hover:bg-mono-100 text-black font-bold text-xs uppercase tracking-wider rounded-xl transition-all duration-200 active:scale-[0.98] shadow-[0_0_25px_rgba(255,255,255,0.25)] flex items-center justify-center gap-2 cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed"
+                    className="btn-primary btn-shine-sweep w-full py-4 px-6 bg-white hover:bg-mono-100 text-black font-bold text-xs uppercase tracking-wider rounded-xl transition-all duration-200 active:scale-[0.98] shadow-[0_0_25px_rgba(255,255,255,0.25)] flex items-center justify-center gap-2 cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed"
                   >
                     <span>{isLoading ? 'DISPATCHING TRANSMISSION...' : 'SUBMIT INQUIRY TRANSMISSION'}</span>
                     {!isLoading && (
@@ -320,7 +271,7 @@ export const Contact: React.FC = () => {
                     )}
                   </button>
 
-                  <p className="text-[10px] font-mono text-mono-500 text-center tracking-wider uppercase">
+                  <p className="mono-index text-center tracking-wider uppercase text-mono-500">
                     CONFIDENTIAL OPERATIONAL LOGGING · ENCRYPTED IN TRANSIT
                   </p>
                 </form>
@@ -329,10 +280,10 @@ export const Contact: React.FC = () => {
             </div>
           </div>
 
-          <div className="lg:col-span-5 space-y-5">
+          <RevealGroup className="lg:col-span-5 space-y-5">
             
-            <div className="p-6 rounded-3xl bg-[#060606]/80 border border-white/10 space-y-1">
-              <span className="font-mono text-[10px] uppercase tracking-[0.25em] text-mono-400 font-bold block">
+            <div className="glass-card reveal-item p-6 space-y-1">
+              <span className="mono-index uppercase tracking-[0.25em] font-bold block">
                 VERIFIED REAL CHANNELS
               </span>
               <h3 className="font-display font-bold text-lg text-white uppercase tracking-tight">
@@ -347,7 +298,7 @@ export const Contact: React.FC = () => {
               href="https://wa.me/919970875040"
               target="_blank"
               rel="noopener noreferrer"
-              className="p-5 rounded-2xl bg-white/[0.02] border border-white/10 hover:border-white/30 hover:bg-white/[0.05] transition-all flex items-start justify-between group block shadow-sm"
+              className="glass-card reveal-item p-5 flex items-start justify-between group block"
             >
               <div className="space-y-1">
                 <span className="text-[10px] font-mono uppercase tracking-widest text-mono-400 block font-semibold">
@@ -365,7 +316,7 @@ export const Contact: React.FC = () => {
 
             <a
               href="mailto:contact@adlfront.com"
-              className="p-5 rounded-2xl bg-white/[0.02] border border-white/10 hover:border-white/30 hover:bg-white/[0.05] transition-all flex items-start justify-between group block shadow-sm"
+              className="reveal-item p-5 rounded-2xl bg-white/[0.02] border border-white/10 hover:border-white/30 hover:bg-white/[0.05] transition-all flex items-start justify-between group block shadow-sm"
             >
               <div className="space-y-1">
                 <span className="text-[10px] font-mono uppercase tracking-widest text-mono-400 block font-semibold">
@@ -381,7 +332,7 @@ export const Contact: React.FC = () => {
               <ArrowUpRight className="w-4 h-4 text-mono-400 group-hover:text-white group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all shrink-0 mt-1" />
             </a>
 
-            <div className="grid grid-cols-2 gap-3">
+            <div className="reveal-item grid grid-cols-2 gap-3">
               <a
                 href="https://www.instagram.com/adlfrontofficial?igsh=MTgwN3Z2ZXZ4aGswYg=="
                 target="_blank"
@@ -413,7 +364,7 @@ export const Contact: React.FC = () => {
               </a>
             </div>
 
-            <div className="p-5 rounded-2xl bg-[#060606]/90 border border-white/10 space-y-2">
+            <div className="reveal-item p-5 rounded-2xl bg-[#060606]/90 border border-white/10 space-y-2">
               <div className="flex items-center gap-2">
                 <MapPin className="w-4 h-4 text-mono-400" />
                 <span className="text-xs font-bold text-white font-mono uppercase tracking-wider">
@@ -425,11 +376,11 @@ export const Contact: React.FC = () => {
               </p>
             </div>
 
-          </div>
+          </RevealGroup>
 
         </div>
 
       </div>
-    </div>
+    </PageContainer>
   );
 };

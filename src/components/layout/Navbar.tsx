@@ -72,9 +72,14 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAuth }) => {
   return (
     <>
       <header
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 pointer-events-auto h-[70px] flex items-center border-b border-white/[0.06] backdrop-blur-xl bg-black/60 ${
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 pointer-events-auto h-[70px] flex items-center backdrop-blur-2xl ${
           shouldShow ? 'translate-y-0 opacity-100' : '-translate-y-28 opacity-0'
         }`}
+        style={{
+          background: 'rgba(4, 4, 4, 0.82)',
+          borderBottom: '1px solid rgba(255, 255, 255, 0.08)',
+          boxShadow: '0 1px 0 rgba(255,255,255,0.04), 0 8px 32px rgba(0,0,0,0.5)',
+        }}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full flex items-center justify-between">
           <div className="flex items-center gap-4 select-none min-w-0">
@@ -88,8 +93,8 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAuth }) => {
               </span>
             </Link>
             
-            <div className="hidden sm:inline-flex items-center gap-2 pl-3 border-l border-white/[0.08]">
-              <span className="w-2 h-2 rounded-full bg-[#30d158] shadow-[0_0_8px_#30d158] animate-pulse shrink-0" />
+            <div className="hidden sm:inline-flex items-center gap-2 pl-3 border-l border-white/[0.10]">
+              <span className="w-2 h-2 rounded-full bg-[#30d158] shadow-[0_0_10px_#30d158,0_0_20px_rgba(48,209,88,0.4)] animate-pulse shrink-0" />
               <span className="text-[10px] font-mono font-semibold uppercase tracking-[0.1em] text-mono-400 truncate">
                 ADL FRONT // ACTIVE INITIATIVE
               </span>
@@ -103,11 +108,17 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAuth }) => {
                 <Link
                   key={link.path}
                   to={link.path}
-                  className={`text-[11px] uppercase tracking-[0.1em] font-semibold transition-colors duration-200 select-none ${
+                  className={`relative text-[11px] uppercase tracking-[0.1em] font-semibold transition-all duration-200 select-none pb-0.5 ${
                     active ? 'text-white' : 'text-[#86868b] hover:text-white'
                   }`}
+                  style={active ? {
+                    textShadow: '0 0 12px rgba(255,255,255,0.4)',
+                  } : undefined}
                 >
                   {link.name}
+                  {active && (
+                    <span className="absolute -bottom-[26px] left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-white to-transparent opacity-60" />
+                  )}
                 </Link>
               );
             })}

@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Award, FileText, CheckCircle2 } from 'lucide-react';
 import { useReducedMotion } from '../../hooks';
+import { Reveal, RevealGroup, Typewriter } from '../common/Reveal';
 
 interface DetailItem {
   label: string;
@@ -88,8 +89,8 @@ export const CertificatePresentation: React.FC = () => {
           <div>
             <div className="flex items-center gap-2.5">
               <span className="w-2 h-2 rounded-full bg-white shadow-[0_0_8px_white] animate-pulse" />
-              <span className="font-mono text-xs sm:text-sm tracking-[0.22em] text-white uppercase font-black">
-                OFFICIAL RECORD ARCHIVE
+              <span className="font-mono text-xs sm:text-sm tracking-[0.22em] text-white uppercase font-black inline-flex items-center">
+                <Typewriter text="OFFICIAL RECORD ARCHIVE //" speedMs={20} />
               </span>
             </div>
             <p className="text-xs sm:text-sm text-mono-300 font-mono mt-1">
@@ -106,7 +107,7 @@ export const CertificatePresentation: React.FC = () => {
 
       <div className="relative z-10 my-10 flex justify-center">
         <div
-          className={`relative w-full max-w-4xl rounded-2xl bg-[#0d0d0d] border border-white/20 p-4 sm:p-6 lg:p-8 shadow-[0_25px_80px_-20px_rgba(0,0,0,0.9)] overflow-hidden transition-all duration-450 ease-out group hover:border-white/45 ${
+          className={`relative w-full max-w-4xl rounded-2xl bg-[#0a0a0a]/90 border border-white/20 p-4 sm:p-6 lg:p-8 shadow-[0_25px_80px_-20px_rgba(0,0,0,0.9)] overflow-hidden transition-all duration-450 ease-out group hover:border-white/40 backdrop-blur-xl ${
             isVisible ? 'opacity-100 blur-0 scale-100' : 'opacity-60 blur-[2px] scale-[0.99]'
           }`}
           style={{
@@ -115,14 +116,25 @@ export const CertificatePresentation: React.FC = () => {
               : `perspective(1200px) rotateX(${tilt.y}deg) rotateY(${tilt.x}deg)`,
           }}
         >
+          <div
+            className="absolute inset-0 opacity-[0.03] pointer-events-none select-none font-mono text-[9px] uppercase leading-relaxed overflow-hidden p-3 tracking-widest break-all"
+            aria-hidden="true"
+          >
+            AL SYED INITIATIVE VERIFIED CREDENTIAL · CHAIN OF CUSTODY · AL SYED INITIATIVE VERIFIED CREDENTIAL · CHAIN OF CUSTODY · AL SYED INITIATIVE VERIFIED CREDENTIAL · CHAIN OF CUSTODY ·
+          </div>
+
+          <div className="absolute top-4 right-4 z-20 inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-black/80 border border-emerald-500/30 text-emerald-400 text-[10px] font-mono tracking-wider uppercase backdrop-blur-md shadow-lg">
+            <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" />
+            <span>VERIFIED</span>
+          </div>
+
           <div className="absolute inset-3 border border-white/[0.08] pointer-events-none rounded-xl" />
 
           <span className="absolute top-5 left-5 text-mono-500 font-mono text-xs pointer-events-none">+</span>
-          <span className="absolute top-5 right-5 text-mono-500 font-mono text-xs pointer-events-none">+</span>
           <span className="absolute bottom-5 left-5 text-mono-500 font-mono text-xs pointer-events-none">+</span>
           <span className="absolute bottom-5 right-5 text-mono-500 font-mono text-xs pointer-events-none">+</span>
 
-          <div className="relative rounded-xl overflow-hidden bg-black border border-white/15 shadow-inner" data-protected-image>
+          <div className="relative rounded-xl overflow-hidden bg-black border border-white/15 shadow-inner mt-6 sm:mt-0" data-protected-image>
             <img
               src={`${import.meta.env.BASE_URL}certificate-exact.png`}
               alt="Official Al Syed Initiative Certificate of Excellence"
@@ -135,14 +147,14 @@ export const CertificatePresentation: React.FC = () => {
         </div>
       </div>
 
-      <div className="relative z-10 pt-8 border-t border-white/10 grid grid-cols-1 md:grid-cols-3 gap-6">
+      <RevealGroup className="relative z-10 pt-8 border-t border-white/10 grid grid-cols-1 md:grid-cols-3 gap-6">
         {DETAILS.map((item, idx) => (
           <div
             key={idx}
-            className="group p-6 rounded-2xl bg-white/[0.02] border border-white/[0.08] hover:border-white/25 hover:bg-white/[0.05] transition-all duration-300 flex flex-col justify-between"
+            className="glass-card reveal-item group p-6 flex flex-col justify-between"
           >
             <div>
-              <span className="text-xs font-mono uppercase tracking-widest text-mono-400 block mb-2 font-bold group-hover:text-white transition-colors">
+              <span className="mono-index uppercase tracking-widest block mb-2 font-bold group-hover:text-white transition-colors">
                 {item.label}
               </span>
               <p className="text-base sm:text-lg text-white font-medium font-sans leading-relaxed">
@@ -155,7 +167,7 @@ export const CertificatePresentation: React.FC = () => {
             </div>
           </div>
         ))}
-      </div>
+      </RevealGroup>
 
       <div className="relative z-10 mt-12 pt-6 border-t border-white/[0.08] flex flex-col sm:flex-row items-center justify-between gap-4">
         <div className="inline-flex items-center gap-3 text-xs sm:text-sm font-mono text-mono-200 tracking-[0.28em] uppercase font-black">
@@ -164,8 +176,8 @@ export const CertificatePresentation: React.FC = () => {
           <span className="text-white">RECOGNIZED.</span>
         </div>
 
-        <div className="text-[11px] font-mono text-mono-500 uppercase tracking-widest">
-          AUTHENTIC CREDENTIAL SPECIFICATION // BATCH IV
+        <div className="text-[11px] font-mono text-mono-500 uppercase tracking-widest inline-flex items-center">
+          <Typewriter text="AUTHENTIC CREDENTIAL SPECIFICATION // BATCH IV" speedMs={20} delayMs={500} />
         </div>
       </div>
 

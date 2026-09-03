@@ -3,7 +3,7 @@ import { useReducedMotion } from '../../hooks';
 
 interface WordConfig {
   word: string;
-  delay: number; // Staggered kinetic wave delay
+  delay: number;
 }
 
 const LINE_1: WordConfig[] = [
