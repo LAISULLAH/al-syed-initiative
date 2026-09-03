@@ -94,11 +94,11 @@ const CHAR_VECTORS = [
 
 const KineticLetter: React.FC<KineticLetterProps> = ({ char, index, isLoaded, isAccent }) => {
   const v = CHAR_VECTORS[index % CHAR_VECTORS.length];
-  const delay = index * 0.42;
+  const delay = index * 0.85;
 
   return (
     <span
-      className={`char ${isAccent ? 'text-[#38bdf8] drop-shadow-[0_0_14px_rgba(56,189,248,0.75)]' : ''}`}
+      className={`char ${isAccent ? 'text-white' : ''}`}
       style={
         {
           '--kx1': v.kx1,
@@ -110,7 +110,7 @@ const KineticLetter: React.FC<KineticLetterProps> = ({ char, index, isLoaded, is
           '--kx3': v.kx3,
           '--ky3': v.ky3,
           '--kz3': v.kz3,
-          '--cycle-dur': '11s',
+          '--cycle-dur': '22s',
           '--cycle-delay': `${delay}s`,
           transition: `transform 0.75s cubic-bezier(0.16, 1, 0.3, 1) ${80 + index * 32}ms, opacity 0.75s ease ${80 + index * 32}ms`,
           transform: isLoaded ? 'translateY(0%)' : 'translateY(120%)',
@@ -255,7 +255,7 @@ export const HeroMasterpiece: React.FC<HeroMasterpieceProps> = () => {
             >
               <Link
                 to="/courses"
-                className="btn-primary btn-shine-sweep flex items-center gap-2 group shadow-[0_0_20px_rgba(255,255,255,0.18)] hover:shadow-[0_0_32px_rgba(56,189,248,0.3)]"
+                className="btn-primary btn-shine-sweep flex items-center gap-2 group shadow-[0_0_20px_rgba(255,255,255,0.18)] hover:shadow-[0_0_30px_rgba(255,255,255,0.25)]"
               >
                 <span>Explore Programs</span>
                 <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
@@ -280,8 +280,8 @@ export const HeroMasterpiece: React.FC<HeroMasterpieceProps> = () => {
           <div className="hero-metrics">
             <div className="glass-stat-card text-left group">
               <div className="flex items-center gap-1.5 mb-1.5">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#38bdf8] shadow-[0_0_6px_#38bdf8]" />
-                <span className="text-[10px] font-mono text-[#38bdf8] tracking-wider uppercase font-semibold">CADRE</span>
+                <span className="w-1.5 h-1.5 rounded-full bg-white/70 shadow-[0_0_6px_rgba(255,255,255,0.4)]" />
+                <span className="text-[10px] font-mono text-white/60 tracking-wider uppercase font-semibold">CADRE</span>
               </div>
               <h3 className="text-2xl sm:text-3xl font-black text-white tracking-tight">1,000+</h3>
               <p className="text-[11px] uppercase tracking-[0.08em] text-[#86868b] font-semibold mt-1 font-mono">
