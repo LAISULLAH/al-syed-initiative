@@ -374,6 +374,17 @@
   50% { height: 16px; }
 }
 
+@keyframes laserScan {
+  0% { transform: translateY(-10vh); opacity: 0; }
+  15% { opacity: 0.85; }
+  85% { opacity: 0.85; }
+  100% { transform: translateY(105vh); opacity: 0; }
+}
+
+.laser-scan-beam {
+  animation: laserScan 7s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
 @media (prefers-reduced-motion: reduce) {
   *, ::before, ::after {
     animation-duration: 0.01ms !important;

@@ -42,10 +42,12 @@ export const HeroMasterpiece: React.FC<HeroMasterpieceProps> = () => {
     >
       <HeroScene />
 
+      <div className="absolute left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#00f0ff] to-transparent pointer-events-none z-[1] laser-scan-beam shadow-[0_0_25px_#00f0ff]" />
+
       <div
         className="absolute inset-0 pointer-events-none transition-opacity duration-700 z-0"
         style={{
-          background: 'radial-gradient(circle at 50% 50%, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.85) 75%, #000000 100%)',
+          background: 'radial-gradient(ellipse 90% 70% at 50% 50%, rgba(0,0,0,0.08) 0%, rgba(0,0,0,0.55) 65%, #000000 100%)',
         }}
       />
 
@@ -120,14 +122,17 @@ export const HeroMasterpiece: React.FC<HeroMasterpieceProps> = () => {
 
           <div className="flex flex-col text-center sm:text-left">
             <h1
-              className="font-display font-black text-white tracking-[0.2em] sm:tracking-[0.32em] uppercase leading-none select-none"
-              style={{ fontSize: 'clamp(2.5rem, 6.8vw, 5.5rem)' }}
+              className="font-display font-black text-white tracking-[0.2em] sm:tracking-[0.32em] uppercase leading-none select-none drop-shadow-[0_0_35px_rgba(56,189,248,0.3)]"
+              style={{ fontSize: 'clamp(2.75rem, 7.5vw, 6.2rem)' }}
             >
               AL SYED
             </h1>
-            <p className="font-mono text-[11px] sm:text-xs text-[#86868b] tracking-[0.28em] uppercase font-semibold mt-2.5">
-              OSINT & DIGITAL LAWFORCE // SYSTEMATIC INVESTIGATION
-            </p>
+            <div className="inline-flex items-center gap-2 mt-3 justify-center sm:justify-start">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#30d158] shadow-[0_0_8px_#30d158] animate-pulse" />
+              <p className="font-mono text-[11px] sm:text-xs text-[#86868b] tracking-[0.28em] uppercase font-semibold">
+                OSINT & DIGITAL LAWFORCE // SYSTEMATIC INVESTIGATION
+              </p>
+            </div>
           </div>
         </div>
 
